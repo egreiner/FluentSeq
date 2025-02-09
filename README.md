@@ -1,0 +1,3 @@
+# FluentSeq
+New attempt for an Sequencer, replacing IegTools.Sequencer, State-based instead of Transaction-based, internally using Expression Trees (as an exercise...)
+add some files to get something to clone...
