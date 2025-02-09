@@ -1,4 +1,4 @@
-﻿namespace FluentSeq.FindTheArchitecture;
+﻿namespace FluentSeq.FindTheArchitecture.Spike2;
 
 using System;
 
