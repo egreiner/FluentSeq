@@ -32,4 +32,16 @@ public sealed class OnTimerExample
             .State(_state.On)
     // .TriggeredBy(() => _sequence.Stopwatch.IsExpired(OnDelay)).WhenInState(_state.Pending)
             .Builder();
+
+
+
+    private ISequenceBuilder<string> GetSequenceBuilder2 =>
+        new SequenceFactory<string>().Create(_state.Off)
+            .State("bla")
+            .WhileInState(() => Console.WriteLine("bla WhileInState"))
+            .TriggeredBy(() => OnDelay == TimeSpan.Zero)
+
+            .State("blub")
+            .OnEntry(() => Console.WriteLine("blub entry"))
+            .OnExit(() => Console.WriteLine("blub exit"));
 }

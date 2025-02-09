@@ -24,26 +24,3 @@ public interface IStateBuilder<in TState>: ISequenceBuilder<TState>, IActionBuil
 {
     IStateBuilder<TState> TriggeredBy(Func<bool> triggeredByFunc);
 }
-
-
-public interface IFluentSeqBuilder<in TState>
-{
-    IFluentSeqBuilder<TState> State(TState state);
-
-
-    IFluentSeqBuilder<TState> TriggeredBy(Func<bool> triggeredByFunc);
-
-    IFluentSeqBuilder<TState> WhenInState(TState currentState);
-
-    IFluentSeqBuilder<TState> WhenInStates(params TState[] currentStates);
-
-
-    IFluentSeqBuilder<TState> OnEntry(Action action);
-
-    IFluentSeqBuilder<TState> OnExit(Action action);
-
-    IFluentSeqBuilder<TState> WhileInState(Action action);
-
-
-    IFluentSeqBuilder<TState> Builder();
-}
