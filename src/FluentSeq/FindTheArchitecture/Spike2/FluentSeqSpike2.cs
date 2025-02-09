@@ -2,36 +2,46 @@
 
 using System;
 
-public interface IFluentSeqBuilder<in TState>
+public class SequenceFactory<TState>
 {
-    IFluentSeqBuilder<TState> State(TState state);
+    public ISequenceBuilder<TState> Create(TState initialState) => new SequenceBuilder<TState>();
 
-    
-    IFluentSeqBuilder<TState> TriggeredBy(Func<bool> triggeredByFunc);
-
-    IFluentSeqBuilder<TState> WhenInState(TState currentState);
-
-    IFluentSeqBuilder<TState> WhenInStates(params TState[] currentStates);
-
-    
-    
-    //IFluentSeqBuilder<TState> TriggeredFromState(Func<bool> triggeredByFunc, TState currentState);
-
-    //IFluentSeqBuilder<TState> TriggeredFromStates(Func<bool> triggeredByFunc, params TState[] currentStates);
-
-
-
-    IFluentSeqBuilder<TState> OnEntry(Action action);
-
-    IFluentSeqBuilder<TState> OnExit(Action action);
-
-    IFluentSeqBuilder<TState> WhileInState(Action action);
-
-
-
-    IFluentSeqBuilder<TState> Builder();
 }
 
+public class SequenceBuilder<TState> : ISequenceBuilder<TState>
+{
+    // public SequenceBuilder(TState initialState)
+    // {
+    //     throw new NotImplementedException();
+    // }
+
+    public IStateBuilder<TState> State(TState state) => throw new NotImplementedException();
+
+    /// <inheritdoc />
+    public virtual ISequenceBuilder<TState> Builder() => this;
+}
+
+
+public class StateBuilder<TState> : SequenceBuilder<TState>, IStateBuilder<TState>
+{
+    private readonly ISequenceBuilder<TState> _sequenceBuilder;
+
+    public StateBuilder(ISequenceBuilder<TState> sequenceBuilder)
+    {
+        _sequenceBuilder = sequenceBuilder;
+    }
+
+    public override ISequenceBuilder<TState> Builder() => _sequenceBuilder;
+
+
+    public IStateBuilder<TState> TriggeredBy(Func<bool> triggeredByFunc) => throw new NotImplementedException();
+
+    public IStateBuilder<TState> OnEntry(Action action) => throw new NotImplementedException();
+
+    public IStateBuilder<TState> OnExit(Action action) => throw new NotImplementedException();
+
+    public IStateBuilder<TState> WhileInState(Action action) => throw new NotImplementedException();
+}
 
 
 public class FluentSeq<TState> : IFluentSeqBuilder<TState>
@@ -94,65 +104,3 @@ public class FluentSeq<TState> : IFluentSeqBuilder<TState>
 
 
 // --------------------------------------------------------------------------------
-
-
-
-public sealed class OnTimerExample
-{
-
-    
-    // private readonly ISequence _sequence;
-    private readonly DefaultSequenceStates _state = new();
-
-    public OnTimerExample(TimeSpan onDelay)
-    {
-        OnDelay   = onDelay;
-        // _sequence = SequenceConfig.Build();
-    }
-
-
-    public bool LastValue { get; set; }
-
-    public TimeSpan OnDelay { get; set; }
-
-    // public TimeSpan Elapsed   => IsRunning ? _sequence.Stopwatch.Elapsed : TimeSpan.Zero;
-    // public TimeSpan Remaining => IsRunning ? OnDelay - _sequence.Stopwatch.Elapsed : OnDelay;
-    //
-
-    // public ITimer Set(TimeSpan onDelay)
-    // {
-    //     OnDelay = onDelay;
-    //     return this;
-    // }
-    //
-    // public ITimer In(bool value) =>
-    //     InvokeTimerCalculations(LastValue = value).Timer;
-    //
-    //
-    // protected override (ITimer Timer, bool Result) InvokeTimerCalculations(bool value)
-    // {
-    //     _sequence.Run();
-    //     IsRunning = _sequence.HasCurrentState(_state.Pending);
-    //     return (this,
-    //                 _sequence.HasCurrentState(_state.Deactivated)
-    //                     ? value
-    //                     : _sequence.HasCurrentState(_state.On));
-    // }
-
-
-    private IFluentSeqBuilder<string> FluentSeqBuilder =>
-        new FluentSeq<string>().Create(_state.Off)
-            .State(_state.Deactivated)
-            .TriggeredBy(() => OnDelay == TimeSpan.Zero)
-
-            .State(_state.Off)
-            .TriggeredBy(() => !LastValue)
-
-            .State(_state.Pending)
-            .TriggeredBy(() => LastValue).WhenInState(_state.Off)
-            // .OnEntry(() => _sequence.Stopwatch.Restart())
-
-            .State(_state.On)
-            // .TriggeredBy(() => _sequence.Stopwatch.IsExpired(OnDelay)).WhenInState(_state.Pending)
-            .Builder();
-}
