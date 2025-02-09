@@ -1,4 +1,11 @@
-# IegTools.Sequencer  
+# FluentSeq
+
+A successor of IegTools.Sequencer  
+
+
+TBD ... Documentation must be completely reworked....
+
+
 
 IegTools.Sequencer provides a fluent interface for creating easy-to-read and extensible sequences,
 eliminating the need for lengthy if/else statements.  
