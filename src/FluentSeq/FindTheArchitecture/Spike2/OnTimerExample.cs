@@ -39,9 +39,10 @@ public sealed class OnTimerExample
         new SequenceFactory<string>().Create(_state.Off)
             .State("bla")
             .WhileInState(() => Console.WriteLine("bla WhileInState"))
-            .TriggeredBy(() => OnDelay == TimeSpan.Zero)
+            .TriggeredBy(() => OnDelay == TimeSpan.Zero).WhenInState("dadd")
 
             .State("blub")
+            .TriggeredBy(() => OnDelay == TimeSpan.Zero).WhenInStates("dadd", "bla")
             .OnEntry(() => Console.WriteLine("blub entry"))
             .OnExit(() => Console.WriteLine("blub exit"));
 }
