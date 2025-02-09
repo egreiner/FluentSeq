@@ -48,4 +48,3 @@ public interface ITriggerBuilder<in TState>: IStateBuilder<TState>
 
     ITriggerBuilder<TState> WhenInStates(params TState[] currentStates);
 }
-

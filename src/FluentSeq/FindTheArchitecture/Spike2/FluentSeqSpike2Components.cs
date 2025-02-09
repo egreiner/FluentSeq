@@ -32,16 +32,10 @@ public class SequenceBuilder<TState> : ISequenceBuilder<TState>
 /// Provides methods for further describing a state
 /// </summary>
 /// <typeparam name="TState">The type of the state</typeparam>
-public class StateBuilder<TState> : SequenceBuilder<TState>, IStateBuilder<TState>
+public class StateBuilder<TState>(ISequenceBuilder<TState> sequenceBuilder)
+    : SequenceBuilder<TState>, IStateBuilder<TState>
 {
-    private readonly ISequenceBuilder<TState> _sequenceBuilder;
-
-    public StateBuilder(ISequenceBuilder<TState> sequenceBuilder)
-    {
-        _sequenceBuilder = sequenceBuilder;
-    }
-
-    public override ISequenceBuilder<TState> Builder() => _sequenceBuilder;
+    public override ISequenceBuilder<TState> Builder() => sequenceBuilder;
 
 
     public ITriggerBuilder<TState> TriggeredBy(Func<bool> triggeredByFunc) => throw new NotImplementedException();
@@ -58,12 +52,9 @@ public class StateBuilder<TState> : SequenceBuilder<TState>, IStateBuilder<TStat
 /// Provides methods for further describing a trigger
 /// </summary>
 /// <typeparam name="TState">The type of the state</typeparam>
-public class TriggerBuilder<TState> : StateBuilder<TState>, ITriggerBuilder<TState>
+public class TriggerBuilder<TState>(ISequenceBuilder<TState> sequenceBuilder)
+    : StateBuilder<TState>(sequenceBuilder), ITriggerBuilder<TState>
 {
-    public TriggerBuilder(ISequenceBuilder<TState> sequenceBuilder) : base(sequenceBuilder)
-    {
-    }
-
     //
     // public override ISequenceBuilder<TState> Builder() => _sequenceBuilder;
 
