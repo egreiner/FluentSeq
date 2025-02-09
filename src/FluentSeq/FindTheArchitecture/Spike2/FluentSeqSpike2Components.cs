@@ -52,9 +52,19 @@ public class StateBuilder<TState>(ISequenceBuilder<TState> sequenceBuilder)
 /// Provides methods for further describing a trigger
 /// </summary>
 /// <typeparam name="TState">The type of the state</typeparam>
-public class TriggerBuilder<TState>(ISequenceBuilder<TState> sequenceBuilder)
-    : StateBuilder<TState>(sequenceBuilder), ITriggerBuilder<TState>
+public class TriggerBuilder<TState> : StateBuilder<TState>, ITriggerBuilder<TState>
 {
+    private readonly IStateBuilder<TState> _stateBuilder;
+
+    /// <summary>
+    /// Provides methods for further describing a trigger
+    /// </summary>
+    /// <typeparam name="TState">The type of the state</typeparam>
+    public TriggerBuilder(ISequenceBuilder<TState> sequenceBuilder,IStateBuilder<TState> stateBuilder) : base(sequenceBuilder)
+    {
+        _stateBuilder = stateBuilder;
+    }
+
     //
     // public override ISequenceBuilder<TState> Builder() => _sequenceBuilder;
 
