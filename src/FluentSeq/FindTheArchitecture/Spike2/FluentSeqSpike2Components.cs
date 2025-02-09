@@ -6,7 +6,7 @@ using System;
 /// This is the root element for this library
 /// </summary>
 /// <typeparam name="TState">The type of the state</typeparam>
-public class SequenceFactory<TState>
+public class FluentSeq<TState>
 {
     public ISequenceBuilder<TState> Create(TState initialState) => new SequenceBuilder<TState>();
 }

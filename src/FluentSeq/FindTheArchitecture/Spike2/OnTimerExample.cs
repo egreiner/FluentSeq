@@ -17,7 +17,7 @@ public sealed class OnTimerExample
 
 
     private ISequenceBuilder<string> GetSequenceBuilder =>
-        new SequenceFactory<string>().Create(_state.Off)
+        new FluentSeq<string>().Create(_state.Off)
             .State(_state.Deactivated)
             .TriggeredBy(() => OnDelay == TimeSpan.Zero)
 
@@ -26,17 +26,17 @@ public sealed class OnTimerExample
 
             .State(_state.Pending)
             .TriggeredBy(() => LastValue)
-            //.WhenInState(_state.Off)
-            // .OnEntry(() => _sequence.Stopwatch.Restart())
+            .WhenInState(_state.Off)
+            //.OnEntry(() => _sequence.Stopwatch.Restart())
 
             .State(_state.On)
-    // .TriggeredBy(() => _sequence.Stopwatch.IsExpired(OnDelay)).WhenInState(_state.Pending)
+            // .TriggeredBy(() => _sequence.Stopwatch.IsExpired(OnDelay)).WhenInState(_state.Pending)
             .Builder();
 
 
 
     private ISequenceBuilder<string> GetSequenceBuilder2 =>
-        new SequenceFactory<string>().Create(_state.Off)
+        new FluentSeq<string>().Create(_state.Off)
             .State("bla")
             .WhileInState(() => Console.WriteLine("bla WhileInState"))
             .TriggeredBy(() => OnDelay == TimeSpan.Zero).WhenInState("dadd")
