@@ -18,15 +18,24 @@ public sealed class SimpleBuilderTests
         actual.ShouldNotThrow();
     }
 
+    [Fact]
+    public void FluentSeq_Create_ShouldReturn_SequenceBuilder()
+    {
+        var actual = new FluentSeq<string>().Create("INIT");
+
+        actual.ShouldBeOfType<SequenceBuilder<string>>();
+    }
+
 
     [Fact]
-    public void FluentSeq_Create_State_Should_NotThrow()
+    public void SequenceBuilder_State_ShouldReturn_StateBuilder()
     {
-        var actual = () => new FluentSeq<string>().Create("INIT")
+        var actual = new FluentSeq<string>().Create("INIT")
             .State("State1");
 
-        actual.ShouldNotThrow();
+        actual.ShouldBeOfType<StateBuilder<string>>();
     }
+
 
     //
     // private ISequenceBuilder<string> GetSequenceBuilder2 =>

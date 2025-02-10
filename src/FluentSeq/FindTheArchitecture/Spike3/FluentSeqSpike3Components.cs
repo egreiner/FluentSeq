@@ -5,39 +5,23 @@ namespace FluentSeq.FindTheArchitecture.Spike3;
 using System;
 
 /// <summary>
-/// This is the root element for this library
-/// </summary>
-/// <typeparam name="TState">The type of the state</typeparam>
-public class FluentSeq<TState>
-{
-    public ISequenceBuilder<TState> Create(TState initialState) => new SequenceBuilder<TState>();
-}
-
-/// <summary>
-/// Provides methods for configure a sequence
-/// </summary>
-/// <typeparam name="TState">The type of the state</typeparam>
-public class SequenceBuilder<TState> : ISequenceBuilder<TState>
-{
-    // public SequenceBuilder(TState initialState)
-    // {
-    //     throw new NotImplementedException();
-    // }
-
-    public IStateBuilder<TState> State(TState state) => null;
-
-    public virtual ISequenceBuilder<TState> Builder() => this;
-}
-
-
-/// <summary>
 /// Provides methods for further describing a state
 /// </summary>
 /// <typeparam name="TState">The type of the state</typeparam>
-public class StateBuilder<TState>(ISequenceBuilder<TState> sequenceBuilder)
-    : SequenceBuilder<TState>, IStateBuilder<TState>
+public class StateBuilder<TState> : SequenceBuilder<TState>, IStateBuilder<TState>
 {
-    public override ISequenceBuilder<TState> Builder() => sequenceBuilder;
+    private readonly ISequenceBuilder<TState> _sequenceBuilder;
+
+    /// <summary>
+    /// Provides methods for further describing a state
+    /// </summary>
+    /// <typeparam name="TState">The type of the state</typeparam>
+    public StateBuilder(ISequenceBuilder<TState> sequenceBuilder)
+    {
+        _sequenceBuilder = sequenceBuilder;
+    }
+
+    public override ISequenceBuilder<TState> Builder() => _sequenceBuilder;
 
 
     public ITriggerBuilder<TState> TriggeredBy(Func<bool> triggeredByFunc) => throw new NotImplementedException();
