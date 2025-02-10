@@ -4,9 +4,11 @@
         <TargetFramework>netstandard2.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <LangVersion>latest</LangVersion>
+        <IsPackable>true</IsPackable>
 
+        <LangVersion>latest</LangVersion>
         <NeutralLanguage>en</NeutralLanguage>
+
         <RepositoryType>git</RepositoryType>
         <UserSecretsId>940bf605-ef83-43f5-9f75-715291de7535</UserSecretsId>
         <GenerateDocumentationFile>True</GenerateDocumentationFile>
