@@ -37,6 +37,28 @@ public sealed class SimpleBuilderTests
     }
 
 
+    [Fact]
+    public void StateBuilder_Builder_ShouldReturn_RootSequenceBuilder()
+    {
+        var builder = new FluentSeq<string>().Create("INIT");
+
+        var actual = builder.State("State1").Builder();
+
+        actual.ShouldBe(builder);
+    }
+
+    [Fact]
+    public void StateBuilder_Builder_ShouldAlwaysReturn_RootSequenceBuilder()
+    {
+        var builder = new FluentSeq<string>().Create("INIT");
+
+        var actual = builder.State("State1")
+                            .State("State2").Builder();
+
+        actual.ShouldBe(builder);
+    }
+
+
     //
     // private ISequenceBuilder<string> GetSequenceBuilder2 =>
     //     new FluentSeq<string>().Create("Off")
