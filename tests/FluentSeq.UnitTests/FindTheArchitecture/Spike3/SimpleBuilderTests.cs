@@ -1,10 +1,8 @@
-﻿namespace UnitTests.FluentSeq.FindTheArchitecture.Spike3;
+﻿namespace FluentSeq.UnitTests.FindTheArchitecture.Spike3;
 
-using global::FluentSeq.FindTheArchitecture.Spike3;
-using Shouldly;
-using Xunit;
+using FluentSeq.FindTheArchitecture.Spike3;
 
-public sealed class OnTimerExample
+public sealed class SimpleBuilderTests
 {
     public bool LastValue { get; set; }
 
