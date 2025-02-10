@@ -24,7 +24,7 @@ public class SequenceBuilder<TState> : ISequenceBuilder<TState>
     //     throw new NotImplementedException();
     // }
 
-    public IStateBuilder<TState> State(TState state) => throw new NotImplementedException();
+    public IStateBuilder<TState> State(TState state) => null;
 
     public virtual ISequenceBuilder<TState> Builder() => this;
 }

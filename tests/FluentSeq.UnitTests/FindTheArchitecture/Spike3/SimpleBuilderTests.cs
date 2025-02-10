@@ -19,14 +19,24 @@ public sealed class SimpleBuilderTests
     }
 
 
-    private ISequenceBuilder<string> GetSequenceBuilder2 =>
-        new FluentSeq<string>().Create("Off")
-            .State("bla")
-            .WhileInState(() => Console.WriteLine("bla WhileInState"))
-            .TriggeredBy(() => OnDelay == TimeSpan.Zero).WhenInState("dadd")
+    [Fact]
+    public void FluentSeq_Create_State_Should_NotThrow()
+    {
+        var actual = () => new FluentSeq<string>().Create("INIT")
+            .State("State1");
 
-            .State("blub")
-            .TriggeredBy(() => OnDelay == TimeSpan.Zero).WhenInStates("dadd", "bla")
-            .OnEntry(() => Console.WriteLine("blub entry"))
-            .OnExit(() => Console.WriteLine("blub exit"));
+        actual.ShouldNotThrow();
+    }
+
+    //
+    // private ISequenceBuilder<string> GetSequenceBuilder2 =>
+    //     new FluentSeq<string>().Create("Off")
+    //         .State("bla")
+    //         .WhileInState(() => Console.WriteLine("bla WhileInState"))
+    //         .TriggeredBy(() => OnDelay == TimeSpan.Zero).WhenInState("dadd")
+    //
+    //         .State("blub")
+    //         .TriggeredBy(() => OnDelay == TimeSpan.Zero).WhenInStates("dadd", "bla")
+    //         .OnEntry(() => Console.WriteLine("blub entry"))
+    //         .OnExit(() => Console.WriteLine("blub exit"));
 }
