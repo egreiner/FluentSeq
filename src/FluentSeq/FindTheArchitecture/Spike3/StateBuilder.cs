@@ -12,7 +12,6 @@ public class StateBuilder<TState> : IStateBuilder<TState>
     /// <summary>
     /// Provides methods for further describing a state
     /// </summary>
-    /// <typeparam name="TState">The type of the state</typeparam>
     public StateBuilder(ISequenceBuilder<TState> sequenceBuilder)
     {
         _sequenceBuilder = sequenceBuilder;
