@@ -1,9 +1,43 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net9.0</TargetFramework>
+        <TargetFramework>netstandard2.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <LangVersion>latest</LangVersion>
+
+        <NeutralLanguage>en</NeutralLanguage>
+        <RepositoryType>git</RepositoryType>
+        <UserSecretsId>940bf605-ef83-43f5-9f75-715291de7535</UserSecretsId>
+        <GenerateDocumentationFile>True</GenerateDocumentationFile>
+
+        <PackageId>FluentSeq</PackageId>
+        <Title>FluentSeq</Title>
+        <Version>0.0.0-alpha01</Version>
+
+        <Company>ieg Systems</Company>
+        <Authors>Ing. Ernst Greiner</Authors>
+        <Copyright>(c) 2025 ieg Systems - Ing. Ernst Greiner</Copyright>
+
+        <Description>
+            FluentSeq provides a fluent interface for creating easy-to-read and extensible sequences,
+            eliminating the need for lengthy if/else statements.
+            Successor of IegTools.Sequencer
+            - new architecture, state-based instead of transaction-based
+            - use of Expression Trees
+        </Description>
+
+        <PackageReleaseNotes>v0.0.0-alpha01 kickoff</PackageReleaseNotes>
+
+        <PackageTags>sequence, sequencer, state-machine, state-engine, finite-state-machine, fsm, finite-state-automation, fsa</PackageTags>
+
+        <RepositoryUrl>https://github.com/egreiner/FluentSeq</RepositoryUrl>
+        <PackageProjectUrl>https://github.com/egreiner/FluentSeq</PackageProjectUrl>
+        <PackageReadme>https://github.com/egreiner/FluentSeq/blob/main/README.md</PackageReadme>
+        <PackageReadmeFile>docs\README.md</PackageReadmeFile>
+        <PackageLicenseFile>docs\LICENSE.txt</PackageLicenseFile>
+        <PackageIcon>docs\icon2.png</PackageIcon>
+
     </PropertyGroup>
 
 </Project>
