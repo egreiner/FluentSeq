@@ -1,4 +1,6 @@
-﻿namespace FluentSeq.FindTheArchitecture.Spike2;
+﻿#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
+
+namespace FluentSeq.FindTheArchitecture.Spike2;
 
 using System;
 
@@ -59,7 +61,6 @@ public class TriggerBuilder<TState> : StateBuilder<TState>, ITriggerBuilder<TSta
     /// <summary>
     /// Provides methods for further describing a trigger
     /// </summary>
-    /// <typeparam name="TState">The type of the state</typeparam>
     public TriggerBuilder(ISequenceBuilder<TState> sequenceBuilder,IStateBuilder<TState> stateBuilder) : base(sequenceBuilder)
     {
         _stateBuilder = stateBuilder;
