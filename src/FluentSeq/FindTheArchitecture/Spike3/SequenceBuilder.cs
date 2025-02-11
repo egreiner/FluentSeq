@@ -14,20 +14,18 @@ public class SequenceBuilder<TState> : ISequenceBuilder<TState>
     public SequenceBuilder(TState initialState)
     {
         InitialState = initialState;
+        RootSequenceBuilder = this;
     }
-
-    //
-    // /// <summary>
-    // /// Creates a new instance of <see cref="SequenceBuilder{TState}"/>
-    // /// with a default initial state that can also be null
-    // /// </summary>
-    // protected SequenceBuilder() : this(default!) { }
-
 
     /// <summary>
     /// The initial state of the sequence
     /// </summary>
     public TState InitialState { get; }
+
+    /// <summary>
+    /// The root SequenceBuilder
+    /// </summary>
+    protected ISequenceBuilder<TState> RootSequenceBuilder { get; set; }
 
 
     /// <summary>
@@ -35,10 +33,11 @@ public class SequenceBuilder<TState> : ISequenceBuilder<TState>
     /// </summary>
     /// <param name="state">The name of the state</param>
     /// <returns>A StateBuilder</returns>
-    public IStateBuilder<TState> State(TState state) => new StateBuilder<TState>(this);
+    public IStateBuilder<TState> State(TState state) => new StateBuilder<TState>(Builder());
 
     /// <summary>
     /// Returns the root SequenceBuilder
     /// </summary>
-    public virtual ISequenceBuilder<TState> Builder() => this;
+    public ISequenceBuilder<TState> Builder() =>
+        RootSequenceBuilder;
 }

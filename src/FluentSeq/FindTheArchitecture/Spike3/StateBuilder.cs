@@ -5,24 +5,15 @@ namespace FluentSeq.FindTheArchitecture.Spike3;
 /// Provides methods for further describing a state
 /// </summary>
 /// <typeparam name="TState">The type of the state</typeparam>
-public class StateBuilder<TState> : IStateBuilder<TState>
+public class StateBuilder<TState> : SequenceBuilder<TState>, IStateBuilder<TState>
 {
-    private readonly ISequenceBuilder<TState> _sequenceBuilder;
-
     /// <summary>
     /// Provides methods for further describing a state
     /// </summary>
-    public StateBuilder(ISequenceBuilder<TState> sequenceBuilder)
+    public StateBuilder(ISequenceBuilder<TState> sequenceBuilder): base(sequenceBuilder.InitialState)
     {
-        _sequenceBuilder = sequenceBuilder;
+        RootSequenceBuilder = sequenceBuilder;
     }
-
-
-    public IStateBuilder<TState> State(TState state) =>
-        _sequenceBuilder.State(state);
-
-    public ISequenceBuilder<TState> Builder() =>
-        _sequenceBuilder;
 
 
     public ITriggerBuilder<TState> TriggeredBy(Func<bool> triggeredByFunc) => throw new NotImplementedException();
