@@ -20,7 +20,8 @@ public class StateBuilder<TState> : SequenceBuilder<TState>, IStateBuilder<TStat
     public State State { get; }
 
 
-    public ITriggerBuilder<TState> TriggeredBy(Func<bool> triggeredByFunc) => throw new NotImplementedException();
+    public ITriggerBuilder<TState> TriggeredBy(Func<bool> triggeredByFunc) =>
+        new TriggerBuilder<TState>(this);
 
     public IStateBuilder<TState> OnEntry(Action action) => throw new NotImplementedException();
 

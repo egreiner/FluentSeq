@@ -15,9 +15,9 @@ public class TriggerBuilder<TState> : StateBuilder<TState>, ITriggerBuilder<TSta
     /// <summary>
     /// Provides methods for further describing a trigger
     /// </summary>
-    public TriggerBuilder(ISequenceBuilder<TState> sequenceBuilder,IStateBuilder<TState> stateBuilder) : base(sequenceBuilder, "TODO", "TODO")
+    public TriggerBuilder(IStateBuilder<TState> stateBuilder) : base(stateBuilder.Builder(), stateBuilder.State.Name, stateBuilder.State.Description)
     {
-        _stateBuilder = stateBuilder;
+        RootSequenceBuilder = stateBuilder.Builder();
     }
 
     // public override ISequenceBuilder<TState> Builder() => _sequenceBuilder;
