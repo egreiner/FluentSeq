@@ -4,7 +4,7 @@ namespace FluentSeq;
 /// <summary>
 /// The DefaultSequenceStates class defines a set of standard states for sequences.
 /// Designed as a 'Named Constants Class' rather than an enum for greater flexibility (inherit for custom states).
-/// Use this class to define internal sequence states within your application, offering the ability to add custom states as needed.
+/// Use this class to define sequence states within your application, offering the ability to add custom states as needed.
 /// </summary>
 public class DefaultSequenceStates
 {
