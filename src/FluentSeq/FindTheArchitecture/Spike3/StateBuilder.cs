@@ -20,6 +20,21 @@ public class StateBuilder<TState> : SequenceBuilder<TState>, IStateBuilder<TStat
     public State State { get; }
 
 
+    /// <inheritdoc />
+    public override string ToString() =>
+        $"StateBuilder for State: {State.Name} {State.Description}";
+
+
+    /// <inheritdoc />
+    public override bool Equals(object? obj) =>
+        obj is StateBuilder<TState> stateBuilder && State.Equals(stateBuilder.State);
+
+    /// <inheritdoc />
+    public override int GetHashCode() =>
+        State.Name.GetHashCode();
+
+
+
     public ITriggerBuilder<TState> TriggeredBy(Func<bool> triggeredByFunc) =>
         new TriggerBuilder<TState>(this);
 
