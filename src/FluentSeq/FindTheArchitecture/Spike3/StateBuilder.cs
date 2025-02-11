@@ -10,10 +10,14 @@ public class StateBuilder<TState> : SequenceBuilder<TState>, IStateBuilder<TStat
     /// <summary>
     /// Provides methods for further describing a state
     /// </summary>
-    public StateBuilder(ISequenceBuilder<TState> sequenceBuilder): base(sequenceBuilder.InitialState)
+    public StateBuilder(ISequenceBuilder<TState> sequenceBuilder, string stateName): base(sequenceBuilder.InitialState)
     {
         RootSequenceBuilder = sequenceBuilder;
+        StateX = new State(stateName);
     }
+
+
+    public State StateX { get; }
 
 
     public ITriggerBuilder<TState> TriggeredBy(Func<bool> triggeredByFunc) => throw new NotImplementedException();

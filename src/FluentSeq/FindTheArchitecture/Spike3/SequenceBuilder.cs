@@ -29,7 +29,7 @@ public class SequenceBuilder<TState> : ISequenceBuilder<TState>
 
     /// <inheritdoc />
     public IStateBuilder<TState> State(TState state) =>
-        new StateBuilder<TState>(Builder());
+        new StateBuilder<TState>(Builder(), state?.ToString() ?? string.Empty);
 
     /// <inheritdoc />
     public ISequenceBuilder<TState> Builder() =>
