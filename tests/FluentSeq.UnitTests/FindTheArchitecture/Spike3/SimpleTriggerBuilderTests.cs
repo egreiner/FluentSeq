@@ -13,4 +13,16 @@ public sealed class SimpleTriggerBuilderTests
 
         actual.ShouldBeOfType<TriggerBuilder<string>>();
     }
+
+    [Fact]
+    public void TriggerBuilder_ShouldContain_Trigger()
+    {
+        var trigger = new FluentSeq<string>().Create("INIT")
+            .ConfigureState("State1")
+            .TriggeredBy(() => true);
+
+        var actual = trigger.Trigger;
+
+        actual.ShouldNotBeNull();
+    }
 }

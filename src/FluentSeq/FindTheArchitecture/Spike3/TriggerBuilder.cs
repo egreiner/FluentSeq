@@ -13,14 +13,18 @@ public class TriggerBuilder<TState> : StateBuilder<TState>, ITriggerBuilder<TSta
     private readonly IStateBuilder<TState> _stateBuilder;
 
     /// <summary>
-    /// Provides methods for further describing a trigger
+    /// Provides methods to parametrize a trigger
     /// </summary>
     public TriggerBuilder(IStateBuilder<TState> stateBuilder) : base(stateBuilder.Builder(), stateBuilder.State.Name, stateBuilder.State.Description)
     {
         RootSequenceBuilder = stateBuilder.Builder();
+        Trigger = new Trigger<TState>(stateBuilder);
     }
 
-    // public override ISequenceBuilder<TState> Builder() => _sequenceBuilder;
+
+    /// <inheritdoc />
+    public Trigger<TState> Trigger { get; }
+
 
     public ITriggerBuilder<TState> WhenInState(TState currentState) => throw new NotImplementedException();
 

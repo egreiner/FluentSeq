@@ -11,4 +11,9 @@ public interface ITriggerBuilder<TState>: IStateBuilder<TState>
     ITriggerBuilder<TState> WhenInState(TState currentState);
 
     ITriggerBuilder<TState> WhenInStates(params TState[] currentStates);
+
+    /// <summary>
+    /// Returns the trigger the builder is for
+    /// </summary>
+    Trigger<TState> Trigger { get; }
 }
