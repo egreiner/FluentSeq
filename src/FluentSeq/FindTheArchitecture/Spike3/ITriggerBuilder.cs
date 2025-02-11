@@ -6,7 +6,7 @@ namespace FluentSeq.FindTheArchitecture.Spike3;
 /// Provides methods for further describing a trigger
 /// </summary>
 /// <typeparam name="TState">The type of the state</typeparam>
-public interface ITriggerBuilder<in TState>: IStateBuilder<TState>
+public interface ITriggerBuilder<TState>: IStateBuilder<TState>
 {
     ITriggerBuilder<TState> WhenInState(TState currentState);
 

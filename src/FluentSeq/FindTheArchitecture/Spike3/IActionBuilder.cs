@@ -5,7 +5,7 @@ namespace FluentSeq.FindTheArchitecture.Spike3;
 /// Provides methods to enhance a state with actions
 /// </summary>
 /// <typeparam name="TState">The type of the state</typeparam>
-public interface IActionBuilder<in TState>
+public interface IActionBuilder<TState>
 {
     IStateBuilder<TState> OnEntry(Action action);
 

@@ -5,8 +5,13 @@ namespace FluentSeq.FindTheArchitecture.Spike3;
 /// Provides methods to configure a sequence
 /// </summary>
 /// <typeparam name="TState">The type of the state</typeparam>
-public interface ISequenceBuilder<in TState>
+public interface ISequenceBuilder<TState>
 {
+    /// <summary>
+    /// The initial state of the sequence
+    /// </summary>
+    TState InitialState { get; }
+
     IStateBuilder<TState> State(TState state);
 
     ISequenceBuilder<TState> Builder();
