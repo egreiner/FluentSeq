@@ -16,8 +16,9 @@ public interface ISequenceBuilder<TState>
     /// Creates a new State
     /// </summary>
     /// <param name="state">The name of the state</param>
+    /// <param name="description">Optional description of the state</param>
     /// <returns>A StateBuilder</returns>
-    IStateBuilder<TState> State(TState state);
+    IStateBuilder<TState> ConfigureState(TState state, string description = "");
 
     /// <summary>
     /// Returns the root SequenceBuilder

@@ -13,7 +13,7 @@ public sealed class SimpleStateBuilderTests
     public void SequenceBuilder_State_ShouldReturn_StateBuilder()
     {
         var actual = new FluentSeq<string>().Create("INIT")
-            .State("State1");
+                                            .ConfigureState("State1");
 
         actual.ShouldBeOfType<StateBuilder<string>>();
     }
@@ -24,7 +24,7 @@ public sealed class SimpleStateBuilderTests
     {
         var builder = new FluentSeq<string>().Create("INIT");
 
-        var actual = builder.State("State1").Builder();
+        var actual = builder.ConfigureState("State1").Builder();
 
         actual.ShouldBe(builder);
     }
@@ -34,8 +34,8 @@ public sealed class SimpleStateBuilderTests
     {
         var builder = new FluentSeq<string>().Create("INIT");
 
-        var actual = builder.State("State1")
-            .State("State2").Builder();
+        var actual = builder.ConfigureState("State1")
+                            .ConfigureState("State2").Builder();
 
         actual.ShouldBe(builder);
     }
@@ -45,32 +45,56 @@ public sealed class SimpleStateBuilderTests
     {
         var builder = new FluentSeq<string>().Create("INIT");
 
-        var state = builder.State("State1").StateX;
+        var state = builder.ConfigureState("State1").State;
         var actual = state.Name;
 
         actual.ShouldBe("State1");
     }
-
 
     [Fact]
     public void StateBuilder_ShouldReturn_State_with_correct_name_when_nested()
     {
         var builder = new FluentSeq<string>().Create("INIT");
 
-        var state = builder.State("State1")
-                           .State("State2").StateX;
+        var state = builder.ConfigureState("State1")
+                           .ConfigureState("State2").State;
         var actual = state.Name;
 
         actual.ShouldBe("State2");
     }
 
+
+    [Fact]
+    public void StateBuilder_ShouldReturn_State_with_empty_description()
+    {
+        var builder = new FluentSeq<string>().Create("INIT");
+
+        var state = builder.ConfigureState("State1").State;
+        var actual = state.Description;
+
+        actual.ShouldBe(string.Empty);
+    }
+
+    [Fact]
+    public void StateBuilder_ShouldReturn_State_with_empty_description_when_nested()
+    {
+        var builder = new FluentSeq<string>().Create("INIT");
+
+        var state = builder.ConfigureState("State1")
+                           .ConfigureState("State2").State;
+        var actual = state.Description;
+
+        actual.ShouldBe(string.Empty);
+    }
+
+
     // private ISequenceBuilder<string> GetSequenceBuilder2 =>
     //     new FluentSeq<string>().Create("Off")
-    //         .State("bla")
+    //         .ConfigureState("bla")
     //         .WhileInState(() => Console.WriteLine("bla WhileInState"))
     //         .TriggeredBy(() => OnDelay == TimeSpan.Zero).WhenInState("dadd")
     //
-    //         .State("blub")
+    //         .ConfigureState("blub")
     //         .TriggeredBy(() => OnDelay == TimeSpan.Zero).WhenInStates("dadd", "bla")
     //         .OnEntry(() => Console.WriteLine("blub entry"))
     //         .OnExit(() => Console.WriteLine("blub exit"));
