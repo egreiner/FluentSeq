@@ -12,8 +12,16 @@ public interface ISequenceBuilder<TState>
     /// </summary>
     TState InitialState { get; }
 
+    /// <summary>
+    /// Creates a new State
+    /// </summary>
+    /// <param name="state">The name of the state</param>
+    /// <returns>A StateBuilder</returns>
     IStateBuilder<TState> State(TState state);
 
+    /// <summary>
+    /// Returns the root SequenceBuilder
+    /// </summary>
     ISequenceBuilder<TState> Builder();
 
     // TODO public ISequence<TState> Build()

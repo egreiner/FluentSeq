@@ -1,7 +1,7 @@
 namespace FluentSeq.FindTheArchitecture.Spike3;
 
 /// <summary>
-/// Provides methods for configure a sequence
+/// Provides methods to configure a sequence
 /// </summary>
 /// <typeparam name="TState">The type of the state</typeparam>
 public class SequenceBuilder<TState> : ISequenceBuilder<TState>
@@ -11,15 +11,14 @@ public class SequenceBuilder<TState> : ISequenceBuilder<TState>
     /// with a specified initial state
     /// </summary>
     /// <param name="initialState">The initial state of the sequence</param>
+    // TODO maybe injecting a complete SequenceConfiguration here would be better, that makes everything more open
     public SequenceBuilder(TState initialState)
     {
         InitialState = initialState;
         RootSequenceBuilder = this;
     }
 
-    /// <summary>
-    /// The initial state of the sequence
-    /// </summary>
+    /// <inheritdoc />
     public TState InitialState { get; }
 
     /// <summary>
@@ -28,16 +27,11 @@ public class SequenceBuilder<TState> : ISequenceBuilder<TState>
     protected ISequenceBuilder<TState> RootSequenceBuilder { get; set; }
 
 
-    /// <summary>
-    /// Creates a new State
-    /// </summary>
-    /// <param name="state">The name of the state</param>
-    /// <returns>A StateBuilder</returns>
-    public IStateBuilder<TState> State(TState state) => new StateBuilder<TState>(Builder());
+    /// <inheritdoc />
+    public IStateBuilder<TState> State(TState state) =>
+        new StateBuilder<TState>(Builder());
 
-    /// <summary>
-    /// Returns the root SequenceBuilder
-    /// </summary>
+    /// <inheritdoc />
     public ISequenceBuilder<TState> Builder() =>
         RootSequenceBuilder;
 }
