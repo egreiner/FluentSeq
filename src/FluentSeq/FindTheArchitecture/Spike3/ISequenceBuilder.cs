@@ -10,4 +10,6 @@ public interface ISequenceBuilder<in TState>
     IStateBuilder<TState> State(TState state);
 
     ISequenceBuilder<TState> Builder();
+
+    // TODO public ISequence<TState> Build()
 }

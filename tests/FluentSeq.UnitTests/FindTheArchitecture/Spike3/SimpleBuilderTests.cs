@@ -59,7 +59,6 @@ public sealed class SimpleBuilderTests
     }
 
 
-    //
     // private ISequenceBuilder<string> GetSequenceBuilder2 =>
     //     new FluentSeq<string>().Create("Off")
     //         .State("bla")
