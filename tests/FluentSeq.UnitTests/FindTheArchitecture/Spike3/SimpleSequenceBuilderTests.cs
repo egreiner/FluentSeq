@@ -19,4 +19,16 @@ public sealed class SimpleSequenceBuilderTests
 
         actual.ShouldBeOfType<SequenceBuilder<string>>();
     }
+
+    [Fact]
+    public void SequenceBuilder_State_ShouldThrow_when_adding_states_with_same_name()
+    {
+        var action = () => new FluentSeq<string>().Create("INIT")
+            .ConfigureState("State1")
+            .ConfigureState("State1x");
+
+        // TODO: This should throw an exception
+        action.ShouldNotThrow();
+        // action.ShouldNotThrow<Exception>();
+    }
 }

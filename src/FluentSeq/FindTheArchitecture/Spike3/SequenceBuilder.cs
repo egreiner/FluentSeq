@@ -6,6 +6,9 @@ namespace FluentSeq.FindTheArchitecture.Spike3;
 /// <typeparam name="TState">The type of the state</typeparam>
 public class SequenceBuilder<TState> : ISequenceBuilder<TState>
 {
+    private StateBuilder<TState>? _activeStateBuilder;
+    private HashSet<StateBuilder<TState>> _stateBuilders = new HashSet<StateBuilder<TState>>();
+
     /// <summary>
     /// Creates a new instance of <see cref="SequenceBuilder{TState}"/>
     /// with a specified initial state
@@ -21,6 +24,11 @@ public class SequenceBuilder<TState> : ISequenceBuilder<TState>
     /// <inheritdoc />
     public TState InitialState { get; }
 
+    /// <inheritdoc />
+    public IList<State> RegisteredStates => _stateBuilders?.Select(x => x.State).ToList() ?? [];
+
+
+
     /// <summary>
     /// The root SequenceBuilder
     /// </summary>
@@ -28,8 +36,18 @@ public class SequenceBuilder<TState> : ISequenceBuilder<TState>
 
 
     /// <inheritdoc />
-    public IStateBuilder<TState> ConfigureState(TState state, string description = "") =>
-        new StateBuilder<TState>(Builder(), state?.ToString() ?? string.Empty, description);
+    public IStateBuilder<TState> ConfigureState(TState state, string description = "")
+    {
+        _activeStateBuilder = new StateBuilder<TState>(Builder(), state?.ToString() ?? string.Empty, description);
+
+        // if (_stateBuilders.Contains(_activeStateBuilder))
+//            throw new Exception();
+
+        _stateBuilders.Add(_activeStateBuilder);
+
+        return _activeStateBuilder;
+    }
+
 
     /// <inheritdoc />
     public ISequenceBuilder<TState> Builder() =>

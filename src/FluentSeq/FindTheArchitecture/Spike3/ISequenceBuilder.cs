@@ -13,6 +13,12 @@ public interface ISequenceBuilder<TState>
     TState InitialState { get; }
 
     /// <summary>
+    /// Returns a list of all registered states
+    /// </summary>
+    IList<State> RegisteredStates { get; }
+
+
+    /// <summary>
     /// Creates a new State
     /// </summary>
     /// <param name="state">The name of the state</param>

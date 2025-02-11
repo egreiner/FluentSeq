@@ -13,11 +13,10 @@ public sealed class SimpleStateBuilderTests
     public void SequenceBuilder_State_ShouldReturn_StateBuilder()
     {
         var actual = new FluentSeq<string>().Create("INIT")
-                                            .ConfigureState("State1");
+            .ConfigureState("State1");
 
         actual.ShouldBeOfType<StateBuilder<string>>();
     }
-
 
     [Fact]
     public void StateBuilder_Builder_ShouldReturn_RootSequenceBuilder()
