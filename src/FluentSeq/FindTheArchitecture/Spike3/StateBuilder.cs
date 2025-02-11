@@ -16,7 +16,7 @@ public class StateBuilder<TState> : SequenceBuilder<TState>, IStateBuilder<TStat
         StateX = new State(stateName);
     }
 
-
+    /// <inheritdoc />
     public State StateX { get; }
 
 

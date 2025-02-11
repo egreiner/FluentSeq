@@ -15,12 +15,11 @@ public class TriggerBuilder<TState> : StateBuilder<TState>, ITriggerBuilder<TSta
     /// <summary>
     /// Provides methods for further describing a trigger
     /// </summary>
-    public TriggerBuilder(ISequenceBuilder<TState> sequenceBuilder,IStateBuilder<TState> stateBuilder) : base(sequenceBuilder)
+    public TriggerBuilder(ISequenceBuilder<TState> sequenceBuilder,IStateBuilder<TState> stateBuilder) : base(sequenceBuilder, "TODO")
     {
         _stateBuilder = stateBuilder;
     }
 
-    //
     // public override ISequenceBuilder<TState> Builder() => _sequenceBuilder;
 
     public ITriggerBuilder<TState> WhenInState(TState currentState) => throw new NotImplementedException();
