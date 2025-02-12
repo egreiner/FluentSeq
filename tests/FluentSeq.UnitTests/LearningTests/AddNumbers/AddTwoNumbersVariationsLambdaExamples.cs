@@ -1,6 +1,6 @@
 ﻿namespace FluentSeq.UnitTests.LearningTests.AddNumbers;
 
-public sealed class AddTwoNumbersVariationsExamples3
+public sealed class AddTwoNumbersVariationsLambdaExamples
 {
     [Fact]
     public void AddTwoNumbers_ShouldReturn_TheSum_use_lambda_expression1()
