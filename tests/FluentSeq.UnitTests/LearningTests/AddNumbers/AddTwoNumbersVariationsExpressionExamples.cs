@@ -2,7 +2,7 @@
 
 using System.Linq.Expressions;
 
-public sealed class AddTwoNumbersVariationsExamples5
+public sealed class AddTwoNumbersVariationsExpressionExamples
 {
     [Fact]
     public void AddTwoNumbers_ShouldReturn_TheSum_use_expression_trees1()
