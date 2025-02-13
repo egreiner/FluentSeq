@@ -10,7 +10,7 @@ public class StateBuilder<TState> : SequenceBuilder<TState>, IStateBuilder<TStat
     /// <summary>
     /// Provides methods for further describing a state
     /// </summary>
-    public StateBuilder(ISequenceBuilder<TState> sequenceBuilder, string stateName, string description): base(sequenceBuilder.InitialState)
+    public StateBuilder(ISequenceBuilder<TState> sequenceBuilder, string stateName, string description): base(sequenceBuilder.Options.InitialState)
     {
         RootSequenceBuilder = sequenceBuilder;
         State = new State(stateName, description);

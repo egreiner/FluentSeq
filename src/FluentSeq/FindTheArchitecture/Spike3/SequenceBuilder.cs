@@ -23,8 +23,6 @@ public class SequenceBuilder<TState> : ISequenceBuilder<TState>
     /// <inheritdoc />
     public SequenceOptions<TState> Options { get; } = new();
 
-    /// <inheritdoc />
-    public TState InitialState { get; }
 
     /// <inheritdoc />
     public IList<State> RegisteredStates => _stateBuilders?.Select(x => x.State).ToList() ?? [];

@@ -11,12 +11,6 @@ public interface ISequenceBuilder<TState>
     // TODO public ISequence<TState> Build()
 
 
-
-    /// <summary>
-    /// The initial state of the sequence
-    /// </summary>
-    TState InitialState { get; }
-
     /// <summary>
     /// Returns a list of all registered states
     /// </summary>
