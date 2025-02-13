@@ -10,6 +10,7 @@ public interface ISequenceBuilder<TState>
 
     // TODO public ISequence<TState> Build()
 
+    internal HashSet<StateBuilder<TState>> StateBuilders { get; }
 
     /// <summary>
     /// Returns a list of all registered states

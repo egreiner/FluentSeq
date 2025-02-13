@@ -1,5 +1,7 @@
 namespace FluentSeq.FindTheArchitecture.Spike3;
 
+using Exceptions;
+
 /// <summary>
 /// Provides methods to configure a sequence
 /// </summary>
@@ -7,7 +9,6 @@ namespace FluentSeq.FindTheArchitecture.Spike3;
 public class SequenceBuilder<TState> : ISequenceBuilder<TState>
 {
     private StateBuilder<TState>? _activeStateBuilder;
-    private HashSet<StateBuilder<TState>> _stateBuilders = new HashSet<StateBuilder<TState>>();
 
     /// <summary>
     /// Creates a new instance of <see cref="SequenceBuilder{TState}"/>
@@ -21,11 +22,16 @@ public class SequenceBuilder<TState> : ISequenceBuilder<TState>
     }
 
     /// <inheritdoc />
+    public HashSet<StateBuilder<TState>> StateBuilders { get; } = new HashSet<StateBuilder<TState>>();
+
+
+
+    /// <inheritdoc />
     public SequenceOptions<TState> Options { get; } = new();
 
 
     /// <inheritdoc />
-    public IList<State> RegisteredStates => _stateBuilders?.Select(x => x.State).ToList() ?? [];
+    public IList<State> RegisteredStates => Builder().StateBuilders.Select(x => x.State).ToList() ?? [];
 
 
     /// <summary>
@@ -54,12 +60,11 @@ public class SequenceBuilder<TState> : ISequenceBuilder<TState>
     /// <inheritdoc />
     public IStateBuilder<TState> ConfigureState(TState state, string description = "")
     {
-        _activeStateBuilder = new StateBuilder<TState>(Builder(), state?.ToString() ?? string.Empty, description);
+        var stateName = state?.ToString() ?? Guid.NewGuid().ToString();
+        _activeStateBuilder = new StateBuilder<TState>(Builder(), stateName, description);
 
-        // if (_stateBuilders.Contains(_activeStateBuilder))
-//            throw new Exception();
-
-        _stateBuilders.Add(_activeStateBuilder);
+        if (!Builder().StateBuilders.Add(_activeStateBuilder))
+           throw new DuplicateStateException(stateName);
 
         return _activeStateBuilder;
     }
