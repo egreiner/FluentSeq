@@ -44,8 +44,15 @@ public class SequenceBuilder<TState> : ISequenceBuilder<TState>
         return this;
     }
 
+    /// <inheritdoc />
+    public ISequenceBuilder<TState> DisableValidationForStates(params TState[] states)
+    {
+        Options.DisableValidationForStates = states;
+        return this;
+    }
 
-    // TODO
+
+    // TODO not completed
     /// <inheritdoc />
     public IStateBuilder<TState> ConfigureState(TState state, string description = "")
     {

@@ -44,5 +44,13 @@ public interface ISequenceBuilder<TState>
     ISequenceBuilder<TState> Builder();
 
 
+    /// <summary>
+    /// The complete validation of the sequence configuration will be disabled
+    /// </summary>
     ISequenceBuilder<TState> DisableValidation();
+
+    /// <summary>
+    /// The validation for the specified states within the sequence configuration will be disabled
+    /// </summary>
+    ISequenceBuilder<TState> DisableValidationForStates(params TState[] states);
 }
