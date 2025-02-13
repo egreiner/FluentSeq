@@ -2,6 +2,11 @@
 
 public sealed class AddTwoNumbers
 {
+    /// <summary>
+    /// Two numbers are added
+    /// Context:
+    /// Two numbers are added, the simplest way possible.
+    /// </summary>
     [Fact]
     public void AddTwoNumbers_ShouldReturn_TheSum()
     {

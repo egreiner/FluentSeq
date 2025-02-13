@@ -2,6 +2,11 @@
 
 public sealed class AddTwoNumbersVariationsExamples1
 {
+    /// <summary>
+    /// Two numbers are added
+    /// Context:
+    /// Two numbers with special meaning are declared, later on, they are added
+    /// </summary>
     [Fact]
     public void AddTwoNumbers_ShouldReturn_TheSum_use_variables()
     {
@@ -15,6 +20,12 @@ public sealed class AddTwoNumbersVariationsExamples1
 
 
 
+    /// <summary>
+    /// Two numbers are added
+    /// Context:
+    /// Two numbers are added, but it's not done here, it's done in a method.
+    /// This method can be called also from other places.
+    /// </summary>
     [Fact]
     public void AddTwoNumbers_ShouldReturn_TheSum_use_method()
     {
@@ -28,6 +39,12 @@ public sealed class AddTwoNumbersVariationsExamples1
 
 
 
+    /// <summary>
+    /// Two numbers are added
+    /// Context:
+    /// Two numbers are added, but it's not done here, it's done in a local function.
+    /// This method can only be called in this method.
+    /// </summary>
     [Fact]
     public void AddTwoNumbers_ShouldReturn_TheSum_use_local_function1()
     {
@@ -41,6 +58,11 @@ public sealed class AddTwoNumbersVariationsExamples1
             num1 + num2;
     }
 
+    /// <summary>
+    /// Two numbers are added
+    /// Context:
+    /// The same as before, but with other syntax
+    /// </summary>
     [Fact]
     public void AddTwoNumbers_ShouldReturn_TheSum_use_local_function2()
     {
