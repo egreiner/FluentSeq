@@ -14,7 +14,7 @@ public class SequenceBuilder<TState> : ISequenceBuilder<TState>
     /// with a specified initial state
     /// </summary>
     /// <param name="initialState">The initial state of the sequence</param>
-    // TODO maybe injecting a complete SequenceConfiguration here would be better, that makes everything more open
+    // TODO maybe injecting a complete SequenceOptions here would be better, that makes everything more open
     public SequenceBuilder(TState initialState)
     {
         InitialState = initialState;
