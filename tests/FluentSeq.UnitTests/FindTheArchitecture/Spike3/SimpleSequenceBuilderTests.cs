@@ -54,4 +54,20 @@ public sealed class SimpleSequenceBuilderTests
         actual.ShouldNotBeEmpty();
         actual.Count.ShouldBe(2);
     }
+
+
+    [Fact]
+    public void RegisteredStates_ShouldContainEach_RegisteredState()
+    {
+        var builder = new FluentSeq<string>().Create("INIT");
+        var stateBuilder1 = builder.ConfigureState("State1");
+        var stateBuilder2 = builder.ConfigureState("State2");
+
+        var actual = builder.RegisteredStates;
+
+        actual.ShouldNotContain(new State("INIT"));
+
+        actual.ShouldContain(stateBuilder1.State);
+        actual.ShouldContain(stateBuilder2.State);
+    }
 }
