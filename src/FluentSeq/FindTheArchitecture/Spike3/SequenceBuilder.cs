@@ -36,6 +36,16 @@ public class SequenceBuilder<TState> : ISequenceBuilder<TState>
     protected ISequenceBuilder<TState> RootSequenceBuilder { get; set; }
 
 
+
+    /// <inheritdoc />
+    public ISequenceBuilder<TState> DisableValidation()
+    {
+        Options.DisableValidation = true;
+        return this;
+    }
+
+
+    // TODO
     /// <inheritdoc />
     public IStateBuilder<TState> ConfigureState(TState state, string description = "")
     {

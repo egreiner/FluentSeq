@@ -7,6 +7,11 @@ namespace FluentSeq.FindTheArchitecture.Spike3;
 /// <typeparam name="TState">The type of the state</typeparam>
 public interface ISequenceBuilder<TState>
 {
+
+    // TODO public ISequence<TState> Build()
+
+
+
     /// <summary>
     /// The initial state of the sequence
     /// </summary>
@@ -23,6 +28,7 @@ public interface ISequenceBuilder<TState>
     SequenceOptions<TState> Options { get; }
 
 
+    // TODO rename to AddState???
     /// <summary>
     /// Creates a new State
     /// </summary>
@@ -37,5 +43,6 @@ public interface ISequenceBuilder<TState>
     /// </summary>
     ISequenceBuilder<TState> Builder();
 
-    // TODO public ISequence<TState> Build()
+
+    ISequenceBuilder<TState> DisableValidation();
 }

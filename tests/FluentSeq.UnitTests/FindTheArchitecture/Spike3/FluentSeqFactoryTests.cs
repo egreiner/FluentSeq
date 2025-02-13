@@ -39,4 +39,27 @@ public sealed class FluentSeqFactoryTests
 
         actual.ShouldBe(initialState);
     }
+
+
+    [Fact]
+    public void DisableValidation_ShouldBeFalse_per_default()
+    {
+        var builder = new FluentSeq<string>().Create("INIT");
+        var actual = builder.Options.DisableValidation;
+
+        actual.ShouldBeFalse();
+    }
+
+    [Fact]
+    public void DisableValidation_ShouldBe_stored_in_Options()
+    {
+        var builder = new FluentSeq<string>().Create("INIT");
+
+        builder.DisableValidation();
+
+        var actual = builder.Options.DisableValidation;
+        actual.ShouldBeTrue();
+    }
+
+
 }
