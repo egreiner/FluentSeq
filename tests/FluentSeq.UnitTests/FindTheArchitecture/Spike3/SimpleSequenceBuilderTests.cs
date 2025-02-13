@@ -5,7 +5,7 @@ using FluentSeq.FindTheArchitecture.Spike3;
 public sealed class SimpleSequenceBuilderTests
 {
     [Fact]
-    public void FluentSeq_Create_SequenceBuilder_Should_NotThrow()
+    public void Create_SequenceBuilder_Should_NotThrow()
     {
         var actual = () => new FluentSeq<string>().Create("INIT");
 
@@ -13,7 +13,7 @@ public sealed class SimpleSequenceBuilderTests
     }
 
     [Fact]
-    public void FluentSeq_Create_ShouldReturn_SequenceBuilder()
+    public void Create_ShouldReturn_SequenceBuilder()
     {
         var actual = new FluentSeq<string>().Create("INIT");
 
@@ -21,7 +21,7 @@ public sealed class SimpleSequenceBuilderTests
     }
 
     [Fact]
-    public void FluentSeq_Create_ShouldReturn_SequenceBuilder_with_options()
+    public void Create_ShouldReturn_SequenceBuilder_with_Options()
     {
         var builder = new FluentSeq<string>().Create("INIT");
         var actual = builder.Options;
@@ -30,7 +30,7 @@ public sealed class SimpleSequenceBuilderTests
     }
 
     [Fact]
-    public void FluentSeq_Create_Should_store_initial_state_in_options()
+    public void Create_Should_store_InitialState_in_Options()
     {
         var initialState = "INIT";
 
