@@ -21,6 +21,15 @@ public sealed class SimpleSequenceBuilderTests
     }
 
     [Fact]
+    public void FluentSeq_Create_ShouldReturn_SequenceBuilder_with_options()
+    {
+        var builder = new FluentSeq<string>().Create("INIT");
+        var actual = builder.Options;
+
+        actual.ShouldNotBeNull();
+    }
+
+    [Fact]
     public void SequenceBuilder_State_ShouldThrow_when_adding_states_with_same_name()
     {
         var action = () => new FluentSeq<string>().Create("INIT")

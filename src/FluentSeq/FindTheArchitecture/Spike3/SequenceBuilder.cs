@@ -14,19 +14,20 @@ public class SequenceBuilder<TState> : ISequenceBuilder<TState>
     /// with a specified initial state
     /// </summary>
     /// <param name="initialState">The initial state of the sequence</param>
-    // TODO maybe injecting a complete SequenceOptions here would be better, that makes everything more open
     public SequenceBuilder(TState initialState)
     {
-        InitialState = initialState;
+        Options.InitialState = initialState;
         RootSequenceBuilder = this;
     }
+
+    /// <inheritdoc />
+    public SequenceOptions<TState> Options { get; } = new();
 
     /// <inheritdoc />
     public TState InitialState { get; }
 
     /// <inheritdoc />
     public IList<State> RegisteredStates => _stateBuilders?.Select(x => x.State).ToList() ?? [];
-
 
 
     /// <summary>

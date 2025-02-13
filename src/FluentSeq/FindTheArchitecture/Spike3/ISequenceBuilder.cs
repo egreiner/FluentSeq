@@ -17,6 +17,11 @@ public interface ISequenceBuilder<TState>
     /// </summary>
     IList<State> RegisteredStates { get; }
 
+    /// <summary>
+    /// The options for building a sequence
+    /// </summary>
+    SequenceOptions<TState> Options { get; }
+
 
     /// <summary>
     /// Creates a new State
@@ -25,6 +30,7 @@ public interface ISequenceBuilder<TState>
     /// <param name="description">Optional description of the state</param>
     /// <returns>A StateBuilder</returns>
     IStateBuilder<TState> ConfigureState(TState state, string description = "");
+
 
     /// <summary>
     /// Returns the root SequenceBuilder

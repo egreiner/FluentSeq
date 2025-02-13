@@ -16,6 +16,12 @@ public class SequenceOptions<TState>
     public TState[] DisableValidationForStates { get; set; } = null!;
 
 
+    /// <summary>
+    /// The state the sequence will start from
+    /// </summary>
+    public TState InitialState { get; set; }
+
+
     // TODO move this to SequenceData, or the Sequence itself
     // /// <summary>
     // /// Is an empty sequence.
@@ -25,10 +31,4 @@ public class SequenceOptions<TState>
     // /// </summary>
     // public bool IsEmpty { get; set; }
 
-
-    // TODO move this to SequenceData, or the Sequence itself
-    // /// <summary>
-    // /// The state the sequence will start from
-    // /// </summary>
-    // public TState InitialState { get; set; }
 }
