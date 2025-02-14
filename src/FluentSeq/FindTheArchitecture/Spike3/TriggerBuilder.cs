@@ -1,6 +1,4 @@
-﻿#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-
-namespace FluentSeq.FindTheArchitecture.Spike3;
+﻿namespace FluentSeq.FindTheArchitecture.Spike3;
 
 using System;
 
@@ -17,6 +15,7 @@ public class TriggerBuilder<TState> : StateBuilder<TState>, ITriggerBuilder<TSta
     /// </summary>
     public TriggerBuilder(IStateBuilder<TState> stateBuilder) : base(stateBuilder.Builder(), stateBuilder.State.Name, stateBuilder.State.Description)
     {
+        _stateBuilder = stateBuilder;
         RootSequenceBuilder = stateBuilder.Builder();
         Trigger = new Trigger<TState>(stateBuilder);
     }
@@ -26,7 +25,15 @@ public class TriggerBuilder<TState> : StateBuilder<TState>, ITriggerBuilder<TSta
     public Trigger<TState> Trigger { get; }
 
 
+    /// <summary>
+    /// Describes what CurrentState the sequence must be that the trigger is valid
+    /// </summary>
+    /// <param name="currentState">The condition of the current state of the sequence</param>
     public ITriggerBuilder<TState> WhenInState(TState currentState) => throw new NotImplementedException();
 
+    /// <summary>
+    /// Describes what CurrentStates the sequence can be that the trigger is valid
+    /// </summary>
+    /// <param name="currentStates">The condition of the current states of the sequence</param>
     public ITriggerBuilder<TState> WhenInStates(params TState[] currentStates) => throw new NotImplementedException();
 }
