@@ -38,9 +38,9 @@ public class StateBuilder<TState> : SequenceBuilder<TState>, IStateBuilder<TStat
     public ITriggerBuilder<TState> TriggeredBy(Func<bool> triggeredByFunc) =>
         new TriggerBuilder<TState>(this);
 
-    public IStateBuilder<TState> OnEntry(Action action) => throw new NotImplementedException();
-
-    public IStateBuilder<TState> OnExit(Action action) => throw new NotImplementedException();
-
-    public IStateBuilder<TState> WhileInState(Action action) => throw new NotImplementedException();
+    // public IStateBuilder<TState> OnEntry(Action action) => throw new NotImplementedException();
+    //
+    // public IStateBuilder<TState> OnExit(Action action) => throw new NotImplementedException();
+    //
+    // public IStateBuilder<TState> WhileInState(Action action) => throw new NotImplementedException();
 }

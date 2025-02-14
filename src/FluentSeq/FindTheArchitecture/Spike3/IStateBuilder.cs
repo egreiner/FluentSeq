@@ -6,7 +6,7 @@ namespace FluentSeq.FindTheArchitecture.Spike3;
 /// Provides methods for further describing a state
 /// </summary>
 /// <typeparam name="TState">The type of the state</typeparam>
-public interface IStateBuilder<TState>: ISequenceBuilder<TState>, IActionBuilder<TState>
+public interface IStateBuilder<TState>: ISequenceBuilder<TState> //, IActionBuilder<TState>
 {
     /// <summary>
     /// The state that the builder should parameterize
