@@ -18,5 +18,8 @@ public class Trigger<TState>
     }
 
 
-    public IList<TState> WhenInStates { get; set; } = new List<TState>();
+    /// <summary>
+    /// Gets a list of states in which the sequence can be for the trigger to be valid.
+    /// </summary>
+    public IList<TState> WhenInStates { get; } = new List<TState>();
 }

@@ -14,13 +14,13 @@ public interface ITriggerBuilder<TState>: IStateBuilder<TState>
     Trigger<TState> Trigger { get; }
 
     /// <summary>
-    /// Describes what CurrentState the sequence must be that the trigger is valid
+    /// Describes what CurrentState the sequence can be for the trigger to be valid.
     /// </summary>
     /// <param name="state">The condition of the current state of the sequence</param>
     ITriggerBuilder<TState> WhenInState(TState state);
 
     /// <summary>
-    /// Describes what CurrentStates the sequence can be that the trigger is valid
+    /// Describes what CurrentStates the sequence can be for the trigger to be valid.
     /// </summary>
     /// <param name="states">The condition of the current states of the sequence</param>
     ITriggerBuilder<TState> WhenInStates(params TState[] states);
