@@ -15,7 +15,7 @@ public class State(string name, string description = "")
     /// <summary>
     /// The description of the state
     /// </summary>
-    public string Description { get; set; } = description;
+    public string Description { get; } = description;
 
 
     /// <inheritdoc />
