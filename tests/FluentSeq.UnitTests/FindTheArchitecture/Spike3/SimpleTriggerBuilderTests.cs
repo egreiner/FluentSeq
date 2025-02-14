@@ -27,7 +27,7 @@ public sealed class SimpleTriggerBuilderTests
     }
 
     [Fact]
-    public void Trigger_InStates_ShouldBeEmpty_per_default()
+    public void Trigger_WhenInStates_ShouldBeEmpty_per_default()
     {
         var trigger = new FluentSeq<string>().Create("INIT")
             .ConfigureState("State1")
@@ -39,7 +39,7 @@ public sealed class SimpleTriggerBuilderTests
     }
 
     [Fact]
-    public void Trigger_InStates_ShouldContain_one_element()
+    public void WhenInState_ShouldCreate_one_element()
     {
         var trigger = new FluentSeq<string>().Create("INIT")
             .ConfigureState("State1")
@@ -49,5 +49,45 @@ public sealed class SimpleTriggerBuilderTests
         var actual = trigger.Trigger.WhenInStates;
 
         actual.ShouldHaveSingleItem();
+    }
+
+    [Fact]
+    public void WhenInState_ShouldCreate_two_elements()
+    {
+        var trigger = new FluentSeq<string>().Create("INIT")
+            .ConfigureState("State1")
+            .TriggeredBy(() => true)
+            .WhenInState("Bla")
+            .WhenInState("Blub");
+
+        var actual = trigger.Trigger.WhenInStates;
+
+        actual.Count.ShouldBe(2);
+    }
+
+    [Fact]
+    public void WhenInStates_ShouldCreate_one_element()
+    {
+        var trigger = new FluentSeq<string>().Create("INIT")
+            .ConfigureState("State1")
+            .TriggeredBy(() => true)
+            .WhenInStates("Bla");
+
+        var actual = trigger.Trigger.WhenInStates;
+
+        actual.ShouldHaveSingleItem();
+    }
+
+    [Fact]
+    public void WhenInStates_ShouldCreate_four_elements()
+    {
+        var trigger = new FluentSeq<string>().Create("INIT")
+            .ConfigureState("State1")
+            .TriggeredBy(() => true)
+            .WhenInStates("Bla", "Blub", "Fizz", "Buzz");
+
+        var actual = trigger.Trigger.WhenInStates;
+
+        actual.Count.ShouldBe(4);
     }
 }

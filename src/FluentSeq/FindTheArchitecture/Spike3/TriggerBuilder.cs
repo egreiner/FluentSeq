@@ -1,6 +1,6 @@
 ﻿namespace FluentSeq.FindTheArchitecture.Spike3;
 
-using System;
+using Extensions;
 
 /// <summary>
 /// Provides methods for further describing a trigger
@@ -24,20 +24,17 @@ public class TriggerBuilder<TState> : StateBuilder<TState>, ITriggerBuilder<TSta
     /// <inheritdoc />
     public Trigger<TState> Trigger { get; }
 
-
-    /// <summary>
-    /// Describes what CurrentState the sequence must be that the trigger is valid
-    /// </summary>
-    /// <param name="state">The condition of the current state of the sequence</param>
+    /// <inheritdoc />
     public ITriggerBuilder<TState> WhenInState(TState state)
     {
         Trigger.WhenInStates.Add(state);
         return this;
     }
 
-    /// <summary>
-    /// Describes what CurrentStates the sequence can be that the trigger is valid
-    /// </summary>
-    /// <param name="currentStates">The condition of the current states of the sequence</param>
-    public ITriggerBuilder<TState> WhenInStates(params TState[] currentStates) => throw new NotImplementedException();
+    /// <inheritdoc />
+    public ITriggerBuilder<TState> WhenInStates(params TState[] states)
+    {
+        Trigger.WhenInStates.AddRange(states);
+        return this;
+    }
 }
