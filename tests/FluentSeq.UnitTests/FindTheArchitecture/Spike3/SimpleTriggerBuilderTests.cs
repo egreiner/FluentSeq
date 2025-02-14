@@ -90,4 +90,19 @@ public sealed class SimpleTriggerBuilderTests
 
         actual.Count.ShouldBe(4);
     }
+
+
+    [Fact]
+    public void Combined_WhenInState_and_WhenInStates_ShouldCreate_four_elements()
+    {
+        var trigger = new FluentSeq<string>().Create("INIT")
+            .ConfigureState("State1")
+            .TriggeredBy(() => true)
+            .WhenInState("Bla")
+            .WhenInStates("Blub", "Fizz", "Buzz");
+
+        var actual = trigger.Trigger.WhenInStates;
+
+        actual.Count.ShouldBe(4);
+    }
 }
