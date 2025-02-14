@@ -28,8 +28,12 @@ public class TriggerBuilder<TState> : StateBuilder<TState>, ITriggerBuilder<TSta
     /// <summary>
     /// Describes what CurrentState the sequence must be that the trigger is valid
     /// </summary>
-    /// <param name="currentState">The condition of the current state of the sequence</param>
-    public ITriggerBuilder<TState> WhenInState(TState currentState) => throw new NotImplementedException();
+    /// <param name="state">The condition of the current state of the sequence</param>
+    public ITriggerBuilder<TState> WhenInState(TState state)
+    {
+        Trigger.WhenInStates.Add(state);
+        return this;
+    }
 
     /// <summary>
     /// Describes what CurrentStates the sequence can be that the trigger is valid

@@ -8,7 +8,7 @@ namespace FluentSeq.FindTheArchitecture.Spike3;
 /// <typeparam name="TState">The type of the state</typeparam>
 public interface ITriggerBuilder<TState>: IStateBuilder<TState>
 {
-    ITriggerBuilder<TState> WhenInState(TState currentState);
+    ITriggerBuilder<TState> WhenInState(TState state);
 
     ITriggerBuilder<TState> WhenInStates(params TState[] currentStates);
 

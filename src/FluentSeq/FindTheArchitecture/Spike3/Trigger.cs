@@ -16,4 +16,7 @@ public class Trigger<TState>
     {
         _stateBuilder = stateBuilder;
     }
+
+
+    public IList<TState> WhenInStates { get; set; } = new List<TState>();
 }
