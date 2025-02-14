@@ -5,7 +5,7 @@ using FluentSeq.FindTheArchitecture.Spike3;
 public sealed class SimpleTriggerBuilderTests
 {
     [Fact]
-    public void StateBuilder_TriggerBy_ShouldReturn_TriggerBuilder()
+    public void StateBuilder_TriggeredBy_ShouldReturn_TriggerBuilder()
     {
         var actual = new FluentSeq<string>().Create("INIT")
             .ConfigureState("State1")

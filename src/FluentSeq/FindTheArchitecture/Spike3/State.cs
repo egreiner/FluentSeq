@@ -1,5 +1,6 @@
 namespace FluentSeq.FindTheArchitecture.Spike3;
 
+// TODO make this generic?
 /// <summary>
 /// Describes a state
 /// </summary>
