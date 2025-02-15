@@ -44,7 +44,7 @@ public class SequenceBuilder<TState> : ISequenceBuilder<TState>
     /// <inheritdoc />
     public ISequence<TState> Build()
     {
-        var result = new Sequence<TState>();
+        var result = new Sequence<TState>(Options);
         return result;
     }
 

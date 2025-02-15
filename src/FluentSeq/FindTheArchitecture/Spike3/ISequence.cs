@@ -12,11 +12,11 @@ public interface ISequence<TSTate>
     // // /// </summary>
     // // ILoggerAdapter Logger { get; set; }
     //
-    // /// <summary>
-    // /// The sequence options
-    // /// </summary>
-    // SequenceOptions<TSTate> Options { get; }
-    //
+    /// <summary>
+    /// The sequence options
+    /// </summary>
+    SequenceOptions<TSTate> Options { get; }
+
     // // /// <summary>
     // // /// The sequence-data
     // // /// </summary>
