@@ -61,14 +61,13 @@ public sealed class FluentSeqFactoryTests
         actual.ShouldBeTrue();
     }
 
-    // TODO should this really be null, isn't it better to have an empty array?
     [Fact]
     public void DisableValidationForStates_ShouldBeNull_per_default()
     {
         var builder = new FluentSeq<string>().Create("INIT");
         var actual = builder.Options.DisableValidationForStates;
 
-        actual.ShouldBeNull();
+        actual.ShouldBeEmpty();
     }
 
 
@@ -78,7 +77,7 @@ public sealed class FluentSeqFactoryTests
         var builder = new FluentSeq<string>().Create("INIT");
 
         builder.DisableValidationForStates("State_A", "State_B");
-        var actual = builder.Options.DisableValidationForStates;
+        var actual = builder.Options.DisableValidationForStates.ToList();
 
         actual.ShouldNotContain("INIT");
         actual.ShouldContain("State_A");

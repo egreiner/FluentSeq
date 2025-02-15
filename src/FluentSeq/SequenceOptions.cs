@@ -10,11 +10,10 @@ public class SequenceOptions<TState>
     /// </summary>
     public bool DisableValidation { get; set; }
 
-    // TODO should this really be null, isn't it better to have an empty array?
     /// <summary>
     /// The validation for the specified states within the sequence configuration will be disabled
     /// </summary>
-    public TState[] DisableValidationForStates { get; set; } = null!;
+    public IEnumerable<TState> DisableValidationForStates { get; set; } = [];
 
 
     /// <summary>
