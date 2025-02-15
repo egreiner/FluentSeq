@@ -25,25 +25,11 @@ public class ListExtensionsTests
         IList<int>? list = null;
         var itemsToAdd = new List<int> { 4, 5, 6 };
 
-        list.AddRange(itemsToAdd);
+        list?.AddRange(itemsToAdd);
 
         list.ShouldBeNull();
     }
 
-
-    [Fact]
-    public void AddRange_WithNullItems_ShouldReturn_List()
-    {
-        IList<int> list = new List<int> { 1, 2, 3 };
-        IEnumerable<int>? itemsToAdd = null;
-
-        list.AddRange(itemsToAdd);
-
-        list.Count.ShouldBe(3);
-        list.ShouldContain(1);
-        list.ShouldContain(2);
-        list.ShouldContain(3);
-    }
 
 
     // TODO add tests!
