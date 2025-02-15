@@ -5,16 +5,14 @@
 /// </summary>
 public static class ListExtensions
 {
-    // TODO add tests!
     /// <summary>
     /// Add a range of items to the list.
     /// Does not raise an exception if the list/items is null.
     /// </summary>
     /// <param name="list">The original list</param>
     /// <param name="items">The items that should be added</param>
-    public static void AddRange<T>(this IList<T> list, IEnumerable<T> items)
+    public static void AddRange<T>(this IList<T>? list, IEnumerable<T>? items)
     {
-        // TODO tests will show, how this is working...
         if (list == null) return;
         if (items == null) return;
 
