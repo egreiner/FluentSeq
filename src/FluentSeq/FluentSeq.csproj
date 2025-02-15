@@ -42,8 +42,4 @@
 
     </PropertyGroup>
 
-    <ItemGroup>
-      <Folder Include="FindTheArchitecture\Spike3\" />
-    </ItemGroup>
-
 </Project>
