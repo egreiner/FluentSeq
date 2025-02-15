@@ -1,7 +1,5 @@
 ﻿namespace FluentSeq.Builder;
 
-using FluentSeq.Extensions;
-
 /// <summary>
 /// Provides methods for further describing a trigger
 /// </summary>
