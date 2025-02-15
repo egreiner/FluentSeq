@@ -1,4 +1,4 @@
-namespace FluentSeq.FindTheArchitecture.Spike3;
+namespace FluentSeq;
 
 #pragma warning disable CS1591
 

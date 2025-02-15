@@ -1,4 +1,4 @@
-namespace FluentSeq.FindTheArchitecture.Spike3;
+namespace FluentSeq;
 
 /// <summary>
 /// Describes a trigger, how a state can be set as current state

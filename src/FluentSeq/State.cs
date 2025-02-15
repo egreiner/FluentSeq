@@ -1,4 +1,4 @@
-namespace FluentSeq.FindTheArchitecture.Spike3;
+namespace FluentSeq;
 
 // TODO make this generic?
 /// <summary>

@@ -1,6 +1,6 @@
-﻿namespace FluentSeq.FindTheArchitecture.Spike3;
+﻿namespace FluentSeq;
 
-using Extensions;
+using FluentSeq.Extensions;
 
 /// <summary>
 /// Provides methods for further describing a trigger

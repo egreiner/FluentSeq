@@ -1,7 +1,5 @@
 ﻿namespace FluentSeq.UnitTests.FindTheArchitecture.Spike3;
 
-using FluentSeq.FindTheArchitecture.Spike3;
-
 public class StateTests
 {
     [Fact]

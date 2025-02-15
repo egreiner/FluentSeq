@@ -1,4 +1,4 @@
-namespace FluentSeq.FindTheArchitecture.Spike3;
+namespace FluentSeq;
 
 /// <summary>
 /// This is the root element for this library

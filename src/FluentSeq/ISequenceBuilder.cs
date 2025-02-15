@@ -1,4 +1,4 @@
-namespace FluentSeq.FindTheArchitecture.Spike3;
+namespace FluentSeq;
 
 /// <summary>
 /// Provides methods to configure a sequence

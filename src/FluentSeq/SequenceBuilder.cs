@@ -1,6 +1,6 @@
-namespace FluentSeq.FindTheArchitecture.Spike3;
+namespace FluentSeq;
 
-using Exceptions;
+using FluentSeq.Exceptions;
 
 /// <summary>
 /// Provides methods to configure a sequence

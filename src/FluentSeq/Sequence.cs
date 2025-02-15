@@ -1,4 +1,4 @@
-﻿namespace FluentSeq.FindTheArchitecture.Spike3;
+﻿namespace FluentSeq;
 
 /// <summary>
 /// A sequence that could be executed
