@@ -1,6 +1,6 @@
 namespace FluentSeq.Builder;
 
-using FluentSeq.Exceptions;
+using Exceptions;
 
 /// <summary>
 /// Provides methods to configure a sequence
@@ -8,8 +8,6 @@ using FluentSeq.Exceptions;
 /// <typeparam name="TState">The type of the state</typeparam>
 public class SequenceBuilder<TState> : ISequenceBuilder<TState>
 {
-    private StateBuilder<TState>? _activeStateBuilder;
-
     /// <summary>
     /// Creates a new instance of <see cref="SequenceBuilder{TState}"/>
     /// with a specified initial state
@@ -20,14 +18,14 @@ public class SequenceBuilder<TState> : ISequenceBuilder<TState>
         Options.InitialState = initialState;
         RootSequenceBuilder = this;
     }
-
-    /// <inheritdoc />
-    public HashSet<StateBuilder<TState>> StateBuilders { get; } = new HashSet<StateBuilder<TState>>();
-
-
+    
 
     /// <inheritdoc />
     public SequenceOptions<TState> Options { get; } = new();
+
+
+    /// <inheritdoc />
+    public HashSet<StateBuilder<TState>> StateBuilders { get; } = new HashSet<StateBuilder<TState>>();
 
 
     /// <inheritdoc />
@@ -74,11 +72,11 @@ public class SequenceBuilder<TState> : ISequenceBuilder<TState>
     public IStateBuilder<TState> ConfigureState(TState state, string description = "")
     {
         var stateName = state?.ToString() ?? Guid.NewGuid().ToString();
-        _activeStateBuilder = new StateBuilder<TState>(Builder(), stateName, description);
+        var builder   = new StateBuilder<TState>(Builder(), stateName, description);
 
-        if (!Builder().StateBuilders.Add(_activeStateBuilder))
-           throw new DuplicateStateException(stateName);
+        if (!Builder().StateBuilders.Add(builder))
+            throw new DuplicateStateException(builder.State.Name);
 
-        return _activeStateBuilder;
+        return builder;
     }
 }
