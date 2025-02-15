@@ -42,6 +42,20 @@ public class SequenceBuilder<TState> : ISequenceBuilder<TState>
 
 
     /// <inheritdoc />
+    public ISequence<TState> Build()
+    {
+        var result = new Sequence<TState>();
+        return result;
+    }
+
+
+    /// <inheritdoc />
+    public ISequenceBuilder<TState> Builder() =>
+        RootSequenceBuilder;
+
+
+
+    /// <inheritdoc />
     public ISequenceBuilder<TState> DisableValidation()
     {
         Options.DisableValidation = true;
@@ -55,7 +69,6 @@ public class SequenceBuilder<TState> : ISequenceBuilder<TState>
         return this;
     }
 
-
     // TODO not completed
     /// <inheritdoc />
     public IStateBuilder<TState> ConfigureState(TState state, string description = "")
@@ -68,9 +81,4 @@ public class SequenceBuilder<TState> : ISequenceBuilder<TState>
 
         return _activeStateBuilder;
     }
-
-
-    /// <inheritdoc />
-    public ISequenceBuilder<TState> Builder() =>
-        RootSequenceBuilder;
 }
