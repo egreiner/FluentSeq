@@ -9,9 +9,9 @@ public class Sequence<TSTate>(SequenceOptions<TSTate> options) : ISequence<TSTat
     /// <inheritdoc />
     public SequenceOptions<TSTate> Options { get; } = options;
 
-    // /// <inheritdoc />
-    // public TSTate CurrentState { get; }
-    //
+    /// <inheritdoc />
+    public TSTate CurrentState { get; } = options.InitialState;
+
     // /// <inheritdoc />
     // public TSTate PreviousState { get; }
     //

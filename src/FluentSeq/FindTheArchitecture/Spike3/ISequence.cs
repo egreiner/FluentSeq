@@ -21,14 +21,14 @@ public interface ISequence<TSTate>
     // // /// The sequence-data
     // // /// </summary>
     // // SequenceData Data { get; }
-    //
-    //
-    // /// <summary>
-    // /// The current state of the sequence
-    // /// </summary>
-    // TSTate CurrentState { get; }
-    //
-    //
+
+
+    /// <summary>
+    /// The current state of the sequence
+    /// </summary>
+    TSTate CurrentState { get; }
+
+
     // /// <summary>
     // /// The last state of the sequence
     // /// </summary>
