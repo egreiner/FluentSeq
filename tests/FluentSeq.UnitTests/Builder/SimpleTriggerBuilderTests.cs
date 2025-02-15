@@ -1,6 +1,6 @@
-namespace FluentSeq.UnitTests.FindTheArchitecture.Spike3;
+namespace FluentSeq.UnitTests.Builder;
 
-using Builder;
+using FluentSeq.Builder;
 
 public sealed class SimpleTriggerBuilderTests
 {

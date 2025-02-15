@@ -1,4 +1,4 @@
-﻿namespace FluentSeq.UnitTests.FindTheArchitecture.Spike3;
+﻿namespace FluentSeq.UnitTests.Builder;
 
 public sealed class SequenceBuilderTests
 {

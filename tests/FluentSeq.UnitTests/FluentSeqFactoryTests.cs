@@ -1,6 +1,6 @@
-﻿namespace FluentSeq.UnitTests.FindTheArchitecture.Spike3;
+﻿namespace FluentSeq.UnitTests;
 
-using Builder;
+using FluentSeq.Builder;
 
 public sealed class FluentSeqFactoryTests
 {
