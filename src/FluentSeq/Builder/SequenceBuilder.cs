@@ -1,4 +1,4 @@
-namespace FluentSeq;
+namespace FluentSeq.Builder;
 
 using FluentSeq.Exceptions;
 

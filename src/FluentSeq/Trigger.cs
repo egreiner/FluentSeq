@@ -1,5 +1,7 @@
 namespace FluentSeq;
 
+using Builder;
+
 /// <summary>
 /// Describes a trigger, how a state can be set as current state
 /// </summary>

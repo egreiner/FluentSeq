@@ -1,4 +1,4 @@
-namespace FluentSeq;
+namespace FluentSeq.Builder;
 
 /// <summary>
 /// Provides methods to configure a sequence

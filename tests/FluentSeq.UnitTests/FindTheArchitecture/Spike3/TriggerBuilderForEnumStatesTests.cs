@@ -1,5 +1,7 @@
 namespace FluentSeq.UnitTests.FindTheArchitecture.Spike3;
 
+using Builder;
+
 public sealed class TriggerBuilderForEnumStatesTests
 {
     [Fact]

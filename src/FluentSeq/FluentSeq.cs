@@ -1,5 +1,7 @@
 namespace FluentSeq;
 
+using Builder;
+
 /// <summary>
 /// This is the root element for this library
 /// </summary>

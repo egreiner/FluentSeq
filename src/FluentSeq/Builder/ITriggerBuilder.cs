@@ -1,6 +1,6 @@
 ﻿#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
-namespace FluentSeq;
+namespace FluentSeq.Builder;
 
 /// <summary>
 /// Provides methods for further describing a trigger

@@ -1,4 +1,4 @@
-namespace FluentSeq;
+namespace FluentSeq.Builder;
 
 #pragma warning disable CS1591
 /// <summary>
