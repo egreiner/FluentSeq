@@ -1,6 +1,8 @@
 ﻿#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 namespace FluentSeq;
 
+// TODO maybe this class is not needed anymore???
+
 /// <summary>
 /// The DefaultSequenceStates class defines a set of standard states for sequences.
 /// Designed as a 'Named Constants Class' rather than an enum for greater flexibility (inherit for custom states).
