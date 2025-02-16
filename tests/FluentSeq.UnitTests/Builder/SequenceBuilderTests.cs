@@ -33,6 +33,18 @@ public sealed class SequenceBuilderTests
     }
 
     [Fact]
+    public void Sequence_ShouldHave_RegisteredStates()
+    {
+        var sequence = new FluentSeq<string>().Create("INIT")
+            .Build();
+
+        var actual = sequence.RegisteredStates;
+
+        actual.ShouldNotBeNull();
+        actual.ShouldBeEmpty();
+    }
+
+    [Fact]
     public void Sequence_CurrentState_ShouldBe_init()
     {
         var sequence = new FluentSeq<string>().Create("INIT")
