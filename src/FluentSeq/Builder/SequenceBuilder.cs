@@ -16,7 +16,7 @@ public class SequenceBuilder<TState> : ISequenceBuilder<TState>
     public SequenceBuilder(TState initialState)
     {
         Options.InitialState = initialState;
-        RootSequenceBuilder = this;
+        RootSequenceBuilder  = this;
     }
     
 
