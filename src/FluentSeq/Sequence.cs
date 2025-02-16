@@ -39,11 +39,6 @@ public class Sequence<TSTate>(SequenceOptions<TSTate> options, IList<State> regi
     }
 
     /// <inheritdoc />
-    public ISequence<TSTate> SetState(TSTate state, Func<bool> condition)
-    {
-        if (condition())
-            CurrentState = state;
-
-        return this;
-    }
+    public ISequence<TSTate> SetState(TSTate state, Func<bool> condition) =>
+        condition() ? SetState(state) : this;
 }
