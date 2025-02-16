@@ -11,16 +11,22 @@ public interface ISequence<TSTate>
     // // /// The debug logger
     // // /// </summary>
     // // ILoggerAdapter Logger { get; set; }
-    //
-    /// <summary>
-    /// The sequence options
-    /// </summary>
-    SequenceOptions<TSTate> Options { get; }
 
     // // /// <summary>
     // // /// The sequence-data
     // // /// </summary>
     // // SequenceData Data { get; }
+
+
+    /// <summary>
+    /// The sequence options
+    /// </summary>
+    SequenceOptions<TSTate> Options { get; }
+
+    /// <summary>
+    /// All States that are registered for this sequence
+    /// </summary>
+    IList<State> RegisteredStates { get; }
 
 
     /// <summary>

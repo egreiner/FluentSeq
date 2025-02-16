@@ -42,7 +42,8 @@ public class SequenceBuilder<TState> : ISequenceBuilder<TState>
     /// <inheritdoc />
     public ISequence<TState> Build()
     {
-        var result = new Sequence<TState>(Options);
+        // TODO add validation
+        var result = new Sequence<TState>(Options, RegisteredStates);
         return result;
     }
 

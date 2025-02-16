@@ -4,10 +4,13 @@
 /// A sequence that could be executed
 /// </summary>
 /// <typeparam name="TSTate">Type of the state (string, enum, int...)</typeparam>
-public class Sequence<TSTate>(SequenceOptions<TSTate> options) : ISequence<TSTate>
+public class Sequence<TSTate>(SequenceOptions<TSTate> options, IList<State> registeredStates) : ISequence<TSTate>
 {
     /// <inheritdoc />
     public SequenceOptions<TSTate> Options { get; } = options;
+
+    /// <inheritdoc />
+    public IList<State> RegisteredStates { get; } = registeredStates;
 
     /// <inheritdoc />
     public TSTate CurrentState { get; } = options.InitialState;
