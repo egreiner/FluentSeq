@@ -14,10 +14,18 @@ public sealed class InitialStateValidator<TState> : ValidatorBase, IValidator<TS
     public bool Validate(ValidationContext<ISequenceBuilder<TState>> context, ValidationResult result)
     {
         var builder = context.InstanceToValidate;
-        if (!builder.IsStateValidationRequired(builder.Options.InitialState)) return true;
+        var state   = builder.Options.InitialState;
 
-        if (builder.Options.InitialState == null || builder.Options.InitialState.Equals(default(TState)))
-            result.AddError("InitialState", "The Initial-State must be defined");
+        if (builder.NoValidationRequiredFor(state)) return true;
+
+        if (state == null || state.Equals(default(TState)))
+        {
+            result.AddError("InitialState", "The Initial-State must be not null");
+            return result.IsValid;
+        }
+
+        if (!builder.RegisteredStates.Contains(new State(state.ToString())))
+            result.AddError("InitialState", $"The Initial-State '{state}' must be configured");
 
         // if (!HandlerIsValidated(builder))
         //     result.AddError("InitialState", "The Initial-State must have an StateTransition counterpart");
