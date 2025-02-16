@@ -3,7 +3,7 @@
 /// <summary>
 /// The handler validator base class.
 /// </summary>
-public class HandlerValidatorBase
+public class ValidatorBase
 {
     // private List<IHasToState> _handlerTo;
     //

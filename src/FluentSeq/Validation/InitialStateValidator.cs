@@ -8,7 +8,7 @@ using FluentValidation.Results;
 /// <summary>
 /// The initial state validator.
 /// </summary>
-public sealed class InitialStateValidator<TState> : HandlerValidatorBase, IHandlerValidator<TState>
+public sealed class InitialStateValidator<TState> : ValidatorBase, IValidator<TState>
 {
     /// <inheritdoc />
     public bool Validate(ValidationContext<ISequenceBuilder<TState>> context, ValidationResult result)
@@ -25,7 +25,7 @@ public sealed class InitialStateValidator<TState> : HandlerValidatorBase, IHandl
         return result.IsValid;
     }
 
-    private bool HandlerIsValidated(IHandlerValidator<TState> builder) => true;
+    private bool HandlerIsValidated(IValidator<TState> builder) => true;
         // builder.Data.Handler.OfType<StateTransitionHandler>().Any(x => builder.Configuration.InitialState == x.FromState) ||
         // builder.Data.Handler.OfType<ContainsStateTransitionHandler>().Any(x => builder.Configuration.InitialState.Contains(x.FromStateContains)) ||
         // builder.Data.Handler.OfType<AnyStateTransitionHandler>().Any(x => x.FromStates.Contains(builder.Configuration.InitialState));

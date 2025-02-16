@@ -7,7 +7,7 @@ using FluentValidation.Results;
 /// <summary>
 /// The handler validator base interface.
 /// </summary>
-public interface IHandlerValidator<TState>
+public interface IValidator<TState>
 {
     /// <summary>
     /// 
