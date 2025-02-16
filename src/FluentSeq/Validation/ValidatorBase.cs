@@ -7,23 +7,6 @@ public class ValidatorBase
 {
     // private List<IHasToState> _handlerTo;
     //
-    // /// <summary>
-    // /// Returns true if the state should be validated.
-    // /// TODO make this a (extension)method for SequenceBuilder?
-    // /// </summary>
-    // /// <param name="state">The specified state</param>
-    // /// <param name="builder">The sequence builder</param>
-    // protected static bool ValidationRequiredFor(string state, ISequenceBuilder builder)
-    // {
-    //     return !stateShouldBeIgnored() && !disabledStates().Contains(state);
-    //
-    //     bool stateShouldBeIgnored() =>
-    //         state?.StartsWith(builder.Configuration.IgnoreTag.ToString()) ?? false;
-    //
-    //     IEnumerable<string> disabledStates() =>
-    //         builder.Configuration.DisableValidationForStates?.ToList() ?? Enumerable.Empty<string>();
-    // }
-    //
     //
     // /// <summary>
     // /// Each 'ToState' must have a corresponding 'FromState' counterpart,
