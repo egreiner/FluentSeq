@@ -92,11 +92,11 @@ public interface ISequence<TSTate>
     /// <param name="state">The state that will be set</param>
     ISequence<TSTate> SetState(TSTate state);
 
-    // /// <summary>
-    // /// If the constraint is fulfilled the CurrentState will be set to the state immediately
-    // /// and the execution of the sequence will continue.
-    // /// </summary>
-    // /// <param name="state">The state that should be set</param>
-    // /// <param name="constraint">The constraint that must be fulfilled that the sequence is set to the defined state</param>
-    // ISequence<TSTate> SetState(TSTate state, Func<bool> constraint);
+    /// <summary>
+    /// If the constraint is fulfilled the CurrentState will be set to the state immediately
+    /// and the execution of the sequence will continue.
+    /// </summary>
+    /// <param name="state">The state that should be set</param>
+    /// <param name="condition">The condition that must be fulfilled that the sequence is set to the defined state</param>
+    ISequence<TSTate> SetState(TSTate state, Func<bool> condition);
 }

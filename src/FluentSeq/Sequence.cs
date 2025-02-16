@@ -38,9 +38,12 @@ public class Sequence<TSTate>(SequenceOptions<TSTate> options, IList<State> regi
         return this;
     }
 
-    // /// <inheritdoc />
-    // public ISequence<TSTate> SetState(TSTate state, Func<bool> constraint)
-    // {
-    //     throw new NotImplementedException();
-    // }
+    /// <inheritdoc />
+    public ISequence<TSTate> SetState(TSTate state, Func<bool> condition)
+    {
+        if (condition())
+            CurrentState = state;
+
+        return this;
+    }
 }
