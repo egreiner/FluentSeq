@@ -84,14 +84,14 @@ public interface ISequence<TSTate>
     // // /// </summary>
     // // Task<ISequence<TSTate>> RunAsync();
     // //
-    //
-    // /// <summary>
-    // /// CurrentState will be set to the state immediately and unconditional.
-    // /// The execution of the sequence will continue.
-    // /// </summary>
-    // /// <param name="state">The state that will be set</param>
-    // ISequence<TSTate> SetState(TSTate state);
-    //
+
+    /// <summary>
+    /// CurrentState will be set to the state immediately and unconditional.
+    /// The execution of the sequence will continue.
+    /// </summary>
+    /// <param name="state">The state that will be set</param>
+    ISequence<TSTate> SetState(TSTate state);
+
     // /// <summary>
     // /// If the constraint is fulfilled the CurrentState will be set to the state immediately
     // /// and the execution of the sequence will continue.

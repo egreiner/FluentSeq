@@ -13,7 +13,7 @@ public class Sequence<TSTate>(SequenceOptions<TSTate> options, IList<State> regi
     public IList<State> RegisteredStates { get; } = registeredStates;
 
     /// <inheritdoc />
-    public TSTate CurrentState { get; } = options.InitialState;
+    public TSTate CurrentState { get; private set; } = options.InitialState;
 
     // /// <inheritdoc />
     // public TSTate PreviousState { get; }
@@ -29,13 +29,15 @@ public class Sequence<TSTate>(SequenceOptions<TSTate> options, IList<State> regi
     // {
     //     throw new NotImplementedException();
     // }
-    //
-    // /// <inheritdoc />
-    // public ISequence<TSTate> SetState(TSTate state)
-    // {
-    //     throw new NotImplementedException();
-    // }
-    //
+
+    /// <inheritdoc />
+    public ISequence<TSTate> SetState(TSTate state)
+    {
+        // TODO: add validation if this state is registered, raise exception if not???
+        CurrentState = state;
+        return this;
+    }
+
     // /// <inheritdoc />
     // public ISequence<TSTate> SetState(TSTate state, Func<bool> constraint)
     // {
