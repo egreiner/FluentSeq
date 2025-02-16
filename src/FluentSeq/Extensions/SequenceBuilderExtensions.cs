@@ -12,7 +12,7 @@ public static class SequenceBuilderExtensions
     /// </summary>
     /// <param name="builder">The sequence builder</param>
     /// <param name="state">The specified state</param>
-    public static bool StateShouldBeValidated<TState>(this ISequenceBuilder<TState> builder , TState state) =>
+    public static bool IsStateValidationRequired<TState>(this ISequenceBuilder<TState> builder , TState state) =>
         !builder.Options.DisableValidation &&
         !builder.Options.DisableValidationForStates.Contains(state);
 }

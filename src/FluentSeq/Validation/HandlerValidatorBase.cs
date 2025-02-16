@@ -13,7 +13,7 @@ public class HandlerValidatorBase
     // /// </summary>
     // /// <param name="state">The specified state</param>
     // /// <param name="builder">The sequence builder</param>
-    // protected static bool StateShouldBeValidated(string state, ISequenceBuilder builder)
+    // protected static bool IsStateValidationRequired(string state, ISequenceBuilder builder)
     // {
     //     return !stateShouldBeIgnored() && !disabledStates().Contains(state);
     //
@@ -65,7 +65,7 @@ public class HandlerValidatorBase
     // {
     //     // for easy reading do not simplify this
     //     // each StateTransition should have a counterpart so that no dead-end is reached
-    //     foreach (var transition in containsTransitions.Where(x => StateShouldBeValidated(x.ToState, builder)))
+    //     foreach (var transition in containsTransitions.Where(x => IsStateValidationRequired(x.ToState, builder)))
     //     {
     //         if (transitions.All(x => transition.ToState != x.FromState))
     //             _handlerTo.Add(transition);
@@ -75,7 +75,7 @@ public class HandlerValidatorBase
     // private void RemoveWithAnyTransitions<T>(SequenceBuilder builder, List<T> containsTransitions)
     //     where T : IHasToState
     // {
-    //     foreach (var transition in containsTransitions.Where(x => StateShouldBeValidated(x.ToState, builder)))
+    //     foreach (var transition in containsTransitions.Where(x => IsStateValidationRequired(x.ToState, builder)))
     //     {
     //         if (builder.Data.Handler.OfType<AnyStateTransitionHandler>().Any(x => x.FromStates.Contains(transition.ToState)))
     //             _handlerTo.Remove(transition);
@@ -85,7 +85,7 @@ public class HandlerValidatorBase
     // private void RemoveWithContainsTransitions<T>(SequenceBuilder builder, List<T> containsTransitions)
     //     where T : IHasToState
     // {
-    //     foreach (var transition in containsTransitions.Where(x => StateShouldBeValidated(x.ToState, builder)))
+    //     foreach (var transition in containsTransitions.Where(x => IsStateValidationRequired(x.ToState, builder)))
     //     {
     //         if (builder.Data.Handler.OfType<ContainsStateTransitionHandler>()
     //             .Any(x => transition.ToState.Contains(x.FromStateContains)))
