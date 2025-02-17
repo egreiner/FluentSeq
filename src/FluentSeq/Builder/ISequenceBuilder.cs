@@ -12,7 +12,7 @@ public interface ISequenceBuilder<TState>
     /// <summary>
     /// Returns a list of all registered states
     /// </summary>
-    IList<State> RegisteredStates { get; }
+    IList<SeqState<TState>> RegisteredStates { get; }
 
     /// <summary>
     /// The options for building a sequence

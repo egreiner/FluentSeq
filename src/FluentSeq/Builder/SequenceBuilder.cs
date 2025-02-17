@@ -29,7 +29,7 @@ public class SequenceBuilder<TState> : ISequenceBuilder<TState>
 
 
     /// <inheritdoc />
-    public IList<State> RegisteredStates => Builder().StateBuilders.Select(x => x.State).ToList() ?? [];
+    public IList<SeqState<TState>> RegisteredStates => Builder().StateBuilders.Select(x => x.State).ToList() ?? [];
 
 
     /// <summary>
@@ -72,8 +72,7 @@ public class SequenceBuilder<TState> : ISequenceBuilder<TState>
     /// <inheritdoc />
     public IStateBuilder<TState> ConfigureState(TState state, string description = "")
     {
-        var stateName = state?.ToString() ?? Guid.NewGuid().ToString();
-        var builder   = new StateBuilder<TState>(Builder(), stateName, description);
+        var builder   = new StateBuilder<TState>(Builder(), state, description);
 
         if (!Builder().StateBuilders.Add(builder))
             throw new DuplicateStateException(builder.State.Name);

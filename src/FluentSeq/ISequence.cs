@@ -5,7 +5,7 @@
 /// <summary>
 /// Interface for a sequence
 /// </summary>
-public interface ISequence<TSTate>
+public interface ISequence<TState>
 {
     // // /// <summary>
     // // /// The debug logger
@@ -21,24 +21,24 @@ public interface ISequence<TSTate>
     /// <summary>
     /// The sequence options
     /// </summary>
-    SequenceOptions<TSTate> Options { get; }
+    SequenceOptions<TState> Options { get; }
 
     /// <summary>
     /// All States that are registered for this sequence
     /// </summary>
-    IList<State> RegisteredStates { get; }
+    IList<SeqState<TState>> RegisteredStates { get; }
 
 
     /// <summary>
     /// The current state of the sequence
     /// </summary>
-    TSTate CurrentState { get; }
+    TState CurrentState { get; }
 
 
     // /// <summary>
     // /// The last state of the sequence
     // /// </summary>
-    // TSTate PreviousState { get; }
+    // TState PreviousState { get; }
     //
     // // /// <summary>
     // // /// A builtin stopwatch
@@ -51,20 +51,20 @@ public interface ISequence<TSTate>
     // /// Returns true if the sequence.CurrentState is in the specified state.
     // /// </summary>
     // /// <param name="state">The state that is asked for.</param>
-    // bool HasCurrentState(TSTate state);
+    // bool HasCurrentState(TState state);
     //
     // // // TODO rename to IsInStates or IsInAnyState in v4.0?
     // // /// <summary>
     // // /// Returns true if the sequence.CurrentState is in one of the specified states.
     // // /// </summary>
     // // /// <param name="states">The states that are asked for.</param>
-    // // bool HasAnyCurrentState(params TSTate[] states);
+    // // bool HasAnyCurrentState(params TState[] states);
     // //
     // // /// <summary>
     // // /// Returns true if the queried state is registered in the sequence-configuration.
     // // /// </summary>
     // // /// <param name="state">The state</param>
-    // // bool IsRegisteredState(TSTate state);
+    // // bool IsRegisteredState(TState state);
     //
     //
     //
@@ -77,12 +77,12 @@ public interface ISequence<TSTate>
     // /// <summary>
     // /// Run the sequence
     // /// </summary>
-    // ISequence<TSTate> Run();
+    // ISequence<TState> Run();
     //
     // // /// <summary>
     // // /// Runs the sequence asynchronous
     // // /// </summary>
-    // // Task<ISequence<TSTate>> RunAsync();
+    // // Task<ISequence<TState>> RunAsync();
     // //
 
     /// <summary>
@@ -90,7 +90,7 @@ public interface ISequence<TSTate>
     /// The execution of the sequence will continue.
     /// </summary>
     /// <param name="state">The state that will be set</param>
-    ISequence<TSTate> SetState(TSTate state);
+    ISequence<TState> SetState(TState state);
 
     /// <summary>
     /// If the constraint is fulfilled the CurrentState will be set to the state immediately
@@ -98,5 +98,5 @@ public interface ISequence<TSTate>
     /// </summary>
     /// <param name="state">The state that should be set</param>
     /// <param name="condition">The condition that must be fulfilled that the sequence is set to the defined state</param>
-    ISequence<TSTate> SetState(TSTate state, Func<bool> condition);
+    ISequence<TState> SetState(TState state, Func<bool> condition);
 }

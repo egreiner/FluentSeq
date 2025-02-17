@@ -1,22 +1,36 @@
 namespace FluentSeq;
 
-// TODO make this generic?
 /// <summary>
 /// Describes a state
 /// </summary>
-/// <param name="name">The name of the state</param>
-/// <param name="description">The description of the state</param>
-public class State(string name, string description = "")
+public class SeqState<TState>
 {
+    /// <summary>
+    /// Describes a state
+    /// </summary>
+    /// <param name="state">The state</param>
+    /// <param name="description">The description of the state</param>
+    public SeqState(TState state, string description = "")
+    {
+        State = state;
+        Name = state?.ToString() ?? Guid.NewGuid().ToString();
+        Description = description;
+    }
+
+    /// <summary>
+    /// The state
+    /// </summary>
+    public TState State { get; }
+
     /// <summary>
     /// The name of the state
     /// </summary>
-    public string Name { get; } = name;
+    public string Name { get; }
 
     /// <summary>
     /// The description of the state
     /// </summary>
-    public string Description { get; } = description;
+    public string Description { get; }
 
 
     /// <inheritdoc />
@@ -25,7 +39,7 @@ public class State(string name, string description = "")
 
     /// <inheritdoc />
     public override bool Equals(object? obj) =>
-        obj is State state && Name.Equals(state.Name);
+        obj is SeqState<TState> state && Name.Equals(state.Name);
 
     /// <inheritdoc />
     public override int GetHashCode() =>

@@ -3,35 +3,35 @@
 /// <summary>
 /// A sequence that could be executed
 /// </summary>
-/// <typeparam name="TSTate">Type of the state (string, enum, int...)</typeparam>
-public class Sequence<TSTate>(SequenceOptions<TSTate> options, IList<State> registeredStates) : ISequence<TSTate>
+/// <typeparam name="TState">Type of the state (string, enum, int...)</typeparam>
+public class Sequence<TState>(SequenceOptions<TState> options, IList<SeqState<TState>> registeredStates) : ISequence<TState>
 {
     /// <inheritdoc />
-    public SequenceOptions<TSTate> Options { get; } = options;
+    public SequenceOptions<TState> Options { get; } = options;
 
     /// <inheritdoc />
-    public IList<State> RegisteredStates { get; } = registeredStates;
+    public IList<SeqState<TState>> RegisteredStates { get; } = registeredStates;
 
     /// <inheritdoc />
-    public TSTate CurrentState { get; private set; } = options.InitialState;
+    public TState CurrentState { get; private set; } = options.InitialState;
 
     // /// <inheritdoc />
-    // public TSTate PreviousState { get; }
+    // public TState PreviousState { get; }
     //
     // /// <inheritdoc />
-    // public bool HasCurrentState(TSTate state)
+    // public bool HasCurrentState(TState state)
     // {
     //     throw new NotImplementedException();
     // }
     //
     // /// <inheritdoc />
-    // public ISequence<TSTate> Run()
+    // public ISequence<TState> Run()
     // {
     //     throw new NotImplementedException();
     // }
 
     /// <inheritdoc />
-    public ISequence<TSTate> SetState(TSTate state)
+    public ISequence<TState> SetState(TState state)
     {
         // TODO: add validation if this state is registered, raise exception if not???
         CurrentState = state;
@@ -39,6 +39,6 @@ public class Sequence<TSTate>(SequenceOptions<TSTate> options, IList<State> regi
     }
 
     /// <inheritdoc />
-    public ISequence<TSTate> SetState(TSTate state, Func<bool> condition) =>
+    public ISequence<TState> SetState(TState state, Func<bool> condition) =>
         condition() ? SetState(state) : this;
 }

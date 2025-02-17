@@ -24,7 +24,7 @@ public sealed class InitialStateValidator<TState> : ValidatorBase, IValidator<TS
             return result.IsValid;
         }
 
-        if (!builder.RegisteredStates.Contains(new State(state.ToString())))
+        if (!builder.RegisteredStates.Contains(new SeqState<TState>(state)))
             result.AddError("InitialState", $"The Initial-State '{state}' must be configured");
 
         // if (!HandlerIsValidated(builder))

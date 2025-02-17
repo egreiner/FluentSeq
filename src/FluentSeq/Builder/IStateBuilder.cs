@@ -11,7 +11,7 @@ public interface IStateBuilder<TState>: ISequenceBuilder<TState> //, IActionBuil
     /// <summary>
     /// The state that the builder should parameterize
     /// </summary>
-    State State { get; }
+    SeqState<TState> State { get; }
 
 
     ITriggerBuilder<TState> TriggeredBy(Func<bool> triggeredByFunc);

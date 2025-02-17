@@ -11,7 +11,7 @@ public class TriggerBuilder<TState> : StateBuilder<TState>, ITriggerBuilder<TSta
     /// <summary>
     /// Provides methods to parametrize a trigger
     /// </summary>
-    public TriggerBuilder(IStateBuilder<TState> stateBuilder) : base(stateBuilder.Builder(), stateBuilder.State.Name, stateBuilder.State.Description)
+    public TriggerBuilder(IStateBuilder<TState> stateBuilder) : base(stateBuilder.Builder(), stateBuilder.State.State, stateBuilder.State.Description)
     {
         _stateBuilder = stateBuilder;
         RootSequenceBuilder = stateBuilder.Builder();

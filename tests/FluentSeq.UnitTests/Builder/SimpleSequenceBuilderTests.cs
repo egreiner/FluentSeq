@@ -64,7 +64,7 @@ public sealed class SimpleSequenceBuilderTests
 
         var actual = builder.RegisteredStates;
 
-        actual.ShouldNotContain(new State("INIT"));
+        actual.ShouldNotContain(new SeqState<string>("INIT"));
 
         actual.ShouldContain(stateBuilder1.State);
         actual.ShouldContain(stateBuilder2.State);
