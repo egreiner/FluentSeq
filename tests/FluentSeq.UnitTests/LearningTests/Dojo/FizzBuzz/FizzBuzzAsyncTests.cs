@@ -7,15 +7,15 @@
 // 3. If the number is divisible by 3 and 5, print FizzBuzz
 
 
-public class FizzBuzzTests
+public class FizzBuzzAsyncTests
 {
     [Theory]
     [InlineData(3)]
     [InlineData(6)]
     [InlineData(9)]
-    public void ToFizzBuzz_ShouldReturn_Fizz(int value)
+    public async Task ToFizzBuzzAsync_ShouldReturn_Fizz(int value)
     {
-        var actual = value.ToFizzBuzz();
+        var actual = await value.ToFizzBuzzAsync();
 
         actual.ShouldBe("Fizz");
     }
@@ -26,32 +26,32 @@ public class FizzBuzzTests
     [InlineData(10)]
     [InlineData(20)]
     [InlineData(40)]
-    public void ToFizzBuzz_ShouldReturn_Buzz(int value)
+    public async Task ToFizzBuzzAsync_ShouldReturn_Buzz(int value)
     {
-        var actual = value.ToFizzBuzz();
-
+        var actual = await value.ToFizzBuzzAsync();
+    
         actual.ShouldBe("Buzz");
     }
-
+    
     [Theory]
     [InlineData(15)]
     [InlineData(30)]
     [InlineData(45)]
-    public void ToFizzBuzz_ShouldReturn_FizzBuzz(int value)
+    public async Task ToFizzBuzzAsync_ShouldReturn_FizzBuzz(int value)
     {
-        var actual = value.ToFizzBuzz();
-
+        var actual = await value.ToFizzBuzzAsync();
+    
         actual.ShouldBe("FizzBuzz");
     }
-
+    
     [Theory]
     [InlineData(1)]
     [InlineData(2)]
     [InlineData(4)]
-    public void ToFizzBuzz_ShouldReturn_NumberAsString(int value)
+    public async Task ToFizzBuzzAsync_ShouldReturn_NumberAsString(int value)
     {
-        var actual = value.ToFizzBuzz();
-
+        var actual = await value.ToFizzBuzzAsync();
+    
         actual.ShouldBe(value.ToString());
     }
 }
