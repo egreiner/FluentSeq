@@ -32,11 +32,38 @@ public class FizzBuzzTests
         actual.ShouldBe("Buzz");
     }
 
+    [Theory]
+    [InlineData(15)]
+    [InlineData(30)]
+    [InlineData(45)]
+    public void ToFizzBuzz_ShouldReturn_FizzBuzz(int value)
+    {
+        var actual = ToFizzBuzz(value);
+
+        actual.ShouldBe("FizzBuzz");
+    }
+
+    [Theory]
+    [InlineData(1)]
+    [InlineData(2)]
+    [InlineData(4)]
+    public void ToFizzBuzz_ShouldReturn_NumberAsString(int value)
+    {
+        var actual = ToFizzBuzz(value);
+
+        actual.ShouldBe(value.ToString());
+    }
+
 
 
 
     private static string ToFizzBuzz(int value)
     {
+        if (value % 15 == 0)
+        {
+            return "FizzBuzz";
+        }
+
         if (value % 3 == 0)
         {
             return "Fizz";
