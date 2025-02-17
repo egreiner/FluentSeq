@@ -1,5 +1,6 @@
 ﻿namespace FluentSeq.UnitTests.LearningTests.Dojo.FizzBuzz;
 
+using System.Collections.Concurrent;
 
 // FizzBuzz rules
 // 1. If the number is divisible by 3, print Fizz
@@ -17,7 +18,7 @@ public class FizzBuzzTests
     {
         var actual = value.ToFizzBuzz();
 
-        actual.ShouldBe("Fizz");
+        actual.ShouldBe((value, "Fizz"));
     }
 
     [Theory]
@@ -30,7 +31,7 @@ public class FizzBuzzTests
     {
         var actual = value.ToFizzBuzz();
 
-        actual.ShouldBe("Buzz");
+        actual.ShouldBe((value, "Buzz"));
     }
 
     [Theory]
@@ -41,7 +42,7 @@ public class FizzBuzzTests
     {
         var actual = value.ToFizzBuzz();
 
-        actual.ShouldBe("FizzBuzz");
+        actual.ShouldBe((value, "FizzBuzz"));
     }
 
     [Theory]
@@ -52,6 +53,19 @@ public class FizzBuzzTests
     {
         var actual = value.ToFizzBuzz();
 
-        actual.ShouldBe(value.ToString());
+        actual.ShouldBe((value, value.ToString()));
+    }
+
+
+    [Fact]
+    public void ToFizzBuzz_ShouldReturn_String()
+    {
+        var max = 100000;
+        var values = Enumerable.Range(1, max).ToList();
+        var actual = new List<(int, string)>();
+
+        values.ForEach(value => actual.Add(value.ToFizzBuzz()));
+
+        actual.Count.ShouldBe(max);
     }
 }

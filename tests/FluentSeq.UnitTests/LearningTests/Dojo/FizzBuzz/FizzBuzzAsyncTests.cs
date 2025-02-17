@@ -1,5 +1,6 @@
 ﻿namespace FluentSeq.UnitTests.LearningTests.Dojo.FizzBuzz;
 
+using System.Collections.Concurrent;
 
 // FizzBuzz rules
 // 1. If the number is divisible by 3, print Fizz
@@ -15,9 +16,9 @@ public class FizzBuzzAsyncTests
     [InlineData(9)]
     public async Task ToFizzBuzzAsync_ShouldReturn_Fizz(int value)
     {
-        var actual = await value.ToFizzBuzzAsync();
+        var actual = await value.ToFizzBuzzAsync().ConfigureAwait(true);
 
-        actual.ShouldBe("Fizz");
+        actual.ShouldBe((value, "Fizz"));
     }
 
     [Theory]
@@ -28,9 +29,9 @@ public class FizzBuzzAsyncTests
     [InlineData(40)]
     public async Task ToFizzBuzzAsync_ShouldReturn_Buzz(int value)
     {
-        var actual = await value.ToFizzBuzzAsync();
+        var actual = await value.ToFizzBuzzAsync().ConfigureAwait(true);
     
-        actual.ShouldBe("Buzz");
+        actual.ShouldBe((value, "Buzz"));
     }
     
     [Theory]
@@ -39,9 +40,9 @@ public class FizzBuzzAsyncTests
     [InlineData(45)]
     public async Task ToFizzBuzzAsync_ShouldReturn_FizzBuzz(int value)
     {
-        var actual = await value.ToFizzBuzzAsync();
+        var actual = await value.ToFizzBuzzAsync().ConfigureAwait(true);
     
-        actual.ShouldBe("FizzBuzz");
+        actual.ShouldBe((value, "FizzBuzz"));
     }
     
     [Theory]
@@ -50,8 +51,25 @@ public class FizzBuzzAsyncTests
     [InlineData(4)]
     public async Task ToFizzBuzzAsync_ShouldReturn_NumberAsString(int value)
     {
-        var actual = await value.ToFizzBuzzAsync();
+        var actual = await value.ToFizzBuzzAsync().ConfigureAwait(true);
     
-        actual.ShouldBe(value.ToString());
+        actual.ShouldBe((value, value.ToString()));
+    }
+
+    [Fact]
+    public async Task ToFizzBuzzAsync_ShouldReturn_String()
+    {
+        var max = 100000;
+        var values = Enumerable.Range(1, max);
+        var tasks = new ConcurrentBag<Task<(int, string)>>();
+
+        Parallel.ForEach(values, value =>
+        {
+            tasks.Add(value.ToFizzBuzzAsync());
+        });
+
+        var actual = await Task.WhenAll(tasks);
+
+        actual.Length.ShouldBe(max);
     }
 }
