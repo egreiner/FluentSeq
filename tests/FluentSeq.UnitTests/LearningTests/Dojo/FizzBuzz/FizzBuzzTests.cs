@@ -55,25 +55,12 @@ public class FizzBuzzTests
     }
 
 
-
-
-    private static string ToFizzBuzz(int value)
-    {
-        if (value % 15 == 0)
+    private static string ToFizzBuzz(int value) =>
+        value switch
         {
-            return "FizzBuzz";
-        }
-
-        if (value % 3 == 0)
-        {
-            return "Fizz";
-        }
-
-        if (value % 5 == 0)
-        {
-            return "Buzz";
-        }
-
-        return value.ToString();
-    }
+            var x when x % 15 == 0 => "FizzBuzz",
+            var x when x % 3 == 0 => "Fizz",
+            var x when x % 5 == 0 => "Buzz",
+            _ => value.ToString()
+        };
 }
