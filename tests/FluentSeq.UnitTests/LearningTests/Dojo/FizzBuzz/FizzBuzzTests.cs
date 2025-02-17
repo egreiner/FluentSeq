@@ -6,6 +6,7 @@
 // 2. If the number is divisible by 5, print Buzz
 // 3. If the number is divisible by 3 and 5, print FizzBuzz
 
+
 public class FizzBuzzTests
 {
     [Theory]
@@ -14,7 +15,7 @@ public class FizzBuzzTests
     [InlineData(9)]
     public void ToFizzBuzz_ShouldReturn_Fizz(int value)
     {
-        var actual = ToFizzBuzz(value);
+        var actual = value.ToFizzBuzz();
 
         actual.ShouldBe("Fizz");
     }
@@ -27,7 +28,7 @@ public class FizzBuzzTests
     [InlineData(40)]
     public void ToFizzBuzz_ShouldReturn_Buzz(int value)
     {
-        var actual = ToFizzBuzz(value);
+        var actual = value.ToFizzBuzz();
 
         actual.ShouldBe("Buzz");
     }
@@ -38,7 +39,7 @@ public class FizzBuzzTests
     [InlineData(45)]
     public void ToFizzBuzz_ShouldReturn_FizzBuzz(int value)
     {
-        var actual = ToFizzBuzz(value);
+        var actual = value.ToFizzBuzz();
 
         actual.ShouldBe("FizzBuzz");
     }
@@ -49,13 +50,15 @@ public class FizzBuzzTests
     [InlineData(4)]
     public void ToFizzBuzz_ShouldReturn_NumberAsString(int value)
     {
-        var actual = ToFizzBuzz(value);
+        var actual = value.ToFizzBuzz();
 
         actual.ShouldBe(value.ToString());
     }
+}
 
-
-    private static string ToFizzBuzz(int value) =>
+public static class FizzBuzzExtension
+{
+    public static string ToFizzBuzz(this int value) =>
         value switch
         {
             var x when x % 15 == 0 => "FizzBuzz",
