@@ -6,15 +6,13 @@
 /// <typeparam name="TState">The type of the state</typeparam>
 public class TriggerBuilder<TState> : StateBuilder<TState>, ITriggerBuilder<TState>
 {
-    private readonly IStateBuilder<TState> _stateBuilder;
-
     /// <summary>
     /// Provides methods to parametrize a trigger
     /// </summary>
     public TriggerBuilder(IStateBuilder<TState> stateBuilder, Func<bool> triggeredByFunc) : base(stateBuilder.Builder(), stateBuilder.State.State, stateBuilder.State.Description)
     {
-        _stateBuilder       = stateBuilder;
         RootSequenceBuilder = stateBuilder.Builder();
+        RootStateBuilder    = stateBuilder.RootStateBuilder;
         Trigger             = new Trigger<TState>(stateBuilder, triggeredByFunc);
     }
 

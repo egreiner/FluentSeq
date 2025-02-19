@@ -13,9 +13,8 @@ public class StateOnEntryActionTests
                 .TriggeredBy(() => false)
                  .OnEntry(() => x = 1)
             .ConfigureState(state.Initialized)
-                // TODO this is running only in this code order, if its vice versa, it will not work
-                .OnEntry(() => x = 2)
                 .TriggeredBy(() => true)
+                .OnEntry(() => x = 2)
             .Build();
 
         // x = 0;

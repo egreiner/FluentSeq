@@ -11,6 +11,11 @@ public interface IStateBuilder<TState>: ISequenceBuilder<TState>, IActionBuilder
     /// </summary>
     SeqState<TState> State { get; }
 
+    /// <summary>
+    /// The root state builder
+    /// </summary>
+    StateBuilder<TState> RootStateBuilder { get; }
+
 
     /// <summary>
     /// The sequence can be forced to this state when the state is triggered by a function

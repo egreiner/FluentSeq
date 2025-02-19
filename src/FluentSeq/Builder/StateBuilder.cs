@@ -12,8 +12,12 @@ public class StateBuilder<TState> : SequenceBuilder<TState>, IStateBuilder<TStat
     public StateBuilder(ISequenceBuilder<TState> sequenceBuilder, TState state, string description): base(sequenceBuilder.Options.InitialState)
     {
         RootSequenceBuilder = sequenceBuilder;
+        RootStateBuilder    = this;
         State = new SeqState<TState>(state, description);
     }
+
+    /// <inheritdoc />
+    public StateBuilder<TState> RootStateBuilder { get; protected set; }
 
     /// <inheritdoc />
     public SeqState<TState> State { get; }
@@ -38,7 +42,7 @@ public class StateBuilder<TState> : SequenceBuilder<TState>, IStateBuilder<TStat
     public ITriggerBuilder<TState> TriggeredBy(Func<bool> triggeredByFunc)
     {
         var triggerBuilder = new TriggerBuilder<TState>(this, triggeredByFunc);
-        State.Trigger.Add(triggerBuilder.Trigger);
+        RootStateBuilder.State.Trigger.Add(triggerBuilder.Trigger);
 
         return triggerBuilder;
     }
@@ -47,7 +51,7 @@ public class StateBuilder<TState> : SequenceBuilder<TState>, IStateBuilder<TStat
     /// <inheritdoc />
     public IStateBuilder<TState> OnEntry(Action action)
     {
-        State.EntryAction = action;
+        RootStateBuilder.State.EntryAction = action;
         return this;
     }
 
