@@ -12,14 +12,12 @@ public class SwitchToAnotherStateTests
             .ConfigureState(state.Initialized).TriggeredBy(() => true)
             .Build();
 
-        var actual = sequence.CurrentState;
         sequence.RegisteredStates.Count.ShouldBe(2);
-        actual.ShouldBe(state.Initializing);
+        sequence.CurrentState.ShouldBe(state.Initializing);
 
         sequence.Run();
 
-        actual = sequence.CurrentState;
-        actual.ShouldBe(state.Initialized);
+        sequence.CurrentState.ShouldBe(state.Initialized);
     }
 
     [Fact]
@@ -34,13 +32,44 @@ public class SwitchToAnotherStateTests
             .ConfigureState(state.Off).TriggeredBy(() => true)
             .Build();
 
-        var actual = sequence.CurrentState;
         sequence.RegisteredStates.Count.ShouldBe(4);
-        actual.ShouldBe(state.Initializing);
+        sequence.CurrentState.ShouldBe(state.Initializing);
 
         sequence.Run();
 
-        actual = sequence.CurrentState;
-        actual.ShouldBe(state.Initialized);
+        sequence.CurrentState.ShouldBe(state.Initialized);
+    }
+
+    [Fact]
+    public void TriggeredSeq_ShouldNotSwitch_when_incorrect_CurrentState()
+    {
+        var state = new DefaultSequenceStates();
+
+        var sequence = new FluentSeq<string>().Create(state.Initializing)
+            .ConfigureState(state.Initializing).TriggeredBy(() => false)
+            .ConfigureState(state.Initialized)
+            .ConfigureState(state.On).TriggeredBy(() => true).WhenInState(state.Initialized)
+            .Build();
+
+        sequence.Run();
+
+        sequence.CurrentState.ShouldBe(state.Initializing);
+    }
+
+    [Fact]
+    public void TriggeredSeq_ShouldSwitch_when_correct_CurrentState()
+    {
+        var state = new DefaultSequenceStates();
+
+        var sequence = new FluentSeq<string>().Create(state.Initializing)
+            .ConfigureState(state.Initializing).TriggeredBy(() => false)
+            .ConfigureState(state.Initialized)
+            .ConfigureState(state.On).TriggeredBy(() => true).WhenInState(state.Initialized)
+            .Build();
+
+        sequence.SetState(state.Initialized);
+        sequence.Run();
+
+        sequence.CurrentState.ShouldBe(state.On);
     }
 }

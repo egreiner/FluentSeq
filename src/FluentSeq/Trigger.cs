@@ -40,6 +40,9 @@ public class Trigger<TState>
     public bool IsTriggered(ISequence<TState> sequence)
     {
         var result = TriggeredByFunc();
-        return result;
+
+        return !result || WhenInStates.Count == 0
+            ? result
+            : WhenInStates.Contains(sequence.CurrentState);
     }
 }
