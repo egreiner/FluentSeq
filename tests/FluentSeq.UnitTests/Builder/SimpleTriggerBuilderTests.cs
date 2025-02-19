@@ -33,11 +33,27 @@ public sealed class SimpleTriggerBuilderTests
             .ConfigureState("State1");
 
         var triggerBuilder = stateBuilder.TriggeredBy(() => true);
-
-        var trigger = triggerBuilder.Trigger;
+        var trigger        = triggerBuilder.Trigger;
 
         var actual = stateBuilder.State.Trigger;
         actual.ShouldContain(trigger);
+    }
+
+    [Fact]
+    public void TriggerBuilder_ShouldAdd_all_Trigger_to_state()
+    {
+        var stateBuilder = new FluentSeq<string>().Create("INIT")
+            .ConfigureState("State1");
+
+        var triggerBuilder1 = stateBuilder.TriggeredBy(() => true);
+        var trigger1        = triggerBuilder1.Trigger;
+
+        var triggerBuilder2 = stateBuilder.TriggeredBy(() => false);
+        var trigger2        = triggerBuilder2.Trigger;
+
+        var actual = stateBuilder.State.Trigger;
+        actual.ShouldContain(trigger1);
+        actual.ShouldContain(trigger2);
     }
 
     [Fact]
