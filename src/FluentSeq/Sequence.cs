@@ -29,16 +29,16 @@ public class Sequence<TState>(SequenceOptions<TState> options, IList<SeqState<TS
     /// <inheritdoc />
     public ISequence<TState> Run()
     {
-        //SetState(new DefaultSequenceStates().Initialized);
-        //TODO: iterate state-trigger
-        // foreach (var state in RegisteredStates)
-        // {
-        //     if (state.Trigger())
-        //     {
-        //         SetState(state.State);
-        //         break;
-        //     }
-        // }
+        foreach (var state in RegisteredStates)
+        {
+            if (state.Trigger.Any(x => x.TriggeredByFunc()))
+            {
+                SetState(state.State);
+
+                // if the first state is triggered, break the loop
+                break;
+            }
+        }
 
         return this;
     }

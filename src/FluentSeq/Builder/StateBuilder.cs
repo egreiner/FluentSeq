@@ -37,7 +37,7 @@ public class StateBuilder<TState> : SequenceBuilder<TState>, IStateBuilder<TStat
     /// <inheritdoc />
     public ITriggerBuilder<TState> TriggeredBy(Func<bool> triggeredByFunc)
     {
-        var triggerBuilder = new TriggerBuilder<TState>(this);
+        var triggerBuilder = new TriggerBuilder<TState>(this, triggeredByFunc);
         State.Trigger.Add(triggerBuilder.Trigger);
 
         return triggerBuilder;

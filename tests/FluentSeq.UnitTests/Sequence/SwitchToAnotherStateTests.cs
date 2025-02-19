@@ -2,7 +2,7 @@
 
 public class SwitchToAnotherStateTests
 {
-    [Fact(Skip = "Not implemented yet")]
+    [Fact]
     public void TriggeredSeq_ShouldSwitch_to_requested_state()
     {
         var state = new DefaultSequenceStates();
@@ -12,8 +12,7 @@ public class SwitchToAnotherStateTests
             .ConfigureState(state.Initialized).TriggeredBy(() => true)
             .Build();
 
-        sequence.SetState(state.Initialized);
-        //sequence.Run();
+        sequence.Run();
 
         var actual = sequence.CurrentState;
         actual.ShouldBe(state.Initialized);

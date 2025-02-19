@@ -14,11 +14,18 @@ public class Trigger<TState>
     /// Initializes a new instance of the <see cref="Trigger{TState}"/> class.
     /// </summary>
     /// <param name="stateBuilder">The root of this trigger builder</param>
-    public Trigger(IStateBuilder<TState> stateBuilder)
+    /// <param name="triggeredByFunc">The function that triggers the state change</param>
+    public Trigger(IStateBuilder<TState> stateBuilder, Func<bool> triggeredByFunc)
     {
-        _stateBuilder = stateBuilder;
+        _stateBuilder   = stateBuilder;
+        TriggeredByFunc = triggeredByFunc;
     }
 
+
+    /// <summary>
+    /// Gets the function that triggers the state change
+    /// </summary>
+    public Func<bool> TriggeredByFunc { get; }
 
     /// <summary>
     /// Gets a list of states in which the sequence can be for the trigger to be valid.
