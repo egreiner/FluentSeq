@@ -33,6 +33,14 @@ public class SeqState<TState>
     public string Description { get; }
 
 
+    /// <summary>
+    /// Gets a list of trigger for this state.
+    /// </summary>
+    public List<Trigger<TState>> Trigger { get; } = new();
+
+
+
+
     /// <inheritdoc />
     public override string ToString() =>
         $"{Name} {Description}";

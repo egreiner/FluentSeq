@@ -35,8 +35,15 @@ public class StateBuilder<TState> : SequenceBuilder<TState>, IStateBuilder<TStat
 
 
 
-    public ITriggerBuilder<TState> TriggeredBy(Func<bool> triggeredByFunc) =>
-        new TriggerBuilder<TState>(this);
+    public ITriggerBuilder<TState> TriggeredBy(Func<bool> triggeredByFunc)
+    {
+        var triggerBuilder = new TriggerBuilder<TState>(this);
+        State.Trigger.Add(triggerBuilder.Trigger);
+
+        return triggerBuilder;
+    }
+
+
 
     // public IStateBuilder<TState> OnEntry(Action action) => throw new NotImplementedException();
     //

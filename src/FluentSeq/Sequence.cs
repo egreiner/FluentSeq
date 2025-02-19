@@ -15,6 +15,7 @@ public class Sequence<TState>(SequenceOptions<TState> options, IList<SeqState<TS
     /// <inheritdoc />
     public TState CurrentState { get; private set; } = options.InitialState;
 
+
     // /// <inheritdoc />
     // public TState PreviousState { get; }
     //
@@ -23,6 +24,7 @@ public class Sequence<TState>(SequenceOptions<TState> options, IList<SeqState<TS
     // {
     //     throw new NotImplementedException();
     // }
+
 
     /// <inheritdoc />
     public ISequence<TState> Run()
