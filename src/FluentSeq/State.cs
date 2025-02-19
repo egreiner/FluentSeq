@@ -34,7 +34,7 @@ public class SeqState<TState>
 
 
     /// <summary>
-    /// Gets a list of trigger for this state.
+    /// Gets a list of trigger for this state
     /// </summary>
     public List<Trigger<TState>> Trigger { get; } = new();
 

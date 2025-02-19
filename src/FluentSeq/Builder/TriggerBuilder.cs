@@ -13,9 +13,9 @@ public class TriggerBuilder<TState> : StateBuilder<TState>, ITriggerBuilder<TSta
     /// </summary>
     public TriggerBuilder(IStateBuilder<TState> stateBuilder) : base(stateBuilder.Builder(), stateBuilder.State.State, stateBuilder.State.Description)
     {
-        _stateBuilder = stateBuilder;
+        _stateBuilder       = stateBuilder;
         RootSequenceBuilder = stateBuilder.Builder();
-        Trigger = new Trigger<TState>(stateBuilder);
+        Trigger             = new Trigger<TState>(stateBuilder);
     }
 
 

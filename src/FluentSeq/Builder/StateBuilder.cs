@@ -1,6 +1,5 @@
 namespace FluentSeq.Builder;
 
-#pragma warning disable CS1591
 /// <summary>
 /// Provides methods for further describing a state
 /// </summary>
@@ -35,6 +34,7 @@ public class StateBuilder<TState> : SequenceBuilder<TState>, IStateBuilder<TStat
 
 
 
+    /// <inheritdoc />
     public ITriggerBuilder<TState> TriggeredBy(Func<bool> triggeredByFunc)
     {
         var triggerBuilder = new TriggerBuilder<TState>(this);

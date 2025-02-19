@@ -1,7 +1,5 @@
 namespace FluentSeq.Builder;
 
-#pragma warning disable CS1591
-
 /// <summary>
 /// Provides methods for further describing a state
 /// </summary>
@@ -14,5 +12,9 @@ public interface IStateBuilder<TState>: ISequenceBuilder<TState> //, IActionBuil
     SeqState<TState> State { get; }
 
 
+    /// <summary>
+    /// The sequence can be forced to this state when the state is triggered by a function
+    /// </summary>
+    /// <param name="triggeredByFunc">The trigger-function</param>
     ITriggerBuilder<TState> TriggeredBy(Func<bool> triggeredByFunc);
 }

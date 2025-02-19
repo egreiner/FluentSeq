@@ -1,6 +1,6 @@
 ﻿# 2025-02-19
-## get a seq switch to another state with an trigger
-## before we can run a seq with trigger, we need to implement Trigger in the StateBuilder
+## get a seq switch to another state with a trigger
+## before we can run a seq with trigger, we need to implement Trigger in the State(Builder)
 
 
 # what is missing
