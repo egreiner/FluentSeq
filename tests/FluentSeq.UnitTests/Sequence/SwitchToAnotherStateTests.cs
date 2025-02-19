@@ -72,4 +72,22 @@ public class SwitchToAnotherStateTests
 
         sequence.CurrentState.ShouldBe(state.On);
     }
+
+    [Fact]
+    public void TriggeredSeq_ShouldSwitch_when_correct_CurrentStates()
+    {
+        var state = new DefaultSequenceStates();
+
+        var sequence = new FluentSeq<string>().Create(state.Initializing)
+            .ConfigureState(state.Initializing).TriggeredBy(() => false)
+            .ConfigureState(state.Initialized)
+            .ConfigureState(state.Off)
+            .ConfigureState(state.On).TriggeredBy(() => true).WhenInStates(state.Initialized, state.Off)
+            .Build();
+
+        sequence.SetState(state.Off);
+        sequence.Run();
+
+        sequence.CurrentState.ShouldBe(state.On);
+    }
 }
