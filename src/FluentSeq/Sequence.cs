@@ -16,9 +16,9 @@ public class Sequence<TState>(SequenceOptions<TState> options, IList<SeqState<TS
     public TState CurrentState { get; private set; } = options.InitialState;
 
 
-    // /// <inheritdoc />
-    // public TState PreviousState { get; }
-    //
+    /// <inheritdoc />
+    public TState? PreviousState { get; private set; }
+
     // /// <inheritdoc />
     // public bool HasCurrentState(TState state)
     // {
@@ -48,7 +48,15 @@ public class Sequence<TState>(SequenceOptions<TState> options, IList<SeqState<TS
     public ISequence<TState> SetState(TState state)
     {
         // TODO: add validation if this state is registered, raise exception if not???
-        CurrentState = state;
+        PreviousState = CurrentState;
+        CurrentState  = state;
+
+        if (RegisteredStates.Count > 0 && !CurrentState.Equals(PreviousState))
+        {
+            var statex = RegisteredStates.FirstOrDefault(x => x?.State?.Equals(CurrentState) ?? false);
+            statex?.EntryAction?.Invoke();
+        }
+
         return this;
     }
 

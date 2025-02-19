@@ -34,12 +34,12 @@ public interface ISequence<TState>
     /// </summary>
     TState CurrentState { get; }
 
+    /// <summary>
+    /// The previous state of the sequence
+    /// </summary>
+    TState? PreviousState { get; }
 
-    // /// <summary>
-    // /// The last state of the sequence
-    // /// </summary>
-    // TState PreviousState { get; }
-    //
+
     // // /// <summary>
     // // /// A builtin stopwatch
     // // /// </summary>

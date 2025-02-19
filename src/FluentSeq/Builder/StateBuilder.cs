@@ -44,9 +44,14 @@ public class StateBuilder<TState> : SequenceBuilder<TState>, IStateBuilder<TStat
     }
 
 
+    /// <inheritdoc />
+    public IStateBuilder<TState> OnEntry(Action action)
+    {
+        State.EntryAction = action;
+        return this;
+    }
 
-    // public IStateBuilder<TState> OnEntry(Action action) => throw new NotImplementedException();
-    //
+
     // public IStateBuilder<TState> OnExit(Action action) => throw new NotImplementedException();
     //
     // public IStateBuilder<TState> WhileInState(Action action) => throw new NotImplementedException();

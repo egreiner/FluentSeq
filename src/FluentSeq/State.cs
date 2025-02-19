@@ -38,12 +38,15 @@ public class SeqState<TState>
     /// </summary>
     public List<Trigger<TState>> Trigger { get; } = new();
 
-
+    /// <summary>
+    /// The action to perform when entering the state
+    /// </summary>
+    public Action? EntryAction { get; set; }
 
 
     /// <inheritdoc />
     public override string ToString() =>
-        $"{Name} {Description}";
+        $"{Name} {Description} | has action: {EntryAction != null}";
 
     /// <inheritdoc />
     public override bool Equals(object? obj) =>
