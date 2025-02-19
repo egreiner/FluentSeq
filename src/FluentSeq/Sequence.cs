@@ -31,7 +31,7 @@ public class Sequence<TState>(SequenceOptions<TState> options, IList<SeqState<TS
     {
         foreach (var state in RegisteredStates)
         {
-            if (state.Trigger.Any(x => x.TriggeredByFunc()))
+            if (state.Trigger.Any(x => x.IsTriggered(this)))
             {
                 SetState(state.State);
 
