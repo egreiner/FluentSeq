@@ -23,12 +23,24 @@ public class Sequence<TState>(SequenceOptions<TState> options, IList<SeqState<TS
     // {
     //     throw new NotImplementedException();
     // }
-    //
-    // /// <inheritdoc />
-    // public ISequence<TState> Run()
-    // {
-    //     throw new NotImplementedException();
-    // }
+
+    /// <inheritdoc />
+    public ISequence<TState> Run()
+    {
+        //SetState(new DefaultSequenceStates().Initialized);
+        //TODO: iterate state-trigger
+        // foreach (var state in RegisteredStates)
+        // {
+        //     if (state.Trigger())
+        //     {
+        //         SetState(state.State);
+        //         break;
+        //     }
+        // }
+
+        return this;
+    }
+
 
     /// <inheritdoc />
     public ISequence<TState> SetState(TState state)

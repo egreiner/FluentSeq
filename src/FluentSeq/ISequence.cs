@@ -72,13 +72,13 @@ public interface ISequence<TState>
     // // /// Set the sequence-configuration
     // // /// </summary>
     // // ISequence SetConfiguration(SequenceConfiguration configuration, SequenceData data);
-    //
-    //
-    // /// <summary>
-    // /// Run the sequence
-    // /// </summary>
-    // ISequence<TState> Run();
-    //
+
+
+    /// <summary>
+    /// Run the sequence
+    /// </summary>
+    ISequence<TState> Run();
+
     // // /// <summary>
     // // /// Runs the sequence asynchronous
     // // /// </summary>
