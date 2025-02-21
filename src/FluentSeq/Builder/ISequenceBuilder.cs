@@ -1,7 +1,5 @@
 namespace FluentSeq.Builder;
 
-using Core;
-
 /// <summary>
 /// Provides methods to configure a sequence
 /// </summary>

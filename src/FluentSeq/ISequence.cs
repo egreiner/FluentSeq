@@ -1,7 +1,5 @@
 ﻿namespace FluentSeq;
 
-using Core;
-
 // using Logging;
 
 /// <summary>

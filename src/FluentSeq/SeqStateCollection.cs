@@ -1,16 +1,11 @@
 ﻿namespace FluentSeq;
 
-using Core;
-
 /// <summary>
 /// A collection of sequence states
 /// </summary>
 /// <typeparam name="TState">The state type</typeparam>
-public class SeqStateCollection<TState> : CollectionBase<SeqState<TState>>
+public class SeqStateCollection<TState> : List<SeqState<TState>>
 {
-    /// <inheritdoc />
-    public SeqStateCollection(): base() { }
-
     /// <inheritdoc />
     public SeqStateCollection(IEnumerable<SeqState<TState>> enumerable) : base(enumerable) { }
 

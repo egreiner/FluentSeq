@@ -1,6 +1,5 @@
 namespace FluentSeq.Builder;
 
-using Core;
 using Exceptions;
 
 /// <summary>
