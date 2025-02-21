@@ -6,7 +6,7 @@ using Core;
 /// A collection of sequence states
 /// </summary>
 /// <typeparam name="TState">The state type</typeparam>
-public class SeqStateCollection<TState> : BaseCollection<SeqState<TState>>
+public class SeqStateCollection<TState> : CollectionBase<SeqState<TState>>
 {
     /// <inheritdoc />
     public SeqStateCollection(): base() { }

@@ -4,11 +4,11 @@
 /// A collection of items
 /// </summary>
 /// <typeparam name="T">The item type</typeparam>
-public abstract class BaseCollection<T> : List<T>
+public abstract class CollectionBase<T> : List<T>
 {
     /// <inheritdoc />
-    protected BaseCollection() : base() { }
+    protected CollectionBase() : base() { }
 
     /// <inheritdoc />
-    protected BaseCollection(IEnumerable<T> enumerable): base(enumerable) { }
+    protected CollectionBase(IEnumerable<T> enumerable): base(enumerable) { }
 }
