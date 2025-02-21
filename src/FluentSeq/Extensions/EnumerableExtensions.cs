@@ -16,7 +16,8 @@ public static class EnumerableExtensions
     /// </summary>
     /// <typeparam name="T">The Type</typeparam>
     /// <param name="source">The list source</param>
-    public static List<T> ToClonedList<T>(this IEnumerable<T> source) => new(source);
+    public static List<T> ToClonedList<T>(this IEnumerable<T> source) =>
+        new(source);
 
 
     /// <summary>
@@ -28,14 +29,6 @@ public static class EnumerableExtensions
     public static string ToJoinedString<T>(this IEnumerable<T>? source, string separator = ", ") =>
         source == null ? string.Empty : string.Join(separator, source);
 
-
-    /// <summary>
-    /// Returns the list, if the list is null return an empty list of specified type
-    /// </summary>
-    /// <typeparam name="T">The Type.</typeparam>
-    /// <param name="source">The list source.</param>
-    public static List<T> ToNotNullList<T>(this IEnumerable<T>? source) =>
-        source?.ToList() ?? new List<T>();
 
     /// <summary>
     /// Returns TRUE if the enumerable has items.
@@ -50,14 +43,14 @@ public static class EnumerableExtensions
     /// <param name="enumerable">The enumerable</param>
     public static bool HasItems(this IEnumerable enumerable) => !IsNullOrEmpty(enumerable);
 
-    /// <summary>
-    /// Returns TRUE if NONE of the items complies to the predicate.
-    /// </summary>
-    /// <typeparam name="T">The Type.</typeparam>
-    /// <param name="source">The list source.</param>
-    /// <param name="predicate">The predicate</param>
-    public static bool None<T>(this IEnumerable<T>? source, Func<T, bool> predicate) =>
-        !source?.Any(predicate) ?? true;
+    // /// <summary>
+    // /// Returns TRUE if NONE of the items complies to the predicate.
+    // /// </summary>
+    // /// <typeparam name="T">The Type.</typeparam>
+    // /// <param name="source">The list source.</param>
+    // /// <param name="predicate">The predicate</param>
+    // public static bool None<T>(this IEnumerable<T>? source, Func<T, bool> predicate) =>
+    //     !source?.Any(predicate) ?? true;
 
     /// <summary>
     /// Returns TRUE if ALL the items complies to the predicate.

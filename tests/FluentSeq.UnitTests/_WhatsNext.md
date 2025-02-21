@@ -9,7 +9,8 @@
 
 
 
-# 2025-02-19
+# 2025-02-21
+## make a test for sequence.PreviousState
 ## make a SeqStateCollection with useful methods, eventually use existing ExtensionMethods from other projects for standard collections
 ## call action onexit
 
