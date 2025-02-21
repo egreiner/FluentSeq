@@ -21,6 +21,24 @@ public class SwitchToAnotherStateTests
     }
 
     [Fact]
+    public void PreviousState_ShouldBe_Initializing_after_new_state_is_set()
+    {
+        var state = new DefaultSequenceStates();
+
+        var sequence = new FluentSeq<string>().Create(state.Initializing)
+            .ConfigureState(state.Initializing).TriggeredBy(() => false)
+            .ConfigureState(state.Initialized).TriggeredBy(() => true)
+            .Build();
+
+        sequence.RegisteredStates.Count.ShouldBe(2);
+        sequence.CurrentState.ShouldBe(state.Initializing);
+
+        sequence.Run();
+
+        sequence.PreviousState.ShouldBe(state.Initializing);
+    }
+
+    [Fact]
     public void TriggeredSeq_ShouldSwitch_to_first_triggered_state()
     {
         var state = new DefaultSequenceStates();
