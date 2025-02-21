@@ -8,7 +8,7 @@ using Builder;
 /// <typeparam name="TState"></typeparam>
 public class Trigger<TState>
 {
-    private readonly IStateBuilder<TState> _stateBuilder;
+    // private readonly IStateBuilder<TState> _stateBuilder;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="Trigger{TState}"/> class.
@@ -17,7 +17,7 @@ public class Trigger<TState>
     /// <param name="triggeredByFunc">The function that triggers the state change</param>
     public Trigger(IStateBuilder<TState> stateBuilder, Func<bool> triggeredByFunc)
     {
-        _stateBuilder   = stateBuilder;
+        // _stateBuilder   = stateBuilder;
         TriggeredByFunc = triggeredByFunc;
     }
 
