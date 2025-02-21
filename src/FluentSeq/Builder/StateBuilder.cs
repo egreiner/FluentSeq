@@ -51,7 +51,7 @@ public class StateBuilder<TState> : SequenceBuilder<TState>, IStateBuilder<TStat
     /// <inheritdoc />
     public IStateBuilder<TState> OnEntry(Action action)
     {
-        RootStateBuilder.State.EntryAction = action;
+        RootStateBuilder.State.EntryActions.Add(action);
         return this;
     }
 

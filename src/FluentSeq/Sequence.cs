@@ -51,14 +51,21 @@ public class Sequence<TState>(SequenceOptions<TState> options, IList<SeqState<TS
         PreviousState = CurrentState;
         CurrentState  = state;
 
-        if (RegisteredStates.Count > 0 && !CurrentState.Equals(PreviousState))
-        {
-            var statex = RegisteredStates.FirstOrDefault(x => x?.State?.Equals(CurrentState) ?? false);
-            statex?.EntryAction?.Invoke();
-        }
+        if (RegisteredStates.Count > 0 && CurrentStateHasChanged())
+            callAllEntryActions(CurrentState);
 
         return this;
+
+        void callAllEntryActions(TState theState) =>
+            getRegisteredState(theState)?.EntryActions.ForEach(x => x());
+
+        SeqState<TState>? getRegisteredState(TState theState) =>
+            RegisteredStates.FirstOrDefault(x => x?.State?.Equals(theState) ?? false);
     }
+
+    private bool CurrentStateHasChanged() =>
+        !CurrentState?.Equals(PreviousState) ?? false;
+
 
     /// <inheritdoc />
     public ISequence<TState> SetState(TState state, Func<bool> condition) =>

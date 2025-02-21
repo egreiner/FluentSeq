@@ -10,11 +10,11 @@ public class StateOnEntryActionTests
 
         var sequence = new FluentSeq<string>().Create(state.Initializing)
             .ConfigureState(state.Initializing)
-            .TriggeredBy(() => false)
-            .OnEntry(() => x = 1)
+                .TriggeredBy(() => false)
+                .OnEntry(() => x = 1)
             .ConfigureState(state.Initialized)
-            .TriggeredBy(() => true)
-            .OnEntry(() => x = 2)
+                .TriggeredBy(() => true)
+                .OnEntry(() => x = 2)
             .Build();
 
         sequence.Run();
@@ -24,7 +24,7 @@ public class StateOnEntryActionTests
     }
 
     [Fact]
-    public void TriggeredSeq_ShouldRaise_OnlyLast_OnEntryAction()
+    public void TriggeredSeq_ShouldRaise_all_OnEntryActions()
     {
         var x = 1;
         var state = new DefaultSequenceStates();
@@ -42,6 +42,51 @@ public class StateOnEntryActionTests
         sequence.Run();
 
         sequence.CurrentState.ShouldBe(state.Initialized);
-        x.ShouldBe(4);
+        x.ShouldBe(12);
+    }
+
+    [Fact]
+    public void TriggeredSeq_ShouldBe_called_in_the_specified_order1()
+    {
+        var x = 1;
+        var state = new DefaultSequenceStates();
+
+        var sequence = new FluentSeq<string>().Create(state.Initializing)
+            .ConfigureState(state.Initializing)
+            .TriggeredBy(() => false)
+            .OnEntry(() => x *= 2)
+            .ConfigureState(state.Initialized)
+            .TriggeredBy(() => true)
+            .OnEntry(() => x += 3)
+            .OnEntry(() => x *= 4)
+            .Build();
+
+        sequence.Run();
+
+        sequence.CurrentState.ShouldBe(state.Initialized);
+        x.ShouldBe(16);
+    }
+
+    [Fact]
+    public void TriggeredSeq_ShouldBe_called_in_the_specified_order2()
+    {
+        var x = 1;
+        var state = new DefaultSequenceStates();
+
+        var sequence = new FluentSeq<string>().Create(state.Initializing)
+            .ConfigureState(state.Initializing)
+            .TriggeredBy(() => false)
+            .OnEntry(() => x *= 2)
+            .ConfigureState(state.Initialized)
+            .TriggeredBy(() => true)
+            // switch action order
+            .OnEntry(() => x *= 4)
+            .OnEntry(() => x += 3)
+            .Build();
+
+        sequence.Run();
+
+        sequence.CurrentState.ShouldBe(state.Initialized);
+        x.ShouldBe(7);
     }
 }
