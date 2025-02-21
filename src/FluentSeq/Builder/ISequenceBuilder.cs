@@ -1,5 +1,7 @@
 namespace FluentSeq.Builder;
 
+using Core;
+
 /// <summary>
 /// Provides methods to configure a sequence
 /// </summary>
@@ -12,7 +14,7 @@ public interface ISequenceBuilder<TState>
     /// <summary>
     /// Returns a list of all registered states
     /// </summary>
-    IList<SeqState<TState>> RegisteredStates { get; }
+    SeqStateCollection<TState> RegisteredStates { get; }
 
     /// <summary>
     /// The options for building a sequence

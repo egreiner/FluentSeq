@@ -1,5 +1,7 @@
 ﻿namespace FluentSeq;
 
+using Core;
+
 // using Logging;
 
 /// <summary>
@@ -26,7 +28,7 @@ public interface ISequence<TState>
     /// <summary>
     /// All States that are registered for this sequence
     /// </summary>
-    IList<SeqState<TState>> RegisteredStates { get; }
+    SeqStateCollection<TState> RegisteredStates { get; }
 
 
     /// <summary>

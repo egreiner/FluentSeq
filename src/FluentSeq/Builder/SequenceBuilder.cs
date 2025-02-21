@@ -1,5 +1,6 @@
 namespace FluentSeq.Builder;
 
+using Core;
 using Exceptions;
 
 /// <summary>
@@ -25,11 +26,12 @@ public class SequenceBuilder<TState> : ISequenceBuilder<TState>
 
 
     /// <inheritdoc />
-    public HashSet<StateBuilder<TState>> StateBuilders { get; } = new HashSet<StateBuilder<TState>>();
+    public HashSet<StateBuilder<TState>> StateBuilders { get; } = new();
 
 
     /// <inheritdoc />
-    public IList<SeqState<TState>> RegisteredStates => Builder().StateBuilders.Select(x => x.State).ToList() ?? [];
+    public SeqStateCollection<TState> RegisteredStates =>
+        new(Builder().StateBuilders.Select(x => x.State));
 
 
     /// <summary>
