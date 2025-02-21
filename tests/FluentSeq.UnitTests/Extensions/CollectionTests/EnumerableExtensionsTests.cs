@@ -7,7 +7,7 @@ using FluentSeq.Extensions;
 public class EnumerableExtensionsTests
 {
     [Fact]
-    public void Test_ToClonedList()
+    public void ToClonedList_ShouldBe_as_original()
     {
         var list = new List<string> { "Test1", "Test2" };
 
@@ -19,9 +19,9 @@ public class EnumerableExtensionsTests
     }
 
     [Fact]
-    public void Test_IsNull()
+    public void IEnumerable_IsNullOrEmpty_ShouldBe_true_when_null()
     {
-        IEnumerable<int> collection = null;
+        IEnumerable<int>? collection = null;
 
         bool actual = collection.IsNullOrEmpty();
 
@@ -29,7 +29,7 @@ public class EnumerableExtensionsTests
     }
 
     [Fact]
-    public void Test_IsEmpty()
+    public void IEnumerable_IsNullOrEmpty_ShouldBe_true_when_empty()
     {
         IEnumerable<int> collection = new List<int>();
 
@@ -39,9 +39,9 @@ public class EnumerableExtensionsTests
     }
 
     [Fact]
-    public void Test_Null_HasItems()
+    public void IEnumerable_HasItems_ShouldBe_false_when_null()
     {
-        IEnumerable<int> collection = null;
+        IEnumerable<int>? collection = null;
 
         bool actual = collection.HasItems();
 
@@ -49,7 +49,7 @@ public class EnumerableExtensionsTests
     }
 
     [Fact]
-    public void Test_Empty_HasItems()
+    public void IEnumerable_HasItems_ShouldBe_false_when_empty()
     {
         IEnumerable<int> collection = new List<int>();
 
@@ -59,7 +59,7 @@ public class EnumerableExtensionsTests
     }
 
     [Fact]
-    public void Test_One_HasItems()
+    public void IEnumerable_HasItems_ShouldBe_true()
     {
         IEnumerable<int> collection = new List<int> { 1 };
 
@@ -69,16 +69,17 @@ public class EnumerableExtensionsTests
     }
 
     [Fact]
-    public void HasItems_CanHandleNullValues_Test01()
+    public void Array_HasItems_ShouldBe_false_when_null()
     {
-        ArrayList array = null;
+        ArrayList? array = null;
 
-        // ReSharper disable once ExpressionIsAlwaysNull
-        array.HasItems().ShouldBeFalse();
+        bool actual = array.HasItems();
+
+        actual.ShouldBeFalse();
     }
 
     [Fact]
-    public void HasItems_Test01()
+    public void Array_HasItems_ShouldBe_true()
     {
         var array = new ArrayList(2) { "Test" };
 
@@ -86,7 +87,7 @@ public class EnumerableExtensionsTests
     }
 
     [Fact]
-    public void HasItems_Test02()
+    public void Array_HasItems_ShouldBe_false()
     {
         var array = new ArrayList(2);
 
@@ -94,15 +95,15 @@ public class EnumerableExtensionsTests
     }
 
     [Fact]
-    public void HasItems_Test05()
+    public void List_HasItems_ShouldBe_false_when_empty()
     {
-        var array = new List<int>();
+        var list = new List<int>();
 
-        array.HasItems().ShouldBeFalse();
+        list.HasItems().ShouldBeFalse();
     }
 
     [Fact]
-    public void HasItems_Test06()
+    public void List_HasItems_ShouldBe_true_when_not_empty()
     {
         var array = new List<int> { 1 };
 
@@ -110,26 +111,16 @@ public class EnumerableExtensionsTests
     }
 
     [Fact]
-    public void HasItems_Test07()
+    public void List_HasItems_ShouldBe_false_when_null()
     {
-        List<int> array = null;
+        List<int>? list = null;
 
         // ReSharper disable once ExpressionIsAlwaysNull
-        array.HasItems().ShouldBeFalse();
+        list.HasItems().ShouldBeFalse();
     }
 
     [Fact]
-    public void HasItems_Test08()
-    {
-        var array = new List<int> { 1 };
-        array = null;
-
-        // ReSharper disable once ExpressionIsAlwaysNull
-        array.HasItems().ShouldBeFalse();
-    }
-
-    [Fact]
-    public void IsNullOrEmpty_Test01()
+    public void Array_IsNullOrEmpty_ShouldBe_false_when_not_empty()
     {
         var array = new ArrayList(2) { "Test" };
 
@@ -137,7 +128,7 @@ public class EnumerableExtensionsTests
     }
 
     [Fact]
-    public void IsNullOrEmpty_Test02()
+    public void Array_IsNullOrEmpty_ShouldBe_true_when_empty()
     {
         var array = new ArrayList(2);
 
@@ -145,24 +136,24 @@ public class EnumerableExtensionsTests
     }
 
     [Fact]
-    public void IsNullOrEmpty_Test03()
+    public void Array_IsNullOrEmpty_ShouldBe_true_when_null()
     {
-        ArrayList array = null;
+        ArrayList? array = null;
 
         // ReSharper disable once ExpressionIsAlwaysNull
         array.IsNullOrEmpty().ShouldBeTrue();
     }
 
     [Fact]
-    public void IsNullOrEmpty_Test05()
+    public void List_IsNullOrEmpty_ShouldBe_true_when_empty()
     {
-        var array = new List<int>();
+        var list = new List<int>();
 
-        array.IsNullOrEmpty().ShouldBeTrue();
+        list.IsNullOrEmpty().ShouldBeTrue();
     }
 
     [Fact]
-    public void IsNullOrEmpty_Test06()
+    public void List_IsNullOrEmpty_ShouldBe_false_when_not_empty()
     {
         var array = new List<int> { 1 };
 
@@ -170,22 +161,11 @@ public class EnumerableExtensionsTests
     }
 
     [Fact]
-    public void IsNullOrEmpty_Test07()
+    public void List_IsNullOrEmpty_ShouldBe_true_when_null()
     {
-        var array = new List<int>();
-        array = null;
+        List<int>? list = null;
 
         // ReSharper disable once ExpressionIsAlwaysNull
-        array.IsNullOrEmpty().ShouldBeTrue();
-    }
-
-    [Fact]
-    public void IsNullOrEmpty_Test08()
-    {
-        var array = new List<int> { 1 };
-        array = null;
-
-        // ReSharper disable once ExpressionIsAlwaysNull
-        array.IsNullOrEmpty().ShouldBeTrue();
+        list.IsNullOrEmpty().ShouldBeTrue();
     }
 }

@@ -16,9 +16,8 @@ public class EnumerableGenericExtensionsTest
     [Fact]
     public void HasItems_Generic_null()
     {
-        List<string> genericList = null;
+        List<string>? genericList = null;
 
-        // ReSharper disable once ExpressionIsAlwaysNull
         var actual = genericList.HasItems();
         actual.ShouldBeFalse();
     }
@@ -83,7 +82,7 @@ public class EnumerableGenericExtensionsTest
     [Fact]
     public void IsNullOrEmpty_Generic_null()
     {
-        List<string> genericList = null;
+        List<string>? genericList = null;
 
         // ReSharper disable once ExpressionIsAlwaysNull
         var actual = genericList.IsNullOrEmpty();

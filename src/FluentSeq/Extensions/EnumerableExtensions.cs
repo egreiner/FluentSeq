@@ -35,13 +35,13 @@ public static class EnumerableExtensions
     /// </summary>
     /// <param name="enumerable">The enumerable</param>
     /// <typeparam name="T">The type of the enumerable</typeparam>
-    public static bool HasItems<T>(this IEnumerable<T> enumerable) => !IsNullOrEmpty(enumerable);
+    public static bool HasItems<T>(this IEnumerable<T>? enumerable) => !IsNullOrEmpty(enumerable);
 
     /// <summary>
     /// Returns TRUE if the enumerable has items.
     /// </summary>
     /// <param name="enumerable">The enumerable</param>
-    public static bool HasItems(this IEnumerable enumerable) => !IsNullOrEmpty(enumerable);
+    public static bool HasItems(this IEnumerable? enumerable) => !IsNullOrEmpty(enumerable);
 
     // /// <summary>
     // /// Returns TRUE if NONE of the items complies to the predicate.
