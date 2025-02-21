@@ -1,5 +1,12 @@
-﻿# open todos
+﻿# what is missing
+## seq validation
+
+## work on todos
+## work on CodeCoverage
 ## raise event state changed
+
+# -------------------------------------------------------------------------------------------------
+
 
 
 # 2025-02-19
@@ -14,8 +21,3 @@
 ## done: before we can run a seq with trigger, we need to implement Trigger in the State(Builder)
 
 
-# what is missing
-## seq validation
-
-## work on todos
-## work on CodeCoverage

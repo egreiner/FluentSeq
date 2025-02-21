@@ -1,6 +1,6 @@
 ﻿namespace FluentSeq;
 
-using Core;
+using Extensions;
 
 /// <summary>
 /// A sequence that could be executed
@@ -53,16 +53,13 @@ public class Sequence<TState>(SequenceOptions<TState> options, SeqStateCollectio
         PreviousState = CurrentState;
         CurrentState  = state;
 
-        if (RegisteredStates.Count > 0 && CurrentStateHasChanged())
+        if (CurrentStateHasChanged() && RegisteredStates.HasItems())
             callAllEntryActions(CurrentState);
 
         return this;
 
         void callAllEntryActions(TState theState) =>
-            getRegisteredState(theState)?.EntryActions.ForEach(x => x());
-
-        SeqState<TState>? getRegisteredState(TState theState) =>
-            RegisteredStates.FirstOrDefault(x => x?.State?.Equals(theState) ?? false);
+            RegisteredStates.GetSeqState(theState)?.EntryActions.ForEach(x => x());
     }
 
     private bool CurrentStateHasChanged() =>
