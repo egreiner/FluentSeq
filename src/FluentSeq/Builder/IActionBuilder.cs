@@ -15,11 +15,14 @@ public interface IActionBuilder<TState>
     IStateBuilder<TState> OnEntry(Action action);
 
     /// <summary>
-    /// Action that should be executed when the state is exited
+    /// Action that should be executed when the state is exited.
+    /// Multiple actions could be chained.
+    /// The call order is the same as the orders are defined.
     /// </summary>
     /// <param name="action">The action</param>
-    // IStateBuilder<TState> OnExit(Action action);
-    //
+    IStateBuilder<TState> OnExit(Action action);
+
+
     /// <summary>
     /// Action that should be executed during the state exists
     /// </summary>

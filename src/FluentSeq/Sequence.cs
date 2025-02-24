@@ -54,9 +54,15 @@ public class Sequence<TState>(SequenceOptions<TState> options, SeqStateCollectio
         CurrentState  = state;
 
         if (CurrentStateHasChanged() && RegisteredStates.HasItems())
+        {
+            callAllExitActions(PreviousState);
             callAllEntryActions(CurrentState);
+        }
 
         return this;
+
+        void callAllExitActions(TState theState) =>
+            RegisteredStates.GetSeqState(theState)?.ExitActions.ForEach(x => x());
 
         void callAllEntryActions(TState theState) =>
             RegisteredStates.GetSeqState(theState)?.EntryActions.ForEach(x => x());

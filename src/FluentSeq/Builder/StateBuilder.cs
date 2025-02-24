@@ -55,6 +55,13 @@ public class StateBuilder<TState> : SequenceBuilder<TState>, IStateBuilder<TStat
         return this;
     }
 
+    /// <inheritdoc />
+    public IStateBuilder<TState> OnExit(Action action)
+    {
+        RootStateBuilder.State.ExitActions.Add(action);
+        return this;
+    }
+
 
     // public IStateBuilder<TState> OnExit(Action action) => throw new NotImplementedException();
     //

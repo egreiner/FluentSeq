@@ -43,6 +43,11 @@ public class SeqState<TState>
     /// </summary>
     public List<Action> EntryActions { get; } = new();
 
+    /// <summary>
+    /// The actions to perform when exiting the state
+    /// </summary>
+    public List<Action> ExitActions { get; } = new();
+
 
     /// <inheritdoc />
     public override string ToString() =>

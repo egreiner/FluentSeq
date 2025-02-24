@@ -1,0 +1,87 @@
+﻿namespace FluentSeq.UnitTests.Sequence;
+
+public class StateOnExitActionTests
+{
+    [Fact]
+    public void TriggeredSeq_ShouldRaise_OnExitAction()
+    {
+        int x = 0;
+        var state = new DefaultSequenceStates();
+
+        var sequence = new FluentSeq<string>().Create(state.Initializing)
+            .ConfigureState(state.Initializing)
+                .TriggeredBy(() => false)
+                .OnExit(() => x = 1)
+            .ConfigureState(state.Initialized)
+                .TriggeredBy(() => true)
+            .Build();
+
+        sequence.Run();
+
+        sequence.CurrentState.ShouldBe(state.Initialized);
+        x.ShouldBe(1);
+    }
+
+    [Fact]
+    public void TriggeredSeq_ShouldRaise_all_OnEntryActions()
+    {
+        var x = 1;
+        var state = new DefaultSequenceStates();
+
+        var sequence = new FluentSeq<string>().Create(state.Initializing)
+            .ConfigureState(state.Initializing)
+            .TriggeredBy(() => false)
+            .OnExit(() => x *= 3)
+            .OnExit(() => x *= 4)
+            .ConfigureState(state.Initialized)
+            .TriggeredBy(() => true)
+            .Build();
+
+        sequence.Run();
+
+        sequence.CurrentState.ShouldBe(state.Initialized);
+        x.ShouldBe(12);
+    }
+
+    [Fact]
+    public void TriggeredSeq_ShouldBe_called_in_the_specified_order1()
+    {
+        var x = 1;
+        var state = new DefaultSequenceStates();
+
+        var sequence = new FluentSeq<string>().Create(state.Initializing)
+            .ConfigureState(state.Initializing)
+            .TriggeredBy(() => false)
+            .OnExit(() => x += 1)
+            .OnExit(() => x *= 4)
+            .ConfigureState(state.Initialized)
+            .TriggeredBy(() => true)
+            .Build();
+
+        sequence.Run();
+
+        sequence.CurrentState.ShouldBe(state.Initialized);
+        x.ShouldBe(8);
+    }
+
+    [Fact]
+    public void TriggeredSeq_ShouldBe_called_in_the_specified_order2()
+    {
+        var x = 1;
+        var state = new DefaultSequenceStates();
+
+        var sequence = new FluentSeq<string>().Create(state.Initializing)
+            .ConfigureState(state.Initializing)
+            .TriggeredBy(() => false)
+            .OnExit(() => x *= 4)
+            .OnExit(() => x += 1)
+            .ConfigureState(state.Initialized)
+            .TriggeredBy(() => true)
+            .Build();
+
+        sequence.Run();
+
+        sequence.CurrentState.ShouldBe(state.Initialized);
+        x.ShouldBe(5);
+    }
+}
