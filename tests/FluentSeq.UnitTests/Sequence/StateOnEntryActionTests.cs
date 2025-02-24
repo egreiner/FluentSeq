@@ -64,7 +64,7 @@ public class StateOnEntryActionTests
     }
 
     [Fact]
-    public void TriggeredSeq_ShouldBe_called_in_the_specified_order1()
+    public void OnEntry_ShouldBe_called_in_the_specified_order1()
     {
         var x = 1;
         var state = new DefaultSequenceStates();
@@ -81,10 +81,11 @@ public class StateOnEntryActionTests
 
         sequence.CurrentState.ShouldBe(state.Initialized);
         x.ShouldBe(16);
+        x.ShouldNotBe(7);
     }
 
     [Fact]
-    public void TriggeredSeq_ShouldBe_called_in_the_specified_order2()
+    public void OnEntry_ShouldBe_called_in_the_specified_order2()
     {
         var x = 1;
         var state = new DefaultSequenceStates();
@@ -102,5 +103,6 @@ public class StateOnEntryActionTests
 
         sequence.CurrentState.ShouldBe(state.Initialized);
         x.ShouldBe(7);
+        x.ShouldNotBe(16);
     }
 }

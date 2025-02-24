@@ -44,7 +44,7 @@ public class StateOnExitActionTests
     }
 
     [Fact]
-    public void TriggeredSeq_ShouldRaise_all_OnEntryActions()
+    public void TriggeredSeq_ShouldRaise_all_OnExitActions()
     {
         var x = 1;
         var state = new DefaultSequenceStates();
@@ -64,7 +64,7 @@ public class StateOnExitActionTests
     }
 
     [Fact]
-    public void TriggeredSeq_ShouldBe_called_in_the_specified_order1()
+    public void OnExit_ShouldBe_called_in_the_specified_order1()
     {
         var x = 1;
         var state = new DefaultSequenceStates();
@@ -85,7 +85,7 @@ public class StateOnExitActionTests
     }
 
     [Fact]
-    public void TriggeredSeq_ShouldBe_called_in_the_specified_order2()
+    public void OnExit_ShouldBe_called_in_the_specified_order2()
     {
         var x = 1;
         var state = new DefaultSequenceStates();
