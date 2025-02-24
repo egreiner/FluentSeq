@@ -105,4 +105,47 @@ public class StateOnExitActionTests
         x.ShouldBe(5);
         x.ShouldNotBe(8);
     }
+
+    [Fact]
+    public void OnExit_ShouldBe_called_before_OnEntry1()
+    {
+        var x = 1;
+        var state = new DefaultSequenceStates();
+
+        var sequence = new FluentSeq<string>().Create(state.Initializing)
+            .ConfigureState(state.Initializing)
+            .OnExit(() => x -= 1)
+            .ConfigureState(state.Initialized)
+            .TriggeredBy(() => true)
+            .OnEntry(() => x *= 4)
+            .Build();
+
+        sequence.Run();
+
+        sequence.CurrentState.ShouldBe(state.Initialized);
+        x.ShouldBe(0);
+        x.ShouldNotBe(3);
+    }
+
+    [Fact]
+    public void OnExit_ShouldBe_called_before_OnEntry2()
+    {
+        var x = 1;
+        var state = new DefaultSequenceStates();
+
+        var sequence = new FluentSeq<string>().Create(state.Initializing)
+            .ConfigureState(state.Initializing)
+            // switch OnEntry/OnExit actions
+            .OnExit(() => x *= 4)
+            .ConfigureState(state.Initialized)
+            .TriggeredBy(() => true)
+            .OnEntry(() => x -= 1)
+            .Build();
+
+        sequence.Run();
+
+        sequence.CurrentState.ShouldBe(state.Initialized);
+        x.ShouldBe(3);
+        x.ShouldNotBe(0);
+    }
 }
