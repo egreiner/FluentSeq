@@ -49,6 +49,13 @@ public class StateBuilder<TState> : SequenceBuilder<TState>, IStateBuilder<TStat
 
 
     /// <inheritdoc />
+    public IStateBuilder<TState> OnExit(Action action)
+    {
+        RootStateBuilder.State.ExitActions.Add(action);
+        return this;
+    }
+
+    /// <inheritdoc />
     public IStateBuilder<TState> OnEntry(Action action)
     {
         RootStateBuilder.State.EntryActions.Add(action);
@@ -56,14 +63,9 @@ public class StateBuilder<TState> : SequenceBuilder<TState>, IStateBuilder<TStat
     }
 
     /// <inheritdoc />
-    public IStateBuilder<TState> OnExit(Action action)
+    public IStateBuilder<TState> WhileInState(Action action)
     {
-        RootStateBuilder.State.ExitActions.Add(action);
+        RootStateBuilder.State.WhileInStateActions.Add(action);
         return this;
     }
-
-
-    // public IStateBuilder<TState> OnExit(Action action) => throw new NotImplementedException();
-    //
-    // public IStateBuilder<TState> WhileInState(Action action) => throw new NotImplementedException();
 }

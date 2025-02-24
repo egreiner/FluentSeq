@@ -39,14 +39,19 @@ public class SeqState<TState>
     public List<Trigger<TState>> Trigger { get; } = new();
 
     /// <summary>
-    /// The actions to perform when entering the state
+    /// Gets the list of actions to be executed when the state is exited.
+    /// </summary>
+    public List<Action> ExitActions { get; } = new();
+
+    /// <summary>
+    /// Gets the list of actions to be executed when the state is entered.
     /// </summary>
     public List<Action> EntryActions { get; } = new();
 
     /// <summary>
-    /// The actions to perform when exiting the state
+    /// Gets the list of actions to be executed repeatedly while the sequence's current state is this state.
     /// </summary>
-    public List<Action> ExitActions { get; } = new();
+    public List<Action> WhileInStateActions { get; } = new();
 
 
     /// <inheritdoc />

@@ -5,7 +5,7 @@ public class StateOnEntryActionTests
     [Fact]
     public void TriggeredSeq_ShouldRaise_OnEntryAction()
     {
-        int x=0;
+        int x = 0;
         var state = new DefaultSequenceStates();
 
         var sequence = new FluentSeq<string>().Create(state.Initializing)

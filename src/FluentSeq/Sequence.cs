@@ -42,6 +42,9 @@ public class Sequence<TState>(SequenceOptions<TState> options, SeqStateCollectio
             }
         }
 
+        RegisteredStates.GetSeqState(CurrentState)?
+            .WhileInStateActions.ForEach(x => x());
+
         return this;
     }
 
