@@ -10,16 +10,37 @@ public class StateOnExitActionTests
 
         var sequence = new FluentSeq<string>().Create(state.Initializing)
             .ConfigureState(state.Initializing)
-                .TriggeredBy(() => false)
-                .OnExit(() => x = 1)
+            .OnExit(() => x = 1)
             .ConfigureState(state.Initialized)
-                .TriggeredBy(() => true)
+            .TriggeredBy(() => true)
             .Build();
 
         sequence.Run();
 
         sequence.CurrentState.ShouldBe(state.Initialized);
         x.ShouldBe(1);
+    }
+
+    [Fact]
+    public void TriggeredSeq_ShouldRaise_OnExitAction_only_once()
+    {
+        int x = 0;
+        var state = new DefaultSequenceStates();
+
+        var sequence = new FluentSeq<string>().Create(state.Initializing)
+            .ConfigureState(state.Initializing)
+            .OnExit(() => x += 1)
+            .ConfigureState(state.Initialized)
+            .TriggeredBy(() => true)
+            .Build();
+
+        for (int i = 0; i < 3; i++)
+        {
+            sequence.Run();
+
+            sequence.CurrentState.ShouldBe(state.Initialized);
+            x.ShouldBe(1);
+        }
     }
 
     [Fact]
@@ -30,7 +51,6 @@ public class StateOnExitActionTests
 
         var sequence = new FluentSeq<string>().Create(state.Initializing)
             .ConfigureState(state.Initializing)
-            .TriggeredBy(() => false)
             .OnExit(() => x *= 3)
             .OnExit(() => x *= 4)
             .ConfigureState(state.Initialized)
@@ -51,7 +71,6 @@ public class StateOnExitActionTests
 
         var sequence = new FluentSeq<string>().Create(state.Initializing)
             .ConfigureState(state.Initializing)
-            .TriggeredBy(() => false)
             .OnExit(() => x += 1)
             .OnExit(() => x *= 4)
             .ConfigureState(state.Initialized)
@@ -62,6 +81,7 @@ public class StateOnExitActionTests
 
         sequence.CurrentState.ShouldBe(state.Initialized);
         x.ShouldBe(8);
+        x.ShouldNotBe(5);
     }
 
     [Fact]
@@ -72,7 +92,7 @@ public class StateOnExitActionTests
 
         var sequence = new FluentSeq<string>().Create(state.Initializing)
             .ConfigureState(state.Initializing)
-            .TriggeredBy(() => false)
+            // switch action order
             .OnExit(() => x *= 4)
             .OnExit(() => x += 1)
             .ConfigureState(state.Initialized)
@@ -83,5 +103,6 @@ public class StateOnExitActionTests
 
         sequence.CurrentState.ShouldBe(state.Initialized);
         x.ShouldBe(5);
+        x.ShouldNotBe(8);
     }
 }

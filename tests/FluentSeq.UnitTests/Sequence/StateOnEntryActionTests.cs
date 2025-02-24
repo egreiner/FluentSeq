@@ -10,17 +10,37 @@ public class StateOnEntryActionTests
 
         var sequence = new FluentSeq<string>().Create(state.Initializing)
             .ConfigureState(state.Initializing)
-                .TriggeredBy(() => false)
-                .OnEntry(() => x = 1)
             .ConfigureState(state.Initialized)
-                .TriggeredBy(() => true)
-                .OnEntry(() => x = 2)
+            .TriggeredBy(() => true)
+            .OnEntry(() => x = 2)
             .Build();
 
         sequence.Run();
 
         sequence.CurrentState.ShouldBe(state.Initialized);
         x.ShouldBe(2);
+    }
+
+    [Fact]
+    public void TriggeredSeq_ShouldRaise_OnEntryAction_only_once()
+    {
+        int x=0;
+        var state = new DefaultSequenceStates();
+
+        var sequence = new FluentSeq<string>().Create(state.Initializing)
+            .ConfigureState(state.Initializing)
+            .ConfigureState(state.Initialized)
+            .TriggeredBy(() => true)
+            .OnEntry(() => x += 2)
+            .Build();
+
+        for (int i = 0; i < 3; i++)
+        {
+            sequence.Run();
+
+            sequence.CurrentState.ShouldBe(state.Initialized);
+            x.ShouldBe(2);
+        }
     }
 
     [Fact]
@@ -31,8 +51,6 @@ public class StateOnEntryActionTests
 
         var sequence = new FluentSeq<string>().Create(state.Initializing)
             .ConfigureState(state.Initializing)
-            .TriggeredBy(() => false)
-            .OnEntry(() => x *= 2)
             .ConfigureState(state.Initialized)
             .TriggeredBy(() => true)
             .OnEntry(() => x *= 3)
@@ -53,8 +71,6 @@ public class StateOnEntryActionTests
 
         var sequence = new FluentSeq<string>().Create(state.Initializing)
             .ConfigureState(state.Initializing)
-            .TriggeredBy(() => false)
-            .OnEntry(() => x *= 2)
             .ConfigureState(state.Initialized)
             .TriggeredBy(() => true)
             .OnEntry(() => x += 3)
@@ -75,8 +91,6 @@ public class StateOnEntryActionTests
 
         var sequence = new FluentSeq<string>().Create(state.Initializing)
             .ConfigureState(state.Initializing)
-            .TriggeredBy(() => false)
-            .OnEntry(() => x *= 2)
             .ConfigureState(state.Initialized)
             .TriggeredBy(() => true)
             // switch action order
