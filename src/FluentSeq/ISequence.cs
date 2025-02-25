@@ -61,6 +61,13 @@ public interface ISequence<TState>
     /// <returns>True if the current state matches the specified state; otherwise, false.</returns>
     bool IsInState(TState state);
 
+    /// <summary>
+    /// Checks if the current state of the sequence matches any of the specified states.
+    /// </summary>
+    /// <param name="states">The states to check against the current state.</param>
+    /// <returns>True if the current state matches any of the specified states; otherwise, false.</returns>
+    bool IsInStates(params TState[] states);
+
     // // // TODO rename to IsInStates or IsInAnyState in v4.0?
     // // /// <summary>
     // // /// Returns true if the sequence.CurrentState is in one of the specified states.

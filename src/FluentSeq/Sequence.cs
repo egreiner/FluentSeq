@@ -26,6 +26,10 @@ public class Sequence<TState>(SequenceOptions<TState> options, SeqStateCollectio
     public bool IsInState(TState state) =>
         CurrentState?.Equals(state) ?? false;
 
+    /// <inheritdoc />
+    public bool IsInStates(params TState[] states) =>
+        states.Contains(CurrentState);
+
 
     /// <inheritdoc />
     public ISequence<TState> Run()
