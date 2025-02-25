@@ -41,26 +41,6 @@ public interface ISequence<TState>
 
 
     // // /// <summary>
-    // // /// A builtin stopwatch
-    // // /// </summary>
-    // // Stopwatch Stopwatch { get; }
-    //
-    //
-    // // TODO rename to IsInState in v4.0?
-    // /// <summary>
-    // /// Returns true if the sequence.CurrentState is in the specified state.
-    // /// </summary>
-    // /// <param name="state">The state that is asked for.</param>
-    // bool HasCurrentState(TState state);
-    //
-    // // // TODO rename to IsInStates or IsInAnyState in v4.0?
-    // // /// <summary>
-    // // /// Returns true if the sequence.CurrentState is in one of the specified states.
-    // // /// </summary>
-    // // /// <param name="states">The states that are asked for.</param>
-    // // bool HasAnyCurrentState(params TState[] states);
-    // //
-    // // /// <summary>
     // // /// Returns true if the queried state is registered in the sequence-configuration.
     // // /// </summary>
     // // /// <param name="state">The state</param>
@@ -72,6 +52,22 @@ public interface ISequence<TState>
     // // /// Set the sequence-configuration
     // // /// </summary>
     // // ISequence SetConfiguration(SequenceConfiguration configuration, SequenceData data);
+
+
+    /// <summary>
+    /// Checks if the current state of the sequence matches the specified state.
+    /// </summary>
+    /// <param name="state">The state to check against the current state.</param>
+    /// <returns>True if the current state matches the specified state; otherwise, false.</returns>
+    bool IsInState(TState state);
+
+    // // // TODO rename to IsInStates or IsInAnyState in v4.0?
+    // // /// <summary>
+    // // /// Returns true if the sequence.CurrentState is in one of the specified states.
+    // // /// </summary>
+    // // /// <param name="states">The states that are asked for.</param>
+    // // bool HasAnyCurrentState(params TState[] states);
+    // //
 
 
     /// <summary>

@@ -21,11 +21,10 @@ public class Sequence<TState>(SequenceOptions<TState> options, SeqStateCollectio
     /// <inheritdoc />
     public TState? PreviousState { get; private set; }
 
-    // /// <inheritdoc />
-    // public bool HasCurrentState(TState state)
-    // {
-    //     throw new NotImplementedException();
-    // }
+
+    /// <inheritdoc />
+    public bool IsInState(TState state) =>
+        CurrentState?.Equals(state) ?? false;
 
 
     /// <inheritdoc />
