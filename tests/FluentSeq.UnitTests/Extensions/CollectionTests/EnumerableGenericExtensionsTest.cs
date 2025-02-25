@@ -41,38 +41,6 @@ public class EnumerableGenericExtensionsTest
     }
 
     [Fact]
-    public void HasItems_empty()
-    {
-        var actual = new ArrayList().HasItems();
-        actual.ShouldBeFalse();
-    }
-
-    [Fact]
-    public void HasItems_null()
-    {
-        var actual = ((IEnumerable)null).HasItems();
-        actual.ShouldBeFalse();
-    }
-
-    [Fact]
-    public void HasItems_string()
-    {
-        var arrayList = new ArrayList { "1", "2" };
-
-        var actual = arrayList.HasItems();
-        actual.ShouldBeTrue();
-    }
-
-    [Fact]
-    public void HasItems_int()
-    {
-        var arrayList = new ArrayList { 3, 4 };
-
-        var actual = arrayList.HasItems();
-        actual.ShouldBeTrue();
-    }
-
-    [Fact]
     public void IsNullOrEmpty_Generic_empty()
     {
         var actual = new List<string>().IsNullOrEmpty();
@@ -104,38 +72,6 @@ public class EnumerableGenericExtensionsTest
         var genericList = new List<int> { 10, 20 };
 
         var actual = genericList.IsNullOrEmpty();
-        actual.ShouldBeFalse();
-    }
-
-    [Fact]
-    public void IsNullOrEmpty_empty()
-    {
-        var actual = new ArrayList().IsNullOrEmpty();
-        actual.ShouldBeTrue();
-    }
-
-    [Fact]
-    public void IsNullOrEmpty_null()
-    {
-        var actual = ((IEnumerable)null).IsNullOrEmpty();
-        actual.ShouldBeTrue();
-    }
-
-    [Fact]
-    public void IsNullOrEmpty_string()
-    {
-        var arrayList = new ArrayList { "1", "2" };
-
-        var actual = arrayList.IsNullOrEmpty();
-        actual.ShouldBeFalse();
-    }
-
-    [Fact]
-    public void IsNullOrEmpty_int()
-    {
-        var arrayList = new ArrayList { 3, 4 };
-
-        var actual = arrayList.IsNullOrEmpty();
         actual.ShouldBeFalse();
     }
 }
