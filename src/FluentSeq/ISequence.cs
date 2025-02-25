@@ -68,16 +68,17 @@ public interface ISequence<TState>
     /// <returns>True if the current state matches any of the specified states; otherwise, false.</returns>
     bool IsInStates(params TState[] states);
 
+
+    /// <summary>
+    /// Runs the sequence asynchronous
+    /// </summary>
+    Task<ISequence<TState>> RunAsync();
+
     /// <summary>
     /// Run the sequence
     /// </summary>
     ISequence<TState> Run();
 
-    // // /// <summary>
-    // // /// Runs the sequence asynchronous
-    // // /// </summary>
-    // // Task<ISequence<TState>> RunAsync();
-    // //
 
     /// <summary>
     /// CurrentState will be set to the state immediately and unconditional.

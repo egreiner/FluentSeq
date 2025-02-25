@@ -30,6 +30,10 @@ public class Sequence<TState>(SequenceOptions<TState> options, SeqStateCollectio
     public bool IsInStates(params TState[] states) =>
         states.Contains(CurrentState);
 
+    /// <inheritdoc />
+    public virtual async Task<ISequence<TState>> RunAsync() =>
+        await Task.Run(Run).ConfigureAwait(false);
+
 
     /// <inheritdoc />
     public ISequence<TState> Run()
