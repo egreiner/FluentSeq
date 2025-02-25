@@ -22,6 +22,13 @@ public class Sequence<TState>(SequenceOptions<TState> options, SeqStateCollectio
     public TState? PreviousState { get; private set; }
 
 
+
+    /// <summary>
+    /// The current state has elapsed the specified duration
+    /// </summary>
+    public bool CurrentStateElapsed(TimeSpan duration) => GetSeqState(CurrentState)?.Elapsed(duration) ?? false;
+
+
     /// <inheritdoc />
     public bool IsInState(TState state) =>
         CurrentState?.Equals(state) ?? false;
@@ -31,7 +38,7 @@ public class Sequence<TState>(SequenceOptions<TState> options, SeqStateCollectio
         states.Contains(CurrentState);
 
     /// <inheritdoc />
-    public virtual async Task<ISequence<TState>> RunAsync() =>
+    public async Task<ISequence<TState>> RunAsync() =>
         await Task.Run(Run).ConfigureAwait(false);
 
 
@@ -49,8 +56,7 @@ public class Sequence<TState>(SequenceOptions<TState> options, SeqStateCollectio
             }
         }
 
-        RegisteredStates.GetSeqState(CurrentState)?
-            .WhileInStateActions.ForEach(x => x());
+        GetSeqState(CurrentState)?.WhileInStateActions.ForEach(x => x());
 
         return this;
     }
@@ -63,6 +69,9 @@ public class Sequence<TState>(SequenceOptions<TState> options, SeqStateCollectio
         PreviousState = CurrentState;
         CurrentState  = state;
 
+        if (CurrentStateHasChanged())
+            GetSeqState(CurrentState)?.SetAsCurrentState();
+
         if (CurrentStateHasChanged() && RegisteredStates.HasItems())
         {
             callAllExitActions(PreviousState);
@@ -72,11 +81,14 @@ public class Sequence<TState>(SequenceOptions<TState> options, SeqStateCollectio
         return this;
 
         void callAllExitActions(TState theState) =>
-            RegisteredStates.GetSeqState(theState)?.ExitActions.ForEach(x => x());
+            GetSeqState(theState)?.ExitActions.ForEach(x => x());
 
         void callAllEntryActions(TState theState) =>
-            RegisteredStates.GetSeqState(theState)?.EntryActions.ForEach(x => x());
+            GetSeqState(theState)?.EntryActions.ForEach(x => x());
     }
+
+    private SeqState<TState>? GetSeqState(TState state) =>
+        RegisteredStates.GetSeqState(state);
 
     private bool CurrentStateHasChanged() =>
         !CurrentState?.Equals(PreviousState) ?? false;

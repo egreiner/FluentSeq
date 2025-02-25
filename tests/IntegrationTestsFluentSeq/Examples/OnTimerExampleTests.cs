@@ -8,6 +8,7 @@ public class OnTimerExampleTests
 
     private ISequence<string>? _sequence;
     private bool _onTimerInput;
+    private int _waitTimeInMs;
 
 
     private ISequenceBuilder<string> GetOnTimerConfiguration()
@@ -26,7 +27,7 @@ public class OnTimerExampleTests
             .ConfigureState(_state.Pending)
                 .TriggeredBy(() => _onTimerInput).WhenInState(_state.Off)
             .ConfigureState(_state.On)
-                .TriggeredBy(() => _onTimerInput).WhenInState(_state.Pending)
+                .TriggeredBy(() => _onTimerInput && (_sequence?.CurrentStateElapsed(TimeSpan.FromMilliseconds(_waitTimeInMs)) ?? false)).WhenInState(_state.Pending)
             .Builder();
     }
 
@@ -45,6 +46,7 @@ public class OnTimerExampleTests
     }
 
     // TODO: set start-state to exactly enable all specific state transition tests
+    // [Theory]
     [Theory(Skip="Missing duration of the current state")]
     [InlineData(false, 0, "Off")]
     [InlineData(true, 0, "Pending")]
@@ -55,6 +57,7 @@ public class OnTimerExampleTests
         _sequence = GetOnTimerConfiguration().Build();
         _onTimerInput = timerInput;
 
+        _waitTimeInMs = sleepTimeInMs;
 
         await _sequence.RunAsync();
 

@@ -32,6 +32,11 @@ public class SeqState<TState>
     /// </summary>
     public string Description { get; }
 
+    /// <summary>
+    /// The last time the state was activated
+    /// </summary>
+    public DateTime LastActivated { get; private set; } = DateTime.Now;
+
 
     /// <summary>
     /// Gets a list of trigger for this state
@@ -54,6 +59,12 @@ public class SeqState<TState>
     public List<Action> WhileInStateActions { get; } = new();
 
 
+    /// <summary>
+    /// The duration of the current state
+    /// </summary>
+    public TimeSpan Duration => DateTime.Now - LastActivated;
+
+
     /// <inheritdoc />
     public override string ToString() =>
         $"{Name} {Description} | has action(s): {EntryActions.Count > 0}";
@@ -65,4 +76,19 @@ public class SeqState<TState>
     /// <inheritdoc />
     public override int GetHashCode() =>
         Name.GetHashCode();
+
+
+    /// <summary>
+    /// The state has elapsed the specified duration
+    /// </summary>
+    public bool Elapsed(TimeSpan duration) => Duration >= duration;
+
+
+    /// <summary>
+    /// Sets the state as the current state
+    /// </summary>
+    public void SetAsCurrentState()
+    {
+        LastActivated = DateTime.Now;
+    }
 }
