@@ -1,4 +1,4 @@
-namespace FluentSeq.UnitTests.Extensions.CollectionTests;
+namespace UnitTestsFluentSeq.Extensions.CollectionTests;
 
 using System.Collections.Generic;
 using FluentSeq.Extensions;

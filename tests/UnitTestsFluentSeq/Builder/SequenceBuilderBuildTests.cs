@@ -1,4 +1,4 @@
-﻿namespace FluentSeq.UnitTests.Builder;
+﻿namespace UnitTestsFluentSeq.Builder;
 
 public sealed class SequenceBuilderBuildTests
 {

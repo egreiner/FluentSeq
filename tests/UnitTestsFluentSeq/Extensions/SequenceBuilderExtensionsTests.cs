@@ -1,4 +1,4 @@
-﻿namespace FluentSeq.UnitTests.Extensions;
+﻿namespace UnitTestsFluentSeq.Extensions;
 
 using FluentSeq.Extensions;
 

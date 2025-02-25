@@ -1,4 +1,4 @@
-namespace FluentSeq.UnitTests.Builder;
+namespace UnitTestsFluentSeq.Builder;
 
 using FluentSeq.Builder;
 

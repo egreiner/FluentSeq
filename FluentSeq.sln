@@ -2,7 +2,7 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentSeq", "src\FluentSeq\FluentSeq.csproj", "{759D0BD3-2AB5-4A88-B318-7CB275EE840D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentSeq.UnitTests", "tests\FluentSeq.UnitTests\FluentSeq.UnitTests.csproj", "{7039BF0C-7FEA-47AE-BAB0-8D8DBAC0AE8F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestsFluentSeq", "tests\UnitTestsFluentSeq\UnitTestsFluentSeq.csproj", "{7039BF0C-7FEA-47AE-BAB0-8D8DBAC0AE8F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LearningTests", "tests\LearningTests\LearningTests.csproj", "{7ED37A72-703C-47CD-B22E-CA71673A51F9}"
 EndProject
