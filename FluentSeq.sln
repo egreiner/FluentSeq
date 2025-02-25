@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentSeq.UnitTests", "test
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LearningTests", "tests\LearningTests\LearningTests.csproj", "{7ED37A72-703C-47CD-B22E-CA71673A51F9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntegrationTestsFluentSeq", "tests\IntegrationTestsFluentSeq\IntegrationTestsFluentSeq.csproj", "{069AD131-D317-454D-AB40-542D4DD1774E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{7ED37A72-703C-47CD-B22E-CA71673A51F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7ED37A72-703C-47CD-B22E-CA71673A51F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7ED37A72-703C-47CD-B22E-CA71673A51F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{069AD131-D317-454D-AB40-542D4DD1774E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{069AD131-D317-454D-AB40-542D4DD1774E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{069AD131-D317-454D-AB40-542D4DD1774E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{069AD131-D317-454D-AB40-542D4DD1774E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
