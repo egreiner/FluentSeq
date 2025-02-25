@@ -16,4 +16,13 @@
       <PackageReference Include="xunit" Version="2.9.3" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Compile Remove="Extensions\CollectionTests\EnumerableExtensionsToJoinedStringTests.cs" />
+      <None Include="Extensions\CollectionTests\EnumerableExtensionsToJoinedStringTests.cs" />
+      <Compile Remove="Extensions\CollectionTests\EnumerableGenericExtensionsTest.cs" />
+      <None Include="Extensions\CollectionTests\EnumerableGenericExtensionsTest.cs" />
+      <Compile Remove="Extensions\CollectionTests\UniqueExtensionsTest.cs" />
+      <None Include="Extensions\CollectionTests\UniqueExtensionsTest.cs" />
+    </ItemGroup>
+
 </Project>
