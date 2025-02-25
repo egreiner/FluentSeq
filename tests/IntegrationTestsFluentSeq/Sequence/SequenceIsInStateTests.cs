@@ -69,4 +69,18 @@ public class SequenceIsInStateTests
     }
 
 
+    [Fact]
+    public void IsInStates_ShouldBeFalse_when_no_states_are_specified()
+    {
+        var state = new DefaultSequenceStates();
+
+        var sequence = new FluentSeq<string>().Create(state.Initializing)
+            .ConfigureState(state.Initializing).TriggeredBy(() => false)
+            .ConfigureState(state.Initialized).TriggeredBy(() => true)
+            .Build();
+
+        sequence.Run();
+
+        sequence.IsInStates().ShouldBeFalse();
+    }
 }
