@@ -8,63 +8,36 @@ public class OnTimerExampleTests
 
     private ISequence<string>? _sequence;
     private bool _onTimerInput;
-    private int _waitTimeInMs;
 
 
-    private ISequenceBuilder<string> GetOnTimerConfiguration()
-    {
-        // return FluentSeq<string>.Create(_state.Off)
-        //     .AddForceState(_state.Off, () => !_onTimerInput)
-        //     .AddTransition(_state.Off, _state.Pending, () => _onTimerInput, () => _sequence?.Stopwatch.Restart())
-        //     .AddTransition(_state.Pending, _state.On, () => _onTimerInput && _sequence?.Stopwatch.ElapsedMilliseconds > 50)
-        //     .SetInitialState(_state.Off)
-        //     .DisableValidationForStates(_state.On);
-
-        return new FluentSeq<string>().Create(_state.Off)
+    private ISequenceBuilder<string> GetOnTimerConfiguration() =>
+        new FluentSeq<string>().Create(_state.Off)
             .DisableValidationForStates(_state.On)
             .ConfigureState(_state.Off)
                 .TriggeredBy(() => !_onTimerInput)
             .ConfigureState(_state.Pending)
                 .TriggeredBy(() => _onTimerInput).WhenInState(_state.Off)
             .ConfigureState(_state.On)
-                .TriggeredBy(() => _onTimerInput && (_sequence?.CurrentStateElapsed(TimeSpan.FromMilliseconds(_waitTimeInMs)) ?? false)).WhenInState(_state.Pending)
+                .TriggeredBy(() => _onTimerInput && (_sequence?.CurrentStateElapsed(TimeSpan.FromMilliseconds(50)) ?? false)).WhenInState(_state.Pending)
             .Builder();
-    }
 
     [Theory]
-    [InlineData(false, "Off")]
-    [InlineData(true, "Pending")]
-    public void Example_Usage_OnTimerConfiguration_Run_sync(bool timerInput, string expectedState)
+    [InlineData(false, 0, "Off", "Off")]
+    [InlineData(false, 0, "Pending", "Off")]
+    [InlineData(false, 0, "On", "Off")]
+    [InlineData(true, 0, "Off", "Pending")]
+    [InlineData(true, 1, "Pending", "Pending")]
+    [InlineData(true, 51, "Pending", "On")]
+    [InlineData(true, 0, "On", "On")]
+    public async Task Example_Usage_OnTimerConfiguration_Run_async_bla(bool timerInput, int sleepTimeInMs, string currentState, string expectedState)
     {
-        _sequence = GetOnTimerConfiguration().Build();
+        _sequence     = GetOnTimerConfiguration().Build();
         _onTimerInput = timerInput;
 
-        _sequence.Run();
-
-        var actual = _sequence.CurrentState;
-        actual.ShouldBe(expectedState);
-    }
-
-    // TODO: set start-state to exactly enable all specific state transition tests
-    // [Theory]
-    [Theory(Skip="Missing duration of the current state")]
-    [InlineData(false, 0, "Off")]
-    [InlineData(true, 0, "Pending")]
-    [InlineData(true, 5, "Pending")]
-    [InlineData(true, 51, "On")]
-    public async Task Example_Usage_OnTimerConfiguration_Run_async(bool timerInput, int sleepTimeInMs, string expectedState)
-    {
-        _sequence = GetOnTimerConfiguration().Build();
-        _onTimerInput = timerInput;
-
-        _waitTimeInMs = sleepTimeInMs;
-
-        await _sequence.RunAsync();
+        _sequence.SetState(currentState);
 
         await Task.Delay(sleepTimeInMs);
-
         await _sequence.RunAsync();
-
 
         var actual = _sequence.CurrentState;
         actual.ShouldBe(expectedState);
