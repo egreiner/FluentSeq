@@ -23,7 +23,6 @@
       <Compile Remove="Examples\SequenceBuilderDotNetV6StyleTests.cs" />
       <None Include="Examples\SequenceBuilderDotNetV6StyleTests.cs" />
       <Compile Remove="Examples\ExampleOffTimer.cs" />
-      <None Include="Examples\ExampleOffTimer.cs" />
     </ItemGroup>
 
 </Project>
