@@ -30,7 +30,7 @@ public class Trigger<TState>
     /// <summary>
     /// Gets a list of states in which the sequence can be for the trigger to be valid.
     /// </summary>
-    public List<TState> WhenInStates { get; } = new();
+    public List<TriggerCondition<TState>> WhenInStates { get; } = new();
 
     /// <summary>
     /// The Sequence triggers the trigger (current state...)
@@ -43,6 +43,6 @@ public class Trigger<TState>
 
         return !result || WhenInStates.Count == 0
             ? result
-            : WhenInStates.Contains(sequence.CurrentState);
+            : WhenInStates.Any(x => x.IsTriggered(sequence));
     }
 }

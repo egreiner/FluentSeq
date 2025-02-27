@@ -82,6 +82,19 @@ public sealed class SimpleTriggerBuilderTests
     }
 
     [Fact]
+    public void WhenInState_with_TimeSpan_ShouldCreate_one_element()
+    {
+        var builder = new FluentSeq<string>().Create("INIT")
+            .ConfigureState("State1")
+            .TriggeredBy(() => true)
+            .WhenInState("Bla", TimeSpan.FromMilliseconds(20));
+
+        var actual = builder.Trigger.WhenInStates;
+
+        actual.ShouldHaveSingleItem();
+    }
+
+    [Fact]
     public void WhenInState_ShouldCreate_two_elements()
     {
         var builder = new FluentSeq<string>().Create("INIT")

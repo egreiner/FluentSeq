@@ -1,0 +1,33 @@
+﻿namespace FluentSeq;
+
+/// <summary>
+/// The trigger condition
+/// </summary>
+/// <typeparam name="TState">The state</typeparam>
+public class TriggerCondition<TState>(TState state, TimeSpan? dwellTime = null)
+{
+    /// <summary>
+    /// The state
+    /// </summary>
+    public TState State { get; set; } = state;
+
+    /// <summary>
+    /// The sequence must be in the state for this specified time before the trigger is activated
+    /// </summary>
+    public TimeSpan? DwellTime { get; set; } = dwellTime;
+
+
+    /// <summary>
+    /// The Sequence triggers the trigger (current state and dwellTime)
+    /// </summary>
+    /// <param name="sequence">The sequence</param>
+    /// <returns>Returns true when all trigger conditions are fulfilled</returns>
+    public bool IsTriggered(ISequence<TState> sequence)
+    {
+        var result = sequence.CurrentState?.Equals(State) ?? false;
+
+        return !result || DwellTime is null
+            ? result
+            : sequence.CurrentStateElapsed(DwellTime.Value);
+    }
+}

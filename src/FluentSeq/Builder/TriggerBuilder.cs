@@ -23,14 +23,22 @@ public class TriggerBuilder<TState> : StateBuilder<TState>, ITriggerBuilder<TSta
     /// <inheritdoc />
     public ITriggerBuilder<TState> WhenInState(TState state)
     {
-        Trigger.WhenInStates.Add(state);
+        Trigger.WhenInStates.Add(new TriggerCondition<TState>(state));
+        return this;
+    }
+
+    /// <inheritdoc />
+    public ITriggerBuilder<TState> WhenInState(TState state, TimeSpan dwellTime)
+    {
+        Trigger.WhenInStates.Add(new TriggerCondition<TState>(state, dwellTime));
         return this;
     }
 
     /// <inheritdoc />
     public ITriggerBuilder<TState> WhenInStates(params TState[] states)
     {
-        Trigger.WhenInStates.AddRange(states);
+        var triggerConditions = states.Select(state => new TriggerCondition<TState>(state));
+        Trigger.WhenInStates.AddRange(triggerConditions);
         return this;
     }
 }

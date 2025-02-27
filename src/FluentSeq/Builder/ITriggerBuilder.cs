@@ -20,6 +20,13 @@ public interface ITriggerBuilder<TState>: IStateBuilder<TState>
     ITriggerBuilder<TState> WhenInState(TState state);
 
     /// <summary>
+    /// Describes what CurrentState the sequence must be and for how long for the trigger to be valid.
+    /// </summary>
+    /// <param name="state">The condition of the current state of the sequence</param>
+    /// <param name="dwellTime">For how long the sequence must be in this state before the trigger gets valid</param>
+    ITriggerBuilder<TState> WhenInState(TState state, TimeSpan dwellTime);
+
+    /// <summary>
     /// Describes what CurrentStates the sequence can be for the trigger to be valid.
     /// </summary>
     /// <param name="states">The condition of the current states of the sequence</param>

@@ -91,6 +91,29 @@ public class SwitchToAnotherStateTests
         sequence.CurrentState.ShouldBe(state.On);
     }
 
+    [Theory]
+    [InlineData(1, "Initialized")]
+    [InlineData(50, "On")]
+    public async Task TriggeredSeq_ShouldSwitch_when_correct_CurrentState_with_dwellTime(int dwellTimeInMs, string expectedState)
+    {
+        var state = new DefaultSequenceStates();
+
+        var sequence = new FluentSeq<string>().Create(state.Initializing)
+            .ConfigureState(state.Initializing).TriggeredBy(() => false)
+            .ConfigureState(state.Initialized)
+            .ConfigureState(state.On)
+                .TriggeredBy(() => true)
+                .WhenInState(state.Initialized, TimeSpan.FromMilliseconds(50))
+            .Build();
+
+        sequence.SetState(state.Initialized);
+
+        await Task.Delay(dwellTimeInMs);
+        await sequence.RunAsync();
+
+        sequence.CurrentState.ShouldBe(expectedState);
+    }
+
     [Fact]
     public void TriggeredSeq_ShouldSwitch_when_correct_CurrentStates()
     {
