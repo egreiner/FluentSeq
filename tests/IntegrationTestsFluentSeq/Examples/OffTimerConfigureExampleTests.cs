@@ -21,12 +21,8 @@ public class OffTimerConfigureExampleTests
                 .WhenInState(TimerState.On);
 
             builder.ConfigureState(TimerState.Off)
-                .TriggeredBy(() => !_onTimerInput && currentStateElapsed())
-                .WhenInState(TimerState.Pending);
-
-            return;
-
-            bool currentStateElapsed() => _sequence?.CurrentStateElapsed(TimeSpan.FromMilliseconds(50)) ?? false;
+                .TriggeredBy(() => !_onTimerInput)
+                .WhenInState(TimerState.Pending, TimeSpan.FromMilliseconds(50));
         }).Builder();
 
 
