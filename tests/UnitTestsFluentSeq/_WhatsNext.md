@@ -6,6 +6,11 @@
 ## raise event state changed
 
 # -------------------------------------------------------------------------------------------------
+# 2025-02-27
+## SequenceBuilder.Configure(builder => ...)
+## WhenInState(bla, forTimeSpan)
+
+
 # 2025-02-24
 ## done: call action WhileInState
 ## done: call action onexit
