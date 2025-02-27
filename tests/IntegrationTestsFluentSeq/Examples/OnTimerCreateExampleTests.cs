@@ -2,7 +2,7 @@
 
 using FluentSeq.Builder;
 
-public class OnTimerExampleTests
+public class OnTimerCreateExampleTests
 {
     private ISequence<TimerState>? _sequence;
     private bool _onTimerInput;
