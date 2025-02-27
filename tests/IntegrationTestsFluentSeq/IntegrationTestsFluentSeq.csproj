@@ -19,9 +19,7 @@
 
     <ItemGroup>
       <Compile Remove="Examples\SequenceBuilderDotNetV5StyleTests.cs" />
-      <None Include="Examples\SequenceBuilderDotNetV5StyleTests.cs" />
       <Compile Remove="Examples\SequenceBuilderDotNetV6StyleTests.cs" />
-      <None Include="Examples\SequenceBuilderDotNetV6StyleTests.cs" />
       <Compile Remove="Examples\ExampleOffTimer.cs" />
     </ItemGroup>
 
