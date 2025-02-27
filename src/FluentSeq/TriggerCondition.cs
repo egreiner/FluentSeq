@@ -9,12 +9,12 @@ public class TriggerCondition<TState>(TState state, TimeSpan? dwellTime = null)
     /// <summary>
     /// The state
     /// </summary>
-    public TState State { get; set; } = state;
+    public TState State { get; } = state;
 
     /// <summary>
     /// The sequence must be in the state for this specified time before the trigger is activated
     /// </summary>
-    public TimeSpan? DwellTime { get; set; } = dwellTime;
+    public TimeSpan? DwellTime { get; } = dwellTime;
 
 
     /// <summary>
