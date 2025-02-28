@@ -7,8 +7,8 @@
 
 # -------------------------------------------------------------------------------------------------
 # 2025-02-27
-## SequenceBuilder.Configure(builder => ...)
-## WhenInState(bla, forTimeSpan)
+## done: SequenceBuilder.Configure(builder => ...)
+## done: WhenInState(bla, forTimeSpan)
 
 
 # 2025-02-24
@@ -28,5 +28,3 @@
 
 ## done: get a seq switch to another state with a trigger
 ## done: before we can run a seq with trigger, we need to implement Trigger in the State(Builder)
-
-

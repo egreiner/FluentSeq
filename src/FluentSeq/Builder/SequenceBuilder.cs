@@ -1,6 +1,8 @@
 namespace FluentSeq.Builder;
 
 using Exceptions;
+using FluentValidation;
+using Validation;
 
 /// <summary>
 /// Provides methods to configure a sequence
@@ -8,6 +10,9 @@ using Exceptions;
 /// <typeparam name="TState">The type of the state</typeparam>
 public class SequenceBuilder<TState> : ISequenceBuilder<TState>
 {
+    private readonly SequenceConfigurationValidator<TState> _validator = new();
+
+
     /// <summary>
     /// Creates a new instance of <see cref="SequenceBuilder{TState}"/>
     /// with a specified initial state
@@ -43,9 +48,18 @@ public class SequenceBuilder<TState> : ISequenceBuilder<TState>
     /// <inheritdoc />
     public ISequence<TState> Build()
     {
-        // TODO add validation
+        ValidateAndThrow();
+
         var result = new Sequence<TState>(Options, RegisteredStates);
         return result;
+    }
+
+    public ISequenceBuilder<TState> ValidateAndThrow()
+    {
+        if (!Options.DisableValidation)
+            _validator.ValidateAndThrow(this);
+
+        return this;
     }
 
 
