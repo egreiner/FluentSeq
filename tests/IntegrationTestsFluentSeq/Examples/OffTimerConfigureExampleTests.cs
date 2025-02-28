@@ -1,6 +1,7 @@
 ﻿namespace IntegrationTestsFluentSeq.Examples;
 
 using FluentSeq.Builder;
+using FluentSeq.Extensions;
 
 public class OffTimerConfigureExampleTests
 {
@@ -11,6 +12,8 @@ public class OffTimerConfigureExampleTests
     private ISequenceBuilder<TimerState> GetOffTimerConfiguration() =>
         new FluentSeq<TimerState>().Configure(TimerState.Off, builder =>
         {
+            builder.DisableValidationTemporarily();
+
             builder.DisableValidationForStates(TimerState.On);
 
             builder.ConfigureState(TimerState.On)

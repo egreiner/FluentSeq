@@ -1,6 +1,7 @@
 ﻿namespace IntegrationTestsFluentSeq.Examples;
 
 using FluentSeq.Builder;
+using FluentSeq.Extensions;
 
 public class OnTimerCreateExampleTests
 {
@@ -10,6 +11,7 @@ public class OnTimerCreateExampleTests
 
     private ISequenceBuilder<TimerState> GetOnTimerConfiguration() =>
         new FluentSeq<TimerState>().Create(TimerState.Off)
+            .DisableValidationTemporarily()
             .DisableValidationForStates(TimerState.On)
             .ConfigureState(TimerState.Off)
                 .TriggeredBy(() => !_onTimerInput)
