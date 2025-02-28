@@ -2,7 +2,6 @@
 
 using Builder;
 using FluentValidation;
-using FluentValidation.Results;
 
 /// <summary>
 /// The sequence configuration validator.
@@ -14,8 +13,15 @@ public sealed class SequenceConfigurationValidator<TState> : AbstractValidator<S
     /// </summary>
     public SequenceConfigurationValidator()
     {
+        ValidatorOptions.Global.LanguageManager.Enabled = false;
+
         RuleFor(builder => builder.RegisteredStates.Count).GreaterThan(1).WithMessage("The sequence must have more than one states");
-        // RuleFor(builder => builder.Options.InitialState).NotEmpty();
+        RuleFor(builder => builder.Options.InitialState).NotEmpty();
+
+        // TODO
+        RuleFor(builder => builder.RegisteredStates)
+            .Must((builder, registeredStates) => registeredStates.Contains(builder.Options.InitialState))
+            .WithMessage("The InitialState must be configured");
     }
 
     //
