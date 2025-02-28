@@ -1,12 +1,13 @@
 ﻿namespace FluentSeq.Validation;
 
 using Builder;
+using Extensions;
 using FluentValidation;
 
 /// <summary>
 /// The sequence configuration validator.
 /// </summary>
-public sealed class SequenceConfigurationValidator<TState> : AbstractValidator<SequenceBuilder<TState>>
+public sealed class SequenceConfigurationValidator<TState> : AbstractValidator<ISequenceBuilder<TState>>
 {
     /// <summary>
     /// Initializes a new instance of the <see cref="SequenceConfigurationValidator{TState}"/> class.
@@ -15,13 +16,30 @@ public sealed class SequenceConfigurationValidator<TState> : AbstractValidator<S
     {
         ValidatorOptions.Global.LanguageManager.Enabled = false;
 
-        RuleFor(builder => builder.RegisteredStates.Count).GreaterThan(1).WithMessage("The sequence must have more than one states");
+        AddRulesForMinimumStateCount();
+        AddRulesForInitialState();
+        AddRulesForConfiguredStates();
+    }
+
+    private void AddRulesForMinimumStateCount()
+    {
+        RuleFor(builder => builder.RegisteredStates.Count).GreaterThan(1).WithMessage("The sequence must have more than one states.");
+    }
+
+    private void AddRulesForInitialState()
+    {
         RuleFor(builder => builder.Options.InitialState).NotEmpty();
 
-        // TODO
         RuleFor(builder => builder.RegisteredStates)
             .Must((builder, registeredStates) => registeredStates.Contains(builder.Options.InitialState))
-            .WithMessage("The InitialState must be configured");
+            .WithMessage("The InitialState must be configured.");
+    }
+
+    private void AddRulesForConfiguredStates()
+    {
+        RuleForEach(builder => builder.RegisteredStates)
+            .Must((builder, state) => builder.NoValidationRequiredFor(state.State) || state.Trigger.Count > 0)
+            .WithMessage((builder, state) => $"The state {state.State} must have at least one trigger.");
     }
 
     //
