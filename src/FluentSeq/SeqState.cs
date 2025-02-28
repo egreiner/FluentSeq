@@ -13,7 +13,7 @@ public class SeqState<TState>
     public SeqState(TState state, string description = "")
     {
         State = state;
-        Name = state?.ToString() ?? Guid.NewGuid().ToString();
+        Name  = state?.ToString() ?? Guid.NewGuid().ToString();
         Description = description;
     }
 

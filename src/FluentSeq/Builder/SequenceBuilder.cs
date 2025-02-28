@@ -50,13 +50,13 @@ public class SequenceBuilder<TState> : ISequenceBuilder<TState>
     {
         ValidateAndThrow();
 
-        var result = new Sequence<TState>(Options, RegisteredStates);
+        var result = new Sequence<TState>(RootSequenceBuilder.Options, RootSequenceBuilder.RegisteredStates);
         return result;
     }
 
     public ISequenceBuilder<TState> ValidateAndThrow()
     {
-        if (!Options.DisableValidation)
+        if (!RootSequenceBuilder.Options.DisableValidation)
             _validator.ValidateAndThrow(this);
 
         return this;
@@ -72,14 +72,14 @@ public class SequenceBuilder<TState> : ISequenceBuilder<TState>
     /// <inheritdoc />
     public ISequenceBuilder<TState> DisableValidation()
     {
-        Options.DisableValidation = true;
+        RootSequenceBuilder.Options.DisableValidation = true;
         return this;
     }
 
     /// <inheritdoc />
     public ISequenceBuilder<TState> DisableValidationForStates(params TState[] states)
     {
-        Options.DisableValidationForStates = states;
+        RootSequenceBuilder.Options.DisableValidationForStates = states;
         return this;
     }
 
@@ -89,7 +89,7 @@ public class SequenceBuilder<TState> : ISequenceBuilder<TState>
     {
         var builder   = new StateBuilder<TState>(Builder(), state, description);
 
-        if (!Builder().StateBuilders.Add(builder))
+        if (!RootSequenceBuilder.StateBuilders.Add(builder))
             throw new DuplicateStateException(builder.State.Name);
 
         return builder;

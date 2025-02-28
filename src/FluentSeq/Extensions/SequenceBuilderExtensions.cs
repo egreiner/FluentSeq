@@ -14,7 +14,7 @@ public static class SequenceBuilderExtensions
     /// </summary>
     /// <param name="builder">The sequence builder</param>
     public static ISequenceBuilder<TState> DisableValidationTemporarily<TState>(this ISequenceBuilder<TState> builder) =>
-        builder.DisableValidation();
+        builder.Builder().DisableValidation();
 
 
     /// <summary>
@@ -23,8 +23,8 @@ public static class SequenceBuilderExtensions
     /// <param name="builder">The sequence builder</param>
     /// <param name="state">The specified state</param>
     public static bool ValidationRequiredFor<TState>(this ISequenceBuilder<TState> builder , TState state) =>
-        !builder.Options.DisableValidation &&
-        !builder.Options.DisableValidationForStates.Contains(state);
+        !builder.Builder().Options.DisableValidation &&
+        !builder.Builder().Options.DisableValidationForStates.Contains(state);
 
 
     /// <summary>
@@ -33,5 +33,5 @@ public static class SequenceBuilderExtensions
     /// <param name="builder">The sequence builder</param>
     /// <param name="state">The specified state</param>
     public static bool NoValidationRequiredFor<TState>(this ISequenceBuilder<TState> builder , TState state) =>
-        !builder.ValidationRequiredFor(state);
+        !builder.Builder().ValidationRequiredFor(state);
 }
