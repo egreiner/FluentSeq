@@ -92,8 +92,8 @@ public class SwitchToAnotherStateTests
     }
 
     [Theory]
-    [InlineData(1, "Initialized")]
-    [InlineData(51, "On")]
+    [InlineData(0, "Initialized")]
+    [InlineData(40, "On")]
     public async Task TriggeredSeq_ShouldSwitch_when_correct_CurrentState_with_dwellTime(int dwellTimeInMs, string expectedState)
     {
         var state = new DefaultSequenceStates();
@@ -103,7 +103,7 @@ public class SwitchToAnotherStateTests
             .ConfigureState(state.Initialized)
             .ConfigureState(state.On)
                 .TriggeredBy(() => true)
-                .WhenInState(state.Initialized, TimeSpan.FromMilliseconds(50))
+                .WhenInState(state.Initialized, TimeSpan.FromMilliseconds(20))
             .Build();
 
         sequence.SetState(state.Initialized);
