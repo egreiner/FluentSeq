@@ -9,6 +9,7 @@ public class StateWhileInStateActionTests
         var state = new DefaultSequenceStates();
 
         var sequence = new FluentSeq<string>().Create(state.Initializing)
+            .DisableValidation()
             .ConfigureState(state.Initializing)
             .ConfigureState(state.Initialized)
                 .TriggeredBy(() => true)
@@ -31,6 +32,7 @@ public class StateWhileInStateActionTests
         var state = new DefaultSequenceStates();
 
         var sequence = new FluentSeq<string>().Create(state.Initializing)
+            .DisableValidation()
             .ConfigureState(state.Initializing)
             .ConfigureState(state.Initialized)
                 .TriggeredBy(() => true)
@@ -54,6 +56,7 @@ public class StateWhileInStateActionTests
         var state = new DefaultSequenceStates();
 
         var sequence = new FluentSeq<string>().Create(state.Initializing)
+            .DisableValidation()
             .ConfigureState(state.Initializing)
             .ConfigureState(state.Initialized)
                 .TriggeredBy(() => true)
@@ -79,6 +82,7 @@ public class StateWhileInStateActionTests
         var state = new DefaultSequenceStates();
 
         var sequence = new FluentSeq<string>().Create(state.Initializing)
+            .DisableValidation()
             .ConfigureState(state.Initializing)
             .ConfigureState(state.Initialized)
                 .TriggeredBy(() => true)
@@ -103,11 +107,12 @@ public class StateWhileInStateActionTests
         var state = new DefaultSequenceStates();
 
         var sequence = new FluentSeq<string>().Create(state.Initializing)
+            .DisableValidation()
             .ConfigureState(state.Initializing)
-            .OnExit(() => x += 1)
+                .OnExit(() => x += 1)
             .ConfigureState(state.Initialized)
-            .TriggeredBy(() => true)
-            .WhileInState(() => x *= 2)
+                .TriggeredBy(() => true)
+                .WhileInState(() => x *= 2)
             .Build();
 
         for (int i = 0; i < 3; i++)
@@ -126,6 +131,7 @@ public class StateWhileInStateActionTests
         var state = new DefaultSequenceStates();
 
         var sequence = new FluentSeq<string>().Create(state.Initializing)
+            .DisableValidation()
             .ConfigureState(state.Initializing)
             .ConfigureState(state.Initialized)
                 .TriggeredBy(() => true)
@@ -150,6 +156,7 @@ public class StateWhileInStateActionTests
         var state = new DefaultSequenceStates();
 
         var sequence = new FluentSeq<string>().Create(state.Initializing)
+            .DisableValidation()
             .ConfigureState(state.Initializing)
             .ConfigureState(state.Initialized)
                 .TriggeredBy(() => true)

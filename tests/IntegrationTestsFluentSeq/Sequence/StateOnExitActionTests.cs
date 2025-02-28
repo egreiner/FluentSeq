@@ -9,10 +9,11 @@ public class StateOnExitActionTests
         var state = new DefaultSequenceStates();
 
         var sequence = new FluentSeq<string>().Create(state.Initializing)
+            .DisableValidation()
             .ConfigureState(state.Initializing)
-            .OnExit(() => x = 1)
+                .OnExit(() => x = 1)
             .ConfigureState(state.Initialized)
-            .TriggeredBy(() => true)
+                .TriggeredBy(() => true)
             .Build();
 
         sequence.Run();
@@ -28,10 +29,11 @@ public class StateOnExitActionTests
         var state = new DefaultSequenceStates();
 
         var sequence = new FluentSeq<string>().Create(state.Initializing)
+            .DisableValidation()
             .ConfigureState(state.Initializing)
-            .OnExit(() => x += 1)
+                .OnExit(() => x += 1)
             .ConfigureState(state.Initialized)
-            .TriggeredBy(() => true)
+                .TriggeredBy(() => true)
             .Build();
 
         for (int i = 0; i < 3; i++)
@@ -50,11 +52,12 @@ public class StateOnExitActionTests
         var state = new DefaultSequenceStates();
 
         var sequence = new FluentSeq<string>().Create(state.Initializing)
+            .DisableValidation()
             .ConfigureState(state.Initializing)
-            .OnExit(() => x *= 3)
-            .OnExit(() => x *= 4)
+                .OnExit(() => x *= 3)
+                .OnExit(() => x *= 4)
             .ConfigureState(state.Initialized)
-            .TriggeredBy(() => true)
+                .TriggeredBy(() => true)
             .Build();
 
         sequence.Run();
@@ -70,11 +73,12 @@ public class StateOnExitActionTests
         var state = new DefaultSequenceStates();
 
         var sequence = new FluentSeq<string>().Create(state.Initializing)
+            .DisableValidation()
             .ConfigureState(state.Initializing)
-            .OnExit(() => x += 1)
-            .OnExit(() => x *= 4)
+                .OnExit(() => x += 1)
+                .OnExit(() => x *= 4)
             .ConfigureState(state.Initialized)
-            .TriggeredBy(() => true)
+                .TriggeredBy(() => true)
             .Build();
 
         sequence.Run();
@@ -91,12 +95,13 @@ public class StateOnExitActionTests
         var state = new DefaultSequenceStates();
 
         var sequence = new FluentSeq<string>().Create(state.Initializing)
+            .DisableValidation()
             .ConfigureState(state.Initializing)
-            // switch action order
-            .OnExit(() => x *= 4)
-            .OnExit(() => x += 1)
+                // switch action order
+                .OnExit(() => x *= 4)
+                .OnExit(() => x += 1)
             .ConfigureState(state.Initialized)
-            .TriggeredBy(() => true)
+                .TriggeredBy(() => true)
             .Build();
 
         sequence.Run();
@@ -113,11 +118,12 @@ public class StateOnExitActionTests
         var state = new DefaultSequenceStates();
 
         var sequence = new FluentSeq<string>().Create(state.Initializing)
+            .DisableValidation()
             .ConfigureState(state.Initializing)
-            .OnExit(() => x -= 1)
+                .OnExit(() => x -= 1)
             .ConfigureState(state.Initialized)
-            .TriggeredBy(() => true)
-            .OnEntry(() => x *= 4)
+                .TriggeredBy(() => true)
+                .OnEntry(() => x *= 4)
             .Build();
 
         sequence.Run();
@@ -134,12 +140,13 @@ public class StateOnExitActionTests
         var state = new DefaultSequenceStates();
 
         var sequence = new FluentSeq<string>().Create(state.Initializing)
+            .DisableValidation()
             .ConfigureState(state.Initializing)
-            // switch OnEntry/OnExit actions
-            .OnExit(() => x *= 4)
+                // switch OnEntry/OnExit actions
+                .OnExit(() => x *= 4)
             .ConfigureState(state.Initialized)
-            .TriggeredBy(() => true)
-            .OnEntry(() => x -= 1)
+                .TriggeredBy(() => true)
+                .OnEntry(() => x -= 1)
             .Build();
 
         sequence.Run();

@@ -9,10 +9,11 @@ public class StateOnEntryActionTests
         var state = new DefaultSequenceStates();
 
         var sequence = new FluentSeq<string>().Create(state.Initializing)
+            .DisableValidation()
             .ConfigureState(state.Initializing)
             .ConfigureState(state.Initialized)
-            .TriggeredBy(() => true)
-            .OnEntry(() => x = 2)
+                .TriggeredBy(() => true)
+                .OnEntry(() => x = 2)
             .Build();
 
         sequence.Run();
@@ -28,10 +29,11 @@ public class StateOnEntryActionTests
         var state = new DefaultSequenceStates();
 
         var sequence = new FluentSeq<string>().Create(state.Initializing)
+            .DisableValidation()
             .ConfigureState(state.Initializing)
             .ConfigureState(state.Initialized)
-            .TriggeredBy(() => true)
-            .OnEntry(() => x += 2)
+                .TriggeredBy(() => true)
+                .OnEntry(() => x += 2)
             .Build();
 
         for (int i = 0; i < 3; i++)
@@ -50,11 +52,12 @@ public class StateOnEntryActionTests
         var state = new DefaultSequenceStates();
 
         var sequence = new FluentSeq<string>().Create(state.Initializing)
+            .DisableValidation()
             .ConfigureState(state.Initializing)
             .ConfigureState(state.Initialized)
-            .TriggeredBy(() => true)
-            .OnEntry(() => x *= 3)
-            .OnEntry(() => x *= 4)
+                .TriggeredBy(() => true)
+                .OnEntry(() => x *= 3)
+                .OnEntry(() => x *= 4)
             .Build();
 
         sequence.Run();
@@ -70,11 +73,12 @@ public class StateOnEntryActionTests
         var state = new DefaultSequenceStates();
 
         var sequence = new FluentSeq<string>().Create(state.Initializing)
+            .DisableValidation()
             .ConfigureState(state.Initializing)
             .ConfigureState(state.Initialized)
-            .TriggeredBy(() => true)
-            .OnEntry(() => x += 3)
-            .OnEntry(() => x *= 4)
+                .TriggeredBy(() => true)
+                .OnEntry(() => x += 3)
+                .OnEntry(() => x *= 4)
             .Build();
 
         sequence.Run();
@@ -91,12 +95,13 @@ public class StateOnEntryActionTests
         var state = new DefaultSequenceStates();
 
         var sequence = new FluentSeq<string>().Create(state.Initializing)
+            .DisableValidation()
             .ConfigureState(state.Initializing)
             .ConfigureState(state.Initialized)
-            .TriggeredBy(() => true)
-            // switch action order
-            .OnEntry(() => x *= 4)
-            .OnEntry(() => x += 3)
+                .TriggeredBy(() => true)
+                // switch action order
+                .OnEntry(() => x *= 4)
+                .OnEntry(() => x += 3)
             .Build();
 
         sequence.Run();
