@@ -1,14 +1,31 @@
 ﻿namespace UnitTestsFluentSeq.Validation;
 
+using FluentValidation;
+
 public sealed class ValidationTests
 {
     [Fact]
-    public void Builder_ShouldThrow_when_to_few_states()
+    public void Builder_ShouldThrow_ToFewStatesException()
     {
-        var actual = new FluentSeq<string>().Create("INIT");
+        var builder = new FluentSeq<string>().Create("INIT");
 
-        var action = () => actual.Build();
+        var action = () => builder.Build();
 
-        // action.ShouldThrow();
+        var actual = action.ShouldThrow<ValidationException>();
+
+        actual.Message.ShouldContain("more than one states");
+    }
+
+    [Fact]
+    public void Builder_ShouldNotThrow_ToFewStatesException()
+    {
+        var builder = new FluentSeq<string>().Create("INIT")
+            .DisableValidationForStates("INIT", "State1")
+            .ConfigureState("INIT")
+            .ConfigureState("State1");
+
+        var action = () => builder.Build();
+
+        _ = action.ShouldNotThrow();
     }
 }
