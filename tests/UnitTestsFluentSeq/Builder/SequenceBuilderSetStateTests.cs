@@ -6,6 +6,7 @@ public sealed class SequenceBuilderSetStateTests
     public void Sequence_SetState_ShouldBe_executed()
     {
         var sequence = new FluentSeq<string>().Create("INIT")
+            .DisableValidation()
             .Build();
 
         sequence.SetState("TEST");
@@ -20,6 +21,7 @@ public sealed class SequenceBuilderSetStateTests
     public void Sequence_SetStateConditional_ShouldBe_executed(bool condition, string expected)
     {
         var sequence = new FluentSeq<string>().Create("INIT")
+            .DisableValidation()
             .Build();
 
         sequence.SetState("TEST", () => condition);

@@ -6,6 +6,7 @@ public sealed class SequenceBuilderBuildTests
     public void Build_ShouldNotThrow()
     {
         var action = () => new FluentSeq<string>().Create("INIT")
+            .DisableValidation()
             .Build();
 
         action.ShouldNotThrow();
@@ -15,6 +16,7 @@ public sealed class SequenceBuilderBuildTests
     public void Build_ShouldReturn_Sequence()
     {
         var actual = new FluentSeq<string>().Create("INIT")
+            .DisableValidation()
             .Build();
 
         actual.ShouldBeAssignableTo<ISequence<string>>();
@@ -25,6 +27,7 @@ public sealed class SequenceBuilderBuildTests
     public void Sequence_ShouldHave_Options()
     {
         var sequence = new FluentSeq<string>().Create("INIT")
+            .DisableValidation()
             .Build();
 
         var actual = sequence.Options;
@@ -36,6 +39,7 @@ public sealed class SequenceBuilderBuildTests
     public void Sequence_ShouldHave_RegisteredStates()
     {
         var sequence = new FluentSeq<string>().Create("INIT")
+            .DisableValidation()
             .Build();
 
         var actual = sequence.RegisteredStates;
@@ -48,6 +52,7 @@ public sealed class SequenceBuilderBuildTests
     public void Sequence_CurrentState_ShouldBe_init()
     {
         var sequence = new FluentSeq<string>().Create("INIT")
+            .DisableValidation()
             .Build();
 
         var actual = sequence.CurrentState;
