@@ -14,6 +14,7 @@ public class StateWhileInStateActionTests
             .ConfigureState(state.Initialized)
                 .TriggeredBy(() => true)
                 .WhileInState(() => x += 1)
+            .Builder()
             .Build();
 
         for (int i = 0; i < 3; i++)
@@ -38,6 +39,7 @@ public class StateWhileInStateActionTests
                 .TriggeredBy(() => true)
                 .WhileInState(() => x += 1)
                 .WhileInState(() => x *= 2)
+            .Builder()
             .Build();
 
         for (int i = 0; i < 3; i++)
@@ -62,6 +64,7 @@ public class StateWhileInStateActionTests
                 .TriggeredBy(() => true)
                 .WhileInState(() => x += 1)
                 .WhileInState(() => x *= 2)
+            .Builder()
             .Build();
 
         for (int i = 0; i < 3; i++)
@@ -88,6 +91,7 @@ public class StateWhileInStateActionTests
                 .TriggeredBy(() => true)
                 .WhileInState(() => x *= 2)
                 .WhileInState(() => x += 1)
+            .Builder()
             .Build();
 
         for (int i = 0; i < 3; i++)
@@ -113,6 +117,7 @@ public class StateWhileInStateActionTests
             .ConfigureState(state.Initialized)
                 .TriggeredBy(() => true)
                 .WhileInState(() => x *= 2)
+            .Builder()
             .Build();
 
         for (int i = 0; i < 3; i++)
@@ -137,6 +142,7 @@ public class StateWhileInStateActionTests
                 .TriggeredBy(() => true)
                 .OnEntry(() => x += 1)
                 .WhileInState(() => x *= 2)
+            .Builder()
             .Build();
 
         for (int i = 0; i < 3; i++)
@@ -162,6 +168,7 @@ public class StateWhileInStateActionTests
                 .TriggeredBy(() => true)
                 .WhileInState(() => x *= 2)
                 .OnEntry(() => x += 2)
+            .Builder()
             .Build();
 
         for (int i = 0; i < 3; i++)

@@ -14,6 +14,7 @@ public class StateOnExitActionTests
                 .OnExit(() => x = 1)
             .ConfigureState(state.Initialized)
                 .TriggeredBy(() => true)
+            .Builder()
             .Build();
 
         sequence.Run();
@@ -34,6 +35,7 @@ public class StateOnExitActionTests
                 .OnExit(() => x += 1)
             .ConfigureState(state.Initialized)
                 .TriggeredBy(() => true)
+            .Builder()
             .Build();
 
         for (int i = 0; i < 3; i++)
@@ -58,6 +60,7 @@ public class StateOnExitActionTests
                 .OnExit(() => x *= 4)
             .ConfigureState(state.Initialized)
                 .TriggeredBy(() => true)
+            .Builder()
             .Build();
 
         sequence.Run();
@@ -79,6 +82,7 @@ public class StateOnExitActionTests
                 .OnExit(() => x *= 4)
             .ConfigureState(state.Initialized)
                 .TriggeredBy(() => true)
+            .Builder()
             .Build();
 
         sequence.Run();
@@ -102,6 +106,7 @@ public class StateOnExitActionTests
                 .OnExit(() => x += 1)
             .ConfigureState(state.Initialized)
                 .TriggeredBy(() => true)
+            .Builder()
             .Build();
 
         sequence.Run();
@@ -124,6 +129,7 @@ public class StateOnExitActionTests
             .ConfigureState(state.Initialized)
                 .TriggeredBy(() => true)
                 .OnEntry(() => x *= 4)
+            .Builder()
             .Build();
 
         sequence.Run();
@@ -147,6 +153,7 @@ public class StateOnExitActionTests
             .ConfigureState(state.Initialized)
                 .TriggeredBy(() => true)
                 .OnEntry(() => x -= 1)
+            .Builder()
             .Build();
 
         sequence.Run();

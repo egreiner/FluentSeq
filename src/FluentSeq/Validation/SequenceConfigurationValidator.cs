@@ -41,6 +41,6 @@ public sealed class SequenceConfigurationValidator<TState> : AbstractValidator<I
     {
         RuleForEach(builder => builder.Builder().RegisteredStates)
             .Must((builder, state) => builder.Builder().NoValidationRequiredFor(state.State) || state.Trigger.Count > 0)
-            .WithMessage((builder, state) => $"The state {state.State} must have at least one trigger.");
+            .WithMessage((_, state) => $"The state {state.State} must have at least one trigger.");
     }
 }

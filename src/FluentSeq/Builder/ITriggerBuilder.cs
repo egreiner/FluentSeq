@@ -6,7 +6,7 @@ namespace FluentSeq.Builder;
 /// Provides methods for further describing a trigger
 /// </summary>
 /// <typeparam name="TState">The type of the state</typeparam>
-public interface ITriggerBuilder<TState>: IStateBuilder<TState>
+public interface ITriggerBuilder<TState>: ICanConfigureActions<TState>, ICanConfigureState<TState>, IHasSequenceBuilder<TState>
 {
     /// <summary>
     /// Returns the trigger the builder is for

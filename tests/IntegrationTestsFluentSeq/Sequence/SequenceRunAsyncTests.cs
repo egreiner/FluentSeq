@@ -10,6 +10,7 @@ public class SequenceRunAsyncTests
         var sequence = new FluentSeq<string>().Create(state.Initializing)
             .ConfigureState(state.Initializing).TriggeredBy(() => false)
             .ConfigureState(state.Initialized).TriggeredBy(() => true)
+            .Builder()
             .Build();
 
         sequence.IsInState(state.Initializing).ShouldBeTrue();

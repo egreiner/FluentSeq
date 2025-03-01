@@ -10,6 +10,7 @@ public class SequenceIsInStateTests
         var sequence = new FluentSeq<string>().Create(state.Initializing)
             .ConfigureState(state.Initializing).TriggeredBy(() => false)
             .ConfigureState(state.Initialized).TriggeredBy(() => true)
+            .Builder()
             .Build();
 
         sequence.IsInState(state.Initializing).ShouldBeTrue();
@@ -28,6 +29,7 @@ public class SequenceIsInStateTests
             .SetInitialState(state.Initializing)
             .ConfigureState(state.Initializing).TriggeredBy(() => false)
             .ConfigureState(state.Initialized).TriggeredBy(() => true)
+            .Builder()
             .Build();
 
         sequence.Run();
@@ -43,6 +45,7 @@ public class SequenceIsInStateTests
         var sequence = new FluentSeq<string>().Create(state.Initializing)
             .ConfigureState(state.Initializing).TriggeredBy(() => false)
             .ConfigureState(state.Initialized).TriggeredBy(() => true)
+            .Builder()
             .Build();
 
         sequence.IsInStates(state.Initializing, state.Initialized).ShouldBeTrue();
@@ -60,6 +63,7 @@ public class SequenceIsInStateTests
         var sequence = new FluentSeq<string>().Create(state.Initializing)
             .ConfigureState(state.Initializing).TriggeredBy(() => false)
             .ConfigureState(state.Initialized).TriggeredBy(() => true)
+            .Builder()
             .Build();
 
         sequence.IsInStates(state.On, state.Off).ShouldBeFalse();
@@ -78,6 +82,7 @@ public class SequenceIsInStateTests
         var sequence = new FluentSeq<string>().Create(state.Initializing)
             .ConfigureState(state.Initializing).TriggeredBy(() => false)
             .ConfigureState(state.Initialized).TriggeredBy(() => true)
+            .Builder()
             .Build();
 
         sequence.Run();

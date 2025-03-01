@@ -18,7 +18,9 @@ public sealed class SimpleSequenceBuilderTests
     {
         var action = () => new FluentSeq<string>().Create("INIT")
             .ConfigureState("State1")
-            .ConfigureState("State1");
+                .TriggeredBy(() => false)
+            .ConfigureState("State1")
+                .TriggeredBy(() => false);
 
         var actual = action.ShouldThrow<DuplicateStateException>();
 
@@ -45,7 +47,9 @@ public sealed class SimpleSequenceBuilderTests
     {
         var builder = new FluentSeq<string>().Create("INIT")
             .ConfigureState("State1")
+                .TriggeredBy(() => false)
             .ConfigureState("State2")
+                .TriggeredBy(() => false)
             .Builder();
 
         var actual = builder.RegisteredStates;

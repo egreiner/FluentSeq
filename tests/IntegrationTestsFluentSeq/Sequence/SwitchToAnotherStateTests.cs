@@ -10,6 +10,7 @@ public class SwitchToAnotherStateTests
         var sequence = new FluentSeq<string>().Create(state.Initializing)
             .ConfigureState(state.Initializing).TriggeredBy(() => false)
             .ConfigureState(state.Initialized).TriggeredBy(() => true)
+            .Builder()
             .Build();
 
         sequence.RegisteredStates.Count.ShouldBe(2);
@@ -28,6 +29,7 @@ public class SwitchToAnotherStateTests
         var sequence = new FluentSeq<string>().Create(state.Initializing)
             .ConfigureState(state.Initializing).TriggeredBy(() => false)
             .ConfigureState(state.Initialized).TriggeredBy(() => true)
+            .Builder()
             .Build();
 
         sequence.RegisteredStates.Count.ShouldBe(2);
@@ -48,6 +50,7 @@ public class SwitchToAnotherStateTests
             .ConfigureState(state.Initialized).TriggeredBy(() => true)
             .ConfigureState(state.On).TriggeredBy(() => true)
             .ConfigureState(state.Off).TriggeredBy(() => true)
+            .Builder()
             .Build();
 
         sequence.RegisteredStates.Count.ShouldBe(4);
@@ -68,6 +71,7 @@ public class SwitchToAnotherStateTests
             .ConfigureState(state.Initializing).TriggeredBy(() => false)
             .ConfigureState(state.Initialized)
             .ConfigureState(state.On).TriggeredBy(() => true).WhenInState(state.Initialized)
+            .Builder()
             .Build();
 
         sequence.Run();
@@ -85,6 +89,7 @@ public class SwitchToAnotherStateTests
             .ConfigureState(state.Initializing).TriggeredBy(() => false)
             .ConfigureState(state.Initialized)
             .ConfigureState(state.On).TriggeredBy(() => true).WhenInState(state.Initialized)
+            .Builder()
             .Build();
 
         sequence.SetState(state.Initialized);
@@ -107,6 +112,7 @@ public class SwitchToAnotherStateTests
             .ConfigureState(state.On)
                 .TriggeredBy(() => true)
                 .WhenInState(state.Initialized, TimeSpan.FromMilliseconds(20))
+            .Builder()
             .Build();
 
         sequence.SetState(state.Initialized);
@@ -128,6 +134,7 @@ public class SwitchToAnotherStateTests
             .ConfigureState(state.Initialized)
             .ConfigureState(state.Off)
             .ConfigureState(state.On).TriggeredBy(() => true).WhenInStates(state.Initialized, state.Off)
+            .Builder()
             .Build();
 
         sequence.SetState(state.Off);

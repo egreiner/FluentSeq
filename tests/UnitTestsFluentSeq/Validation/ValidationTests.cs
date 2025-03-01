@@ -22,7 +22,11 @@ public sealed class ValidationTests
         var builder = new FluentSeq<string>().Create("INIT")
             .DisableValidationForStates("INIT", "State1")
             .ConfigureState("INIT")
-            .ConfigureState("State1");
+                .TriggeredBy(() => false)
+            .ConfigureState("State1")
+                .TriggeredBy(() => false)
+            .Builder();
+
 
         var action = () => builder.Build();
 
@@ -36,7 +40,10 @@ public sealed class ValidationTests
         var builder = new FluentSeq<string>().Create("")
             .DisableValidationForStates("", "State1")
             .ConfigureState("")
-            .ConfigureState("State1");
+                .TriggeredBy(() => false)
+            .ConfigureState("State1")
+                .TriggeredBy(() => false)
+            .Builder();
 
         var action = () => builder.Build();
 
@@ -51,7 +58,10 @@ public sealed class ValidationTests
         var builder = new FluentSeq<string>().Create(null)
             .DisableValidationForStates("", "State1")
             .ConfigureState(null)
-            .ConfigureState("State1");
+                .TriggeredBy(() => false)
+            .ConfigureState("State1")
+                .TriggeredBy(() => false)
+            .Builder();
 
         var action = () => builder.Build();
 
@@ -67,7 +77,10 @@ public sealed class ValidationTests
         var builder = new FluentSeq<string>().Create("INIT")
             .DisableValidationForStates("State1", "State2")
             .ConfigureState("State1")
-            .ConfigureState("State2");
+                .TriggeredBy(() => false)
+            .ConfigureState("State2")
+                .TriggeredBy(() => false)
+            .Builder();
 
         var action = () => builder.Build();
 

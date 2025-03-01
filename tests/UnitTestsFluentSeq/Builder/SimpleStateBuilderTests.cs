@@ -4,11 +4,6 @@ using FluentSeq.Builder;
 
 public sealed class SimpleStateBuilderTests
 {
-    // public bool LastValue { get; set; }
-    //
-    // public TimeSpan OnDelay { get; set; } = TimeSpan.FromMilliseconds(10);
-
-
     [Fact]
     public void SequenceBuilder_State_ShouldReturn_StateBuilder()
     {
@@ -34,7 +29,9 @@ public sealed class SimpleStateBuilderTests
         var builder = new FluentSeq<string>().Create("INIT");
 
         var actual = builder.ConfigureState("State1")
-                            .ConfigureState("State2").Builder();
+                                .TriggeredBy(() => false)
+                            .ConfigureState("State2")
+                                .Builder();
 
         actual.ShouldBe(builder);
     }
@@ -56,7 +53,9 @@ public sealed class SimpleStateBuilderTests
         var builder = new FluentSeq<string>().Create("INIT");
 
         var state = builder.ConfigureState("State1")
+                                .TriggeredBy(() => false)
                            .ConfigureState("State2").State;
+
         var actual = state.Name;
 
         actual.ShouldBe("State2");
@@ -80,21 +79,11 @@ public sealed class SimpleStateBuilderTests
         var builder = new FluentSeq<string>().Create("INIT");
 
         var state = builder.ConfigureState("State1")
+                                .TriggeredBy(() => false)
                            .ConfigureState("State2").State;
+
         var actual = state.Description;
 
         actual.ShouldBe(string.Empty);
     }
-
-
-    // private ISequenceBuilder<string> GetSequenceBuilder2 =>
-    //     new FluentSeq<string>().Create("Off")
-    //         .ConfigureState("bla")
-    //         .WhileInState(() => Console.WriteLine("bla WhileInState"))
-    //         .TriggeredBy(() => OnDelay == TimeSpan.Zero).WhenInState("dadd")
-    //
-    //         .ConfigureState("blub")
-    //         .TriggeredBy(() => OnDelay == TimeSpan.Zero).WhenInStates("dadd", "bla")
-    //         .OnEntry(() => Console.WriteLine("blub entry"))
-    //         .OnExit(() => Console.WriteLine("blub exit"));
 }

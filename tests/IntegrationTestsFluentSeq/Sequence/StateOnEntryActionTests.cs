@@ -11,9 +11,11 @@ public class StateOnEntryActionTests
         var sequence = new FluentSeq<string>().Create(state.Initializing)
             .DisableValidation()
             .ConfigureState(state.Initializing)
+                .TriggeredBy(() => false)
             .ConfigureState(state.Initialized)
                 .TriggeredBy(() => true)
                 .OnEntry(() => x = 2)
+            .Builder()
             .Build();
 
         sequence.Run();
@@ -34,6 +36,7 @@ public class StateOnEntryActionTests
             .ConfigureState(state.Initialized)
                 .TriggeredBy(() => true)
                 .OnEntry(() => x += 2)
+            .Builder()
             .Build();
 
         for (int i = 0; i < 3; i++)
@@ -58,6 +61,7 @@ public class StateOnEntryActionTests
                 .TriggeredBy(() => true)
                 .OnEntry(() => x *= 3)
                 .OnEntry(() => x *= 4)
+            .Builder()
             .Build();
 
         sequence.Run();
@@ -79,6 +83,7 @@ public class StateOnEntryActionTests
                 .TriggeredBy(() => true)
                 .OnEntry(() => x += 3)
                 .OnEntry(() => x *= 4)
+            .Builder()
             .Build();
 
         sequence.Run();
@@ -102,6 +107,7 @@ public class StateOnEntryActionTests
                 // switch action order
                 .OnEntry(() => x *= 4)
                 .OnEntry(() => x += 3)
+            .Builder()
             .Build();
 
         sequence.Run();
