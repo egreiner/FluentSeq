@@ -22,7 +22,6 @@ public interface ISequenceBuilder<TState>
 
     /// <summary>
     /// Finally builds the configured sequence
-    /// (TODO, Validate the configuration before building)
     /// </summary>
     /// <returns>A complete sequence that could be executed</returns>
     ISequence<TState> Build();
@@ -45,9 +44,13 @@ public interface ISequenceBuilder<TState>
     /// </summary>
     ISequenceBuilder<TState> DisableValidationForStates(params TState[] states);
 
+    /// <summary>
+    /// Sets the initial state
+    /// </summary>
+    /// <param name="initialState">The initial state</param>
+    ISequenceBuilder<TState> SetInitialState(TState initialState);
 
 
-    // TODO rename to AddState???
     /// <summary>
     /// Creates a new State
     /// </summary>

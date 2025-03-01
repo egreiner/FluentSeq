@@ -20,8 +20,8 @@ public class SequenceBuilder<TState> : ISequenceBuilder<TState>
     /// <param name="initialState">The initial state of the sequence</param>
     public SequenceBuilder(TState initialState)
     {
-        Options.InitialState = initialState;
         RootSequenceBuilder  = this;
+        Builder().Options.InitialState = initialState;
     }
     
 
@@ -79,19 +79,26 @@ public class SequenceBuilder<TState> : ISequenceBuilder<TState>
     /// <inheritdoc />
     public ISequenceBuilder<TState> DisableValidationForStates(params TState[] states)
     {
-        RootSequenceBuilder.Options.DisableValidationForStates = states;
+        Builder().Options.DisableValidationForStates = states;
         return this;
     }
 
-    // TODO not completed
     /// <inheritdoc />
     public IStateBuilder<TState> ConfigureState(TState state, string description = "")
     {
-        var builder   = new StateBuilder<TState>(Builder(), state, description);
+        var builder = new StateBuilder<TState>(Builder(), state, description);
 
         if (!RootSequenceBuilder.StateBuilders.Add(builder))
             throw new DuplicateStateException(builder.State.Name);
 
         return builder;
+    }
+
+    
+    /// <inheritdoc />
+    public ISequenceBuilder<TState> SetInitialState(TState initialState)
+    {
+        Builder().Options.InitialState = initialState;
+        return this;
     }
 }
