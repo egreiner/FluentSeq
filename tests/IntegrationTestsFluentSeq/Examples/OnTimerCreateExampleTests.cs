@@ -39,7 +39,7 @@ public class OnTimerCreateExampleTests
     [InlineData(true, 40, TimerState.Off, TimerState.Pending)]
     [InlineData(true, 40, TimerState.Pending, TimerState.On)]
     [InlineData(true, 40, TimerState.On, TimerState.On)]
-    public async Task Example_Usage_OnTimerConfiguration_Run_async_bla(bool timerInput, int sleepTimeInMs, TimerState currentState, TimerState expectedState)
+    public async Task Example_Usage_OnTimerConfiguration_Run_async(bool timerInput, int sleepTimeInMs, TimerState currentState, TimerState expectedState)
     {
         _sequence     = GetOnTimerConfiguration().Build();
         _onTimerInput = timerInput;

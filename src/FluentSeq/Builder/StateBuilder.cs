@@ -11,7 +11,7 @@ public class StateBuilder<TState> : SequenceBuilder<TState>, IStateBuilder<TStat
     /// </summary>
     public StateBuilder(ISequenceBuilder<TState> sequenceBuilder, TState state, string description): base(sequenceBuilder.Options.InitialState)
     {
-        RootSequenceBuilder = sequenceBuilder;
+        RootSequenceBuilder = sequenceBuilder.Builder();
         RootStateBuilder    = this;
         State = new SeqState<TState>(state, description);
     }

@@ -12,7 +12,7 @@ public class OffTimerCreateExampleTests
     private ISequenceBuilder<TimerState> GetOffTimerConfiguration() =>
         new FluentSeq<TimerState>().Create(TimerState.Off)
             .DisableValidationTemporarily()
-            .DisableValidationForStates(TimerState.On)
+            .SetInitialState(TimerState.Off)
             .ConfigureState(TimerState.On)
                 .TriggeredBy(() => _onTimerInput)
             .ConfigureState(TimerState.Pending)
@@ -39,7 +39,7 @@ public class OffTimerCreateExampleTests
     [InlineData(false, 40, TimerState.Off, TimerState.Off)]
     [InlineData(false, 40, TimerState.Pending, TimerState.Off)]
     [InlineData(false, 40, TimerState.On, TimerState.Pending)]
-    public async Task Example_Usage_OnTimerConfiguration_Run_async_bla(bool timerInput, int sleepTimeInMs, TimerState currentState, TimerState expectedState)
+    public async Task Example_Usage_OnTimerConfiguration_Run_async(bool timerInput, int sleepTimeInMs, TimerState currentState, TimerState expectedState)
     {
         _sequence     = GetOffTimerConfiguration().Build();
         _onTimerInput = timerInput;

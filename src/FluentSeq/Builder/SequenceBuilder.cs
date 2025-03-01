@@ -20,7 +20,7 @@ public class SequenceBuilder<TState> : ISequenceBuilder<TState>
     /// <param name="initialState">The initial state of the sequence</param>
     public SequenceBuilder(TState initialState)
     {
-        RootSequenceBuilder  = this;
+        RootSequenceBuilder = this;
         Builder().Options.InitialState = initialState;
     }
     
@@ -50,13 +50,13 @@ public class SequenceBuilder<TState> : ISequenceBuilder<TState>
     {
         ValidateAndThrow();
 
-        var result = new Sequence<TState>(RootSequenceBuilder.Options, RootSequenceBuilder.RegisteredStates);
+        var result = new Sequence<TState>(Builder().Options, Builder().RegisteredStates);
         return result;
     }
 
     public ISequenceBuilder<TState> ValidateAndThrow()
     {
-        if (!RootSequenceBuilder.Options.DisableValidation)
+        if (!Builder().Options.DisableValidation)
             _validator.ValidateAndThrow(this);
 
         return this;
@@ -72,7 +72,7 @@ public class SequenceBuilder<TState> : ISequenceBuilder<TState>
     /// <inheritdoc />
     public ISequenceBuilder<TState> DisableValidation()
     {
-        RootSequenceBuilder.Options.DisableValidation = true;
+        Builder().Options.DisableValidation = true;
         return this;
     }
 
@@ -88,7 +88,7 @@ public class SequenceBuilder<TState> : ISequenceBuilder<TState>
     {
         var builder = new StateBuilder<TState>(Builder(), state, description);
 
-        if (!RootSequenceBuilder.StateBuilders.Add(builder))
+        if (!Builder().StateBuilders.Add(builder))
             throw new DuplicateStateException(builder.State.Name);
 
         return builder;

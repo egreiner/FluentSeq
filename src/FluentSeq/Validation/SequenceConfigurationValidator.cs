@@ -30,6 +30,7 @@ public sealed class SequenceConfigurationValidator<TState> : AbstractValidator<I
 
     private void AddRulesForInitialState()
     {
+        RuleFor(builder => builder.Builder().Options.InitialState).NotNull();
         RuleFor(builder => builder.Builder().Options.InitialState).NotEmpty();
 
         RuleFor(builder => builder.Builder().RegisteredStates)
