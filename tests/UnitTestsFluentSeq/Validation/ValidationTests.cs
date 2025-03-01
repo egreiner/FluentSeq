@@ -13,7 +13,7 @@ public sealed class ValidationTests
 
         var actual = action.ShouldThrow<ValidationException>();
 
-        actual.Message.ShouldContain("more than one states");
+        actual.Message.ShouldContain("more than one state");
     }
 
     [Fact]
