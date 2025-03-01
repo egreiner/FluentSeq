@@ -11,7 +11,6 @@ public class StateOnEntryActionTests
         var sequence = new FluentSeq<string>().Create(state.Initializing)
             .DisableValidation()
             .ConfigureState(state.Initializing)
-                .TriggeredBy(() => false)
             .ConfigureState(state.Initialized)
                 .TriggeredBy(() => true)
                 .OnEntry(() => x = 2)
