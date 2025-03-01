@@ -29,9 +29,8 @@ public sealed class SimpleStateBuilderTests
         var builder = new FluentSeq<string>().Create("INIT");
 
         var actual = builder.ConfigureState("State1")
-                                .TriggeredBy(() => false)
                             .ConfigureState("State2")
-                                .Builder();
+                            .Builder();
 
         actual.ShouldBe(builder);
     }
@@ -53,7 +52,6 @@ public sealed class SimpleStateBuilderTests
         var builder = new FluentSeq<string>().Create("INIT");
 
         var state = builder.ConfigureState("State1")
-                                .TriggeredBy(() => false)
                            .ConfigureState("State2").State;
 
         var actual = state.Name;
@@ -79,7 +77,6 @@ public sealed class SimpleStateBuilderTests
         var builder = new FluentSeq<string>().Create("INIT");
 
         var state = builder.ConfigureState("State1")
-                                .TriggeredBy(() => false)
                            .ConfigureState("State2").State;
 
         var actual = state.Description;
