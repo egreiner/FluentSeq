@@ -1,4 +1,4 @@
-﻿namespace UnitTestsFluentSeq;
+﻿namespace UnitTestsFluentSeq.Core;
 
 public class StateTests
 {

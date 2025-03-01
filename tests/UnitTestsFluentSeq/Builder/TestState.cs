@@ -1,4 +1,4 @@
-﻿namespace UnitTestsFluentSeq;
+﻿namespace UnitTestsFluentSeq.Builder;
 
 public enum TestState
 {
