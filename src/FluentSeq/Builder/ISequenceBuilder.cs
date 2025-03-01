@@ -4,7 +4,7 @@ namespace FluentSeq.Builder;
 /// Provides methods to configure a sequence
 /// </summary>
 /// <typeparam name="TState">The type of the state</typeparam>
-public interface ISequenceBuilder<TState> : ICanConfigureState<TState>, IHasSequenceBuilder<TState>
+public interface ISequenceBuilder<TState> : IHasSequenceBuilder<TState>, ICanConfigureState<TState>
 {
     internal HashSet<StateBuilder<TState>> StateBuilders { get; }
 
