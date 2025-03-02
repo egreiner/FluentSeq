@@ -4,14 +4,14 @@
 /// Provides methods for further describing a trigger
 /// </summary>
 /// <typeparam name="TState">The type of the state</typeparam>
-public class TriggerBuilder<TState> : StateBuilder<TState>, ITriggerBuilder<TState>
+public class TriggerBuilder<TState> : ITriggerBuilder<TState>
 {
     private readonly ConfigureActions<TState> _actions;
 
     /// <summary>
     /// Provides methods to parametrize a trigger
     /// </summary>
-    public TriggerBuilder(IStateBuilder<TState> stateBuilder, Func<bool> triggeredByFunc) : base(stateBuilder.Builder(), stateBuilder.State.State, stateBuilder.State.Description)
+    public TriggerBuilder(IStateBuilder<TState> stateBuilder, Func<bool> triggeredByFunc)
     {
         RootSequenceBuilder = stateBuilder.Builder();
         RootStateBuilder    = stateBuilder.RootStateBuilder;
@@ -19,21 +19,28 @@ public class TriggerBuilder<TState> : StateBuilder<TState>, ITriggerBuilder<TSta
         _actions            = new ConfigureActions<TState>(RootStateBuilder);
     }
 
+    /// <summary>
+    /// The root SequenceBuilder
+    /// </summary>
+    private ISequenceBuilder<TState> RootSequenceBuilder { get; set; }
+
+    private StateBuilder<TState> RootStateBuilder { get; set; }
+
 
     /// <inheritdoc />
     public Trigger<TState> Trigger { get; }
 
 
     /// <inheritdoc />
-    public new IStateBuilder<TState> OnExit(Action action) =>
+    public IStateBuilder<TState> OnExit(Action action) =>
         _actions.OnExit(action);
 
     /// <inheritdoc />
-    public new IStateBuilder<TState> OnEntry(Action action) =>
+    public IStateBuilder<TState> OnEntry(Action action) =>
         _actions.OnEntry(action);
 
     /// <inheritdoc />
-    public new IStateBuilder<TState> WhileInState(Action action) =>
+    public IStateBuilder<TState> WhileInState(Action action) =>
         _actions.WhileInState(action);
 
 
@@ -58,4 +65,12 @@ public class TriggerBuilder<TState> : StateBuilder<TState>, ITriggerBuilder<TSta
         Trigger.WhenInStates.AddRange(triggerConditions);
         return this;
     }
+
+    /// <inheritdoc />
+    public ISequenceBuilder<TState> Builder() =>
+        RootSequenceBuilder;
+
+    /// <inheritdoc />
+    public IStateBuilder<TState> ConfigureState(TState state, string description = "") =>
+        Builder().ConfigureState(state, description);
 }

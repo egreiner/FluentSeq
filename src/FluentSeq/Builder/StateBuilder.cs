@@ -4,20 +4,26 @@ namespace FluentSeq.Builder;
 /// Provides methods for further describing a state
 /// </summary>
 /// <typeparam name="TState">The type of the state</typeparam>
-public class StateBuilder<TState> : SequenceBuilder<TState>, IStateBuilder<TState>
+public class StateBuilder<TState> : IStateBuilder<TState>
 {
     private readonly ConfigureActions<TState> _actions;
 
     /// <summary>
     /// Provides methods for further describing a state
     /// </summary>
-    public StateBuilder(ISequenceBuilder<TState> sequenceBuilder, TState state, string description): base(sequenceBuilder.Options.InitialState)
+    public StateBuilder(ISequenceBuilder<TState> sequenceBuilder, TState state, string description)
     {
         RootSequenceBuilder = sequenceBuilder.Builder();
         RootStateBuilder    = this;
         State               = new SeqState<TState>(state, description);
         _actions            = new ConfigureActions<TState>(RootStateBuilder);
     }
+
+
+    /// <summary>
+    /// The root SequenceBuilder
+    /// </summary>
+    private ISequenceBuilder<TState> RootSequenceBuilder { get; set; }
 
     /// <inheritdoc />
     public StateBuilder<TState> RootStateBuilder { get; protected set; }
@@ -62,4 +68,13 @@ public class StateBuilder<TState> : SequenceBuilder<TState>, IStateBuilder<TStat
     /// <inheritdoc />
     public IStateBuilder<TState> WhileInState(Action action) =>
         _actions.WhileInState(action);
+
+
+    /// <inheritdoc />
+    public ISequenceBuilder<TState> Builder() =>
+        RootSequenceBuilder;
+
+    /// <inheritdoc />
+    public IStateBuilder<TState> ConfigureState(TState state, string description = "") =>
+        Builder().ConfigureState(state, description);
 }

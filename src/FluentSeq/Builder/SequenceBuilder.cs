@@ -20,8 +20,8 @@ public class SequenceBuilder<TState> : ISequenceBuilder<TState>
     /// <param name="initialState">The initial state of the sequence</param>
     public SequenceBuilder(TState initialState)
     {
-        RootSequenceBuilder = this;
-        Builder().Options.InitialState = initialState;
+        RootSequenceBuilder  = this;
+        Options.InitialState = initialState;
     }
     
 
