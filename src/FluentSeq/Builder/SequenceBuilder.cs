@@ -54,7 +54,7 @@ public class SequenceBuilder<TState> : ISequenceBuilder<TState>
         return result;
     }
 
-    public ISequenceBuilder<TState> ValidateAndThrow()
+    private ISequenceBuilder<TState> ValidateAndThrow()
     {
         if (!Builder().Options.DisableValidation)
             _validator.ValidateAndThrow(this);

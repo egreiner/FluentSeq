@@ -24,9 +24,9 @@ public sealed class ValidateInitialStateTests
     [Fact]
     public void Builder_ShouldThrow_InitialStateEmpty_when_null()
     {
-        var builder = new FluentSeq<string>().Create(null)
+        var builder = new FluentSeq<string>().Create(null!)
             .DisableValidationForStates("", "State1")
-            .ConfigureState(null)
+            .ConfigureState(null!)
             .ConfigureState("State1")
             .Builder();
 
