@@ -6,6 +6,8 @@ namespace FluentSeq.Builder;
 /// <typeparam name="TState">The type of the state</typeparam>
 public class StateBuilder<TState> : SequenceBuilder<TState>, IStateBuilder<TState>
 {
+    private readonly ConfigureActions<TState> _actions;
+
     /// <summary>
     /// Provides methods for further describing a state
     /// </summary>
@@ -13,7 +15,8 @@ public class StateBuilder<TState> : SequenceBuilder<TState>, IStateBuilder<TStat
     {
         RootSequenceBuilder = sequenceBuilder.Builder();
         RootStateBuilder    = this;
-        State = new SeqState<TState>(state, description);
+        State               = new SeqState<TState>(state, description);
+        _actions            = new ConfigureActions<TState>(RootStateBuilder);
     }
 
     /// <inheritdoc />
@@ -49,23 +52,14 @@ public class StateBuilder<TState> : SequenceBuilder<TState>, IStateBuilder<TStat
 
 
     /// <inheritdoc />
-    public IStateBuilder<TState> OnExit(Action action)
-    {
-        RootStateBuilder.State.ExitActions.Add(action);
-        return this;
-    }
+    public IStateBuilder<TState> OnExit(Action action) =>
+        _actions.OnExit(action);
 
     /// <inheritdoc />
-    public IStateBuilder<TState> OnEntry(Action action)
-    {
-        RootStateBuilder.State.EntryActions.Add(action);
-        return this;
-    }
+    public IStateBuilder<TState> OnEntry(Action action) =>
+        _actions.OnEntry(action);
 
     /// <inheritdoc />
-    public IStateBuilder<TState> WhileInState(Action action)
-    {
-        RootStateBuilder.State.WhileInStateActions.Add(action);
-        return this;
-    }
+    public IStateBuilder<TState> WhileInState(Action action) =>
+        _actions.WhileInState(action);
 }

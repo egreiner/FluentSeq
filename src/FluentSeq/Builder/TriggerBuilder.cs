@@ -6,6 +6,8 @@
 /// <typeparam name="TState">The type of the state</typeparam>
 public class TriggerBuilder<TState> : StateBuilder<TState>, ITriggerBuilder<TState>
 {
+    private readonly ConfigureActions<TState> _actions;
+
     /// <summary>
     /// Provides methods to parametrize a trigger
     /// </summary>
@@ -14,11 +16,26 @@ public class TriggerBuilder<TState> : StateBuilder<TState>, ITriggerBuilder<TSta
         RootSequenceBuilder = stateBuilder.Builder();
         RootStateBuilder    = stateBuilder.RootStateBuilder;
         Trigger             = new Trigger<TState>(stateBuilder, triggeredByFunc);
+        _actions            = new ConfigureActions<TState>(RootStateBuilder);
     }
 
 
     /// <inheritdoc />
     public Trigger<TState> Trigger { get; }
+
+
+    /// <inheritdoc />
+    public new IStateBuilder<TState> OnExit(Action action) =>
+        _actions.OnExit(action);
+
+    /// <inheritdoc />
+    public new IStateBuilder<TState> OnEntry(Action action) =>
+        _actions.OnEntry(action);
+
+    /// <inheritdoc />
+    public new IStateBuilder<TState> WhileInState(Action action) =>
+        _actions.WhileInState(action);
+
 
     /// <inheritdoc />
     public ITriggerBuilder<TState> WhenInState(TState state)

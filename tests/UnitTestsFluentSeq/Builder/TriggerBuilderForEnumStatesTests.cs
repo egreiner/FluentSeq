@@ -39,4 +39,50 @@ public sealed class TriggerBuilderForEnumStatesTests
 
         actual.Count.ShouldBe(4);
     }
+
+
+    [Fact]
+    public void OnEntry_ShouldCreate_item_on_State_EntryActions()
+    {
+        var stateBuilder = new FluentSeq<TestState>().Create(TestState.Init)
+            .ConfigureState(TestState.State1);
+
+        var x = 0;
+        stateBuilder.TriggeredBy(() => true)
+                    .OnEntry(() => x = 2);
+
+        var actual = stateBuilder.State.EntryActions;
+
+        actual.ShouldHaveSingleItem();
+    }
+
+    [Fact]
+    public void OnExit_ShouldCreate_item_on_State_ExitActions()
+    {
+        var stateBuilder = new FluentSeq<TestState>().Create(TestState.Init)
+            .ConfigureState(TestState.State1);
+
+        var x = 0;
+        stateBuilder.TriggeredBy(() => true)
+                    .OnExit(() => x = 2);
+
+        var actual = stateBuilder.State.ExitActions;
+
+        actual.ShouldHaveSingleItem();
+    }
+
+    [Fact]
+    public void WhileInState_ShouldCreate_item_on_State_WhileInStateActions()
+    {
+        var stateBuilder = new FluentSeq<TestState>().Create(TestState.Init)
+            .ConfigureState(TestState.State1);
+
+        var x = 0;
+        stateBuilder.TriggeredBy(() => true)
+                    .WhileInState(() => x = 2);
+
+        var actual = stateBuilder.State.WhileInStateActions;
+
+        actual.ShouldHaveSingleItem();
+    }
 }
