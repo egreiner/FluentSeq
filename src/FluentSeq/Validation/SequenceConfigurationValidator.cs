@@ -3,6 +3,7 @@
 using Builder;
 using Extensions;
 using FluentValidation;
+using FluentValidation.Results;
 
 /// <summary>
 /// The sequence configuration validator.
@@ -31,7 +32,10 @@ public sealed class SequenceConfigurationValidator<TState> : AbstractValidator<I
     private void AddRulesForInitialState()
     {
         RuleFor(builder => builder.Builder().Options.InitialState).NotNull();
-        RuleFor(builder => builder.Builder().Options.InitialState).NotEmpty();
+
+        RuleFor(builder => builder.Builder().Options.InitialState)
+            .Must((builder, initialState) => initialState != null && initialState.ToString().Length > 0)
+            .WithMessage("The InitialState must not be empty.");
 
         RuleFor(builder => builder.Builder().RegisteredStates)
             .Must((builder, registeredStates) => registeredStates.Contains(builder.Options.InitialState))
