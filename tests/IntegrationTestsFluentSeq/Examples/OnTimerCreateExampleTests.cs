@@ -1,7 +1,6 @@
 ﻿namespace IntegrationTestsFluentSeq.Examples;
 
 using FluentSeq.Builder;
-using FluentSeq.Extensions;
 
 public class OnTimerCreateExampleTests
 {
