@@ -9,16 +9,16 @@ public static class BuilderFactory<TState>
 
 
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <param name="initialState"></param>
     /// <typeparam name="TState"></typeparam>
     /// <returns></returns>
-    public static ISequenceBuilder<TState> Create(TState initialState)
+    public static ISequenceBuilder<TState> CreateSequenceBuilder(TState initialState)
     {
         if (_sequenceBuilder is not null)
             return _sequenceBuilder;
-        
+
         _sequenceBuilder = new SequenceBuilder<TState>(initialState);
         return _sequenceBuilder;
     }

@@ -8,13 +8,19 @@ using Builder;
 /// <typeparam name="TState">The type of the state</typeparam>
 public class FluentSeq<TState>
 {
+    private ISequenceBuilder<TState> _sequenceBuilder = null!;
+
     /// <summary>
     /// Initializes a new sequence builder with the specified initial state.
     /// </summary>
     /// <param name="initialState">The initial state of the sequence</param>
     /// <returns>A sequence builder to configure the state machine</returns>
-    public ISequenceBuilder<TState> Create(TState initialState) =>
-        new SequenceBuilder<TState>(initialState);
+    public ISequenceBuilder<TState> Create(TState initialState)
+    {
+        // BuilderFactory<TState>.CreateSequenceBuilder(initialState);
+        _sequenceBuilder = new SequenceBuilder<TState>(initialState);
+        return _sequenceBuilder;
+    }
 
 
     /// <summary>
