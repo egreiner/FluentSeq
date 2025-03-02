@@ -13,10 +13,6 @@ public class OnTimerConfigureExampleTests
     {
         return new FluentSeq<TimerState>().Configure(TimerState.Off, builder =>
         {
-            builder.DisableValidationTemporarily();
-
-            builder.DisableValidationForStates(TimerState.On);
-
             builder.ConfigureState(TimerState.Off)
                 .TriggeredBy(() => !_onTimerInput);
 

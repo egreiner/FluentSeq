@@ -11,8 +11,6 @@ public class OffTimerCreateExampleTests
 
     private ISequenceBuilder<TimerState> GetOffTimerConfiguration() =>
         new FluentSeq<TimerState>().Create(TimerState.Off)
-            .DisableValidationTemporarily()
-            .SetInitialState(TimerState.Off)
             .ConfigureState(TimerState.On)
                 .TriggeredBy(() => _onTimerInput)
             .ConfigureState(TimerState.Pending)
