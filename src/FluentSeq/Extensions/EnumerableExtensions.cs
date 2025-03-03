@@ -24,6 +24,15 @@ public static class EnumerableExtensions
     /// <returns></returns>
     [AssertionMethod]
     public static bool IsNullOrEmpty<T>(
-        [AssertionCondition(AssertionConditionType.IS_NOT_NULL)] this IEnumerable<T>? enumerable) =>
-        enumerable?.Any() != true;
+        [AssertionCondition(AssertionConditionType.IS_NOT_NULL)] this IEnumerable<T>? enumerable)
+    {
+        if (enumerable == null)
+            return true;
+
+        if (enumerable is ICollection<T> collection)
+            return collection.Count == 0;
+
+        using var enumerator = enumerable.GetEnumerator();
+        return !enumerator.MoveNext();
+    }
 }

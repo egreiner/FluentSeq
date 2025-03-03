@@ -16,13 +16,25 @@ public class EnumerableExtensionsTests
     }
 
     [Fact]
-    public void IEnumerable_IsNullOrEmpty_ShouldBe_true_when_empty()
+    public void IEnumerable_IsNullOrEmpty_ShouldBe_true_when_empty_list()
     {
         IEnumerable<int> collection = new List<int>();
 
         bool actual = collection.IsNullOrEmpty();
 
         actual.ShouldBeTrue();
+    }
+
+    [Fact]
+    public void IEnumerable_IsNullOrEmpty_ShouldBe_true_when_empty_enumeration()
+    {
+        IEnumerable<int> collection = GetEmptyEnumerable();
+
+        bool actual = collection.IsNullOrEmpty();
+
+        actual.ShouldBeTrue();
+
+        return;
     }
 
     [Fact]
@@ -60,11 +72,21 @@ public class EnumerableExtensionsTests
     [Fact]
     public void IEnumerable_HasItems_ShouldBe_true()
     {
-        IEnumerable<int> collection = new List<int> { 1 };
+        IEnumerable<int> list = new List<int> { 1 };
 
-        bool actual = collection.HasItems();
+        bool actual = list.HasItems();
 
         actual.ShouldBeTrue();
+    }
+
+    [Fact]
+    public void IEnumerable_HasItems_ShouldBe_false_when_empty_enumerable()
+    {
+        IEnumerable<int> list = GetEmptyEnumerable();
+
+        bool actual = list.HasItems();
+
+        actual.ShouldBeFalse();
     }
 
     [Fact]
@@ -95,5 +117,11 @@ public class EnumerableExtensionsTests
         var actual = list.HasItems();
 
         actual.ShouldBeFalse();
+    }
+
+
+    private IEnumerable<int> GetEmptyEnumerable()
+    {
+        yield break;
     }
 }
