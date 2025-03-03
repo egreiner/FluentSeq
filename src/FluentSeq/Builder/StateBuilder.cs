@@ -56,6 +56,16 @@ public class StateBuilder<TState> : IStateBuilder<TState>
         return triggerBuilder;
     }
 
+    /// <inheritdoc />
+    public ITriggerBuilder<TState> TriggeredByState(TState state, Func<TimeSpan> dwellTime)
+    {
+        var triggerBuilder = new TriggerBuilder<TState>(this, () => true);
+        triggerBuilder.WhenInState(state, dwellTime);
+        RootStateBuilder.State.Trigger.Add(triggerBuilder.Trigger);
+
+        return triggerBuilder;
+    }
+
 
     /// <inheritdoc />
     public IStateBuilder<TState> OnExit(Action action) =>
