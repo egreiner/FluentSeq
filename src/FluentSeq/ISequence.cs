@@ -12,12 +12,6 @@ public interface ISequence<TState>
     // // /// </summary>
     // // ILoggerAdapter Logger { get; set; }
 
-    // // /// <summary>
-    // // /// The sequence-data
-    // // /// </summary>
-    // // SequenceData Data { get; }
-
-
     /// <summary>
     /// The sequence options
     /// </summary>
@@ -38,20 +32,6 @@ public interface ISequence<TState>
     /// The previous state of the sequence
     /// </summary>
     TState? PreviousState { get; }
-
-
-    // // /// <summary>
-    // // /// Returns true if the queried state is registered in the sequence-configuration.
-    // // /// </summary>
-    // // /// <param name="state">The state</param>
-    // // bool IsRegisteredState(TState state);
-    //
-    //
-    //
-    // // /// <summary>
-    // // /// Set the sequence-configuration
-    // // /// </summary>
-    // // ISequence SetConfiguration(SequenceConfiguration configuration, SequenceData data);
 
 
     /// <summary>
