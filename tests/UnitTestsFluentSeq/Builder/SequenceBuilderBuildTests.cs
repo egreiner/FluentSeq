@@ -1,12 +1,24 @@
 ﻿namespace UnitTestsFluentSeq.Builder;
 
+using FluentSeq.Extensions;
+
 public sealed class SequenceBuilderBuildTests
 {
     [Fact]
-    public void Build_ShouldNotThrow()
+    public void Build_ShouldNotThrow_when_DisableValidation()
     {
         var action = () => new FluentSeq<string>().Create("INIT")
             .DisableValidation()
+            .Build();
+
+        action.ShouldNotThrow();
+    }
+
+    [Fact]
+    public void Build_ShouldNotThrow_when_DisableValidationTemporarily()
+    {
+        var action = () => new FluentSeq<string>().Create("INIT")
+            .DisableValidationTemporarily()
             .Build();
 
         action.ShouldNotThrow();
