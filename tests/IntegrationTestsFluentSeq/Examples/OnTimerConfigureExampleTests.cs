@@ -21,7 +21,7 @@ public class OnTimerConfigureExampleTests
 
             builder.ConfigureState(TimerState.On)
                 .TriggeredBy(() => _onTimerInput)
-                .WhenInState(TimerState.Pending, TimeSpan.FromMilliseconds(20));
+                .WhenInState(TimerState.Pending, () => TimeSpan.FromMilliseconds(20));
         }).Builder();
     }
 

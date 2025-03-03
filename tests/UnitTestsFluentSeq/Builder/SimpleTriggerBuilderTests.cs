@@ -87,7 +87,7 @@ public sealed class SimpleTriggerBuilderTests
         var builder = new FluentSeq<string>().Create("INIT")
             .ConfigureState("State1")
             .TriggeredBy(() => true)
-            .WhenInState("Bla", TimeSpan.FromMilliseconds(20));
+            .WhenInState("Bla", () => TimeSpan.FromMilliseconds(20));
 
         var actual = builder.Trigger.WhenInStates;
 

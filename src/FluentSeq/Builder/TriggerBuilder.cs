@@ -52,7 +52,7 @@ public class TriggerBuilder<TState> : ITriggerBuilder<TState>
     }
 
     /// <inheritdoc />
-    public ITriggerBuilder<TState> WhenInState(TState state, TimeSpan dwellTime)
+    public ITriggerBuilder<TState> WhenInState(TState state, Func<TimeSpan> dwellTime)
     {
         Trigger.WhenInStates.Add(new TriggerCondition<TState>(state, dwellTime));
         return this;

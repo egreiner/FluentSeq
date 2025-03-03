@@ -111,7 +111,7 @@ public class SwitchToAnotherStateTests
             .ConfigureState(state.Initialized)
             .ConfigureState(state.On)
                 .TriggeredBy(() => true)
-                .WhenInState(state.Initialized, TimeSpan.FromMilliseconds(20))
+                .WhenInState(state.Initialized, () => TimeSpan.FromMilliseconds(20))
             .Builder()
             .Build();
 

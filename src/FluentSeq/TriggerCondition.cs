@@ -4,7 +4,7 @@
 /// The trigger condition
 /// </summary>
 /// <typeparam name="TState">The state</typeparam>
-public class TriggerCondition<TState>(TState state, TimeSpan? dwellTime = null)
+public class TriggerCondition<TState>(TState state, Func<TimeSpan>? dwellTime = null)
 {
     /// <summary>
     /// The state
@@ -14,7 +14,7 @@ public class TriggerCondition<TState>(TState state, TimeSpan? dwellTime = null)
     /// <summary>
     /// The sequence must be in the state for this specified time before the trigger is activated
     /// </summary>
-    public TimeSpan? DwellTime { get; } = dwellTime;
+    public Func<TimeSpan>? DwellTime { get; } = dwellTime;
 
 
     /// <summary>
@@ -28,6 +28,6 @@ public class TriggerCondition<TState>(TState state, TimeSpan? dwellTime = null)
 
         return !result || DwellTime is null
             ? result
-            : sequence.CurrentStateElapsed(DwellTime.Value);
+            : sequence.CurrentStateElapsed(DwellTime());
     }
 }

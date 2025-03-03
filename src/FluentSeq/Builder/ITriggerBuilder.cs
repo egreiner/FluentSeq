@@ -24,7 +24,7 @@ public interface ITriggerBuilder<TState>: IHasSequenceBuilder<TState>, ICanConfi
     /// </summary>
     /// <param name="state">The condition of the current state of the sequence</param>
     /// <param name="dwellTime">For how long the sequence must be in this state before the trigger gets valid</param>
-    ITriggerBuilder<TState> WhenInState(TState state, TimeSpan dwellTime);
+    ITriggerBuilder<TState> WhenInState(TState state, Func<TimeSpan> dwellTime);
 
     /// <summary>
     /// Describes what CurrentStates the sequence can be for the trigger to be valid.
