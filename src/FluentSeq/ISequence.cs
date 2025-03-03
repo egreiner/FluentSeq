@@ -55,6 +55,11 @@ public interface ISequence<TState>
 
 
     /// <summary>
+    /// The duration of the current state
+    /// </summary>
+    TimeSpan CurrentStateDuration();
+
+    /// <summary>
     /// The current state has elapsed the specified duration
     /// </summary>
     bool CurrentStateElapsed(TimeSpan duration);

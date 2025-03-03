@@ -22,10 +22,10 @@ public class Sequence<TState>(SequenceOptions<TState> options, SeqStateCollectio
     public TState? PreviousState { get; private set; }
 
 
+    /// <inheritdoc />
+    public TimeSpan CurrentStateDuration() => GetSeqState(CurrentState)?.Duration ?? TimeSpan.Zero;
 
-    /// <summary>
-    /// The current state has elapsed the specified duration
-    /// </summary>
+    /// <inheritdoc />
     public bool CurrentStateElapsed(TimeSpan duration) => GetSeqState(CurrentState)?.Elapsed(duration) ?? false;
 
 
