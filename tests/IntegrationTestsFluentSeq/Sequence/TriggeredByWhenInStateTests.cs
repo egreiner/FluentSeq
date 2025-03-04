@@ -40,9 +40,9 @@ public class TriggeredByWhenInStateTests
     }
 
     [Theory]
-    [InlineData(0, "Initialized")]
-    [InlineData(40, "On")]
-    public async Task TriggeredSeq_ShouldSwitch_when_correct_CurrentState_with_dwellTime(int dwellTimeInMs, string expectedState)
+    [InlineData(9, 0, "Initialized")]
+    [InlineData(1, 2, "On")]
+    public async Task TriggeredSeq_ShouldSwitch_when_correct_CurrentState_with_dwellTime(int dwellTimeInMs, int delayInMs, string expectedState)
     {
         var state = new DefaultSequenceStates();
 
@@ -52,13 +52,13 @@ public class TriggeredByWhenInStateTests
             .ConfigureState(state.Initialized)
             .ConfigureState(state.On)
                 .TriggeredBy(() => true)
-                .WhenInState(state.Initialized, () => TimeSpan.FromMilliseconds(20))
+                .WhenInState(state.Initialized, () => TimeSpan.FromMilliseconds(dwellTimeInMs))
             .Builder()
             .Build();
 
         sequence.SetState(state.Initialized);
 
-        await Task.Delay(dwellTimeInMs);
+        await Task.Delay(delayInMs);
         await sequence.RunAsync();
 
         sequence.CurrentState.ShouldBe(expectedState);
