@@ -1,7 +1,7 @@
 ﻿#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 namespace FluentSeq;
 
-// TODO maybe this class is not needed anymore???
+// TODO maybe this class is not needed anymore? Move it to the tests?
 
 /// <summary>
 /// The DefaultSequenceStates class defines a set of standard states for sequences.
