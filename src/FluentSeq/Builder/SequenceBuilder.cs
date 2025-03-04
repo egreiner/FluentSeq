@@ -1,5 +1,6 @@
 namespace FluentSeq.Builder;
 
+using Core;
 using Exceptions;
 using FluentValidation;
 using Validation;

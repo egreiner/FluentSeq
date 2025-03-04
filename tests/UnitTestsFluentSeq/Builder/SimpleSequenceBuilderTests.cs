@@ -1,5 +1,6 @@
 ﻿namespace UnitTestsFluentSeq.Builder;
 
+using FluentSeq.Core;
 using FluentSeq.Exceptions;
 
 public sealed class SimpleSequenceBuilderTests

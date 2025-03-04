@@ -1,5 +1,7 @@
 ﻿namespace UnitTestsFluentSeq.Core;
 
+using FluentSeq.Core;
+
 public class StateTests
 {
     [Fact]

@@ -1,4 +1,4 @@
-namespace FluentSeq;
+namespace FluentSeq.Core;
 
 /// <summary>
 /// Describes a state

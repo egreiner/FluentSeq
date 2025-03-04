@@ -2,6 +2,8 @@
 
 namespace FluentSeq.Builder;
 
+using Core;
+
 /// <summary>
 /// Provides methods for further describing a trigger
 /// </summary>
