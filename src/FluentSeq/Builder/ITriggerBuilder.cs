@@ -1,6 +1,4 @@
-﻿#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-
-namespace FluentSeq.Builder;
+﻿namespace FluentSeq.Builder;
 
 using Core;
 
