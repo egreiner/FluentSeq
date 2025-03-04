@@ -37,6 +37,7 @@ public class SwitchToAnotherStateTests
 
         sequence.Run();
 
+        sequence.CurrentState.ShouldBe(state.Initialized);
         sequence.PreviousState.ShouldBe(state.Initializing);
     }
 
@@ -140,6 +141,36 @@ public class SwitchToAnotherStateTests
         sequence.SetState(state.Off);
         sequence.Run();
 
+        sequence.CurrentState.ShouldBe(state.On);
+    }
+
+    [Fact]
+    public async Task TriggeredByState_ShouldSwitch_from_State_to_State()
+    {
+        var state = new DefaultSequenceStates();
+
+        Func<TimeSpan> dwellTime() => () => TimeSpan.FromMilliseconds(1);
+
+        var sequence = new FluentSeq<string>().Create(state.Initializing)
+            .ConfigureState(state.Initializing).TriggeredBy(() => false)
+            .ConfigureState(state.Initialized).TriggeredByState(state.Initializing, dwellTime())
+            .ConfigureState(state.Off).TriggeredByState(state.Initialized, dwellTime())
+            .ConfigureState(state.On).TriggeredByState(state.Off, dwellTime())
+            .Builder()
+            .Build();
+
+        sequence.CurrentState.ShouldBe(state.Initializing);
+
+        await Task.Delay(2);
+        await sequence.RunAsync();
+        sequence.CurrentState.ShouldBe(state.Initialized);
+
+        await Task.Delay(2);
+        await sequence.RunAsync();
+        sequence.CurrentState.ShouldBe(state.Off);
+
+        await Task.Delay(2);
+        await sequence.RunAsync();
         sequence.CurrentState.ShouldBe(state.On);
     }
 }
