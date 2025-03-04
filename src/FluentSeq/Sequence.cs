@@ -6,16 +6,27 @@ using Extensions;
 /// A sequence that could be executed
 /// </summary>
 /// <typeparam name="TState">Type of the state (string, enum, int...)</typeparam>
-public class Sequence<TState>(SequenceOptions<TState> options, SeqStateCollection<TState> registeredStates) : ISequence<TState>
+public class Sequence<TState> : ISequence<TState>
 {
-    /// <inheritdoc />
-    public SequenceOptions<TState> Options { get; } = options;
+    /// <summary>
+    /// A sequence that could be executed
+    /// </summary>
+    /// <typeparam name="TState">Type of the state (string, enum, int...)</typeparam>
+    public Sequence(SequenceOptions<TState> options, SeqStateCollection<TState> registeredStates)
+    {
+        Options          = options;
+        RegisteredStates = registeredStates;
+        SetState(options.InitialState);
+    }
 
     /// <inheritdoc />
-    public SeqStateCollection<TState> RegisteredStates { get; } = registeredStates;
+    public SequenceOptions<TState> Options { get; }
 
     /// <inheritdoc />
-    public TState CurrentState { get; private set; } = options.InitialState;
+    public SeqStateCollection<TState> RegisteredStates { get; }
+
+    /// <inheritdoc />
+    public TState CurrentState { get; private set; }
 
 
     /// <inheritdoc />
