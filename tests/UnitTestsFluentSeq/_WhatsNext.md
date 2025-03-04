@@ -1,11 +1,24 @@
-﻿# what is missing
-## seq validation
+﻿# if you leave TDD for a while, take care of the following
+
+## Focus on CodeCoverage
+do TestFirst or TestImmediatelyAfter or as last ressort TestAfter
+Ensure that TestAfter will not become TestNever!
+
+
+# what is missing
 
 ## work on todos
-## work on CodeCoverage
 ## raise event state changed
 
+
 # -------------------------------------------------------------------------------------------------
+
+
+
+# 2025-02-28
+## done: seq validation
+
+
 # 2025-02-27
 ## done: SequenceBuilder.Configure(builder => ...)
 ## done: WhenInState(bla, forTimeSpan)
