@@ -93,12 +93,4 @@ public class SequenceBuilder<TState> : ISequenceBuilder<TState>
 
         return builder;
     }
-
-    
-    /// <inheritdoc />
-    public ISequenceBuilder<TState> SetInitialState(TState initialState)
-    {
-        Builder().Options.InitialState = initialState;
-        return this;
-    }
 }

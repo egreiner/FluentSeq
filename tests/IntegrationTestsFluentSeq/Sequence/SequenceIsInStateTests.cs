@@ -26,7 +26,6 @@ public class SequenceIsInStateTests
         var state = new DefaultSequenceStates();
 
         var sequence = new FluentSeq<string>().Create(state.Initializing)
-            .SetInitialState(state.Initializing)
             .ConfigureState(state.Initializing).TriggeredBy(() => false)
             .ConfigureState(state.Initialized).TriggeredBy(() => true)
             .Builder()

@@ -54,6 +54,7 @@ public sealed class TriggerBuilderForEnumStatesTests
         var actual = stateBuilder.State.EntryActions;
 
         actual.ShouldHaveSingleItem();
+        x.ShouldBe(0);
     }
 
     [Fact]
@@ -69,6 +70,7 @@ public sealed class TriggerBuilderForEnumStatesTests
         var actual = stateBuilder.State.ExitActions;
 
         actual.ShouldHaveSingleItem();
+        x.ShouldBe(0);
     }
 
     [Fact]
@@ -84,5 +86,6 @@ public sealed class TriggerBuilderForEnumStatesTests
         var actual = stateBuilder.State.WhileInStateActions;
 
         actual.ShouldHaveSingleItem();
+        x.ShouldBe(0);
     }
 }

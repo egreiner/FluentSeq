@@ -37,10 +37,4 @@ public interface ISequenceBuilder<TState> : IHasSequenceBuilder<TState>, ICanCon
     /// The validation for the specified states within the sequence configuration will be disabled
     /// </summary>
     ISequenceBuilder<TState> DisableValidationForStates(params TState[] states);
-
-    /// <summary>
-    /// Sets the initial state
-    /// </summary>
-    /// <param name="initialState">The initial state</param>
-    ISequenceBuilder<TState> SetInitialState(TState initialState);
 }

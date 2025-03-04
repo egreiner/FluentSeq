@@ -11,7 +11,6 @@ public class Sequence<TState> : ISequence<TState>
     /// <summary>
     /// A sequence that could be executed
     /// </summary>
-    /// <typeparam name="TState">Type of the state (string, enum, int...)</typeparam>
     public Sequence(SequenceOptions<TState> options, SeqStateCollection<TState> registeredStates)
     {
         Options          = options;
@@ -26,7 +25,7 @@ public class Sequence<TState> : ISequence<TState>
     public SeqStateCollection<TState> RegisteredStates { get; }
 
     /// <inheritdoc />
-    public TState CurrentState { get; private set; }
+    public TState CurrentState { get; private set; } = default!;
 
 
     /// <inheritdoc />
