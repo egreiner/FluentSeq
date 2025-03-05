@@ -17,7 +17,7 @@ The library allows you to configure:
 
 ### Build Status  
 &nbsp; ![workflow tests](https://github.com/egreiner/FluentSeq/actions/workflows/run-tests.yml/badge.svg)  
-
+&nbsp; ![workflow complete](https://github.com/egreiner/FluentSeq/actions/workflows/create-nuget-package.yml/badge.svg)
 
 
 # Table of Contents
