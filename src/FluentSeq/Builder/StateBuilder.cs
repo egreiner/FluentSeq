@@ -9,6 +9,7 @@ using Core;
 public class StateBuilder<TState> : IStateBuilder<TState>
 {
     private readonly ConfigureActions<TState> _actions;
+    private readonly ConfigureTrigger<TState> _trigger;
 
     /// <summary>
     /// Provides methods for further describing a state
@@ -19,6 +20,7 @@ public class StateBuilder<TState> : IStateBuilder<TState>
         RootStateBuilder    = this;
         State               = new SeqState<TState>(state, description);
         _actions            = new ConfigureActions<TState>(RootStateBuilder);
+        _trigger            = new ConfigureTrigger<TState>(RootStateBuilder);
     }
 
 
@@ -48,25 +50,13 @@ public class StateBuilder<TState> : IStateBuilder<TState>
         State.Name.GetHashCode();
 
 
+    /// <inheritdoc />
+    public ITriggerBuilder<TState> TriggeredBy(Func<bool> triggeredByFunc) =>
+        _trigger.TriggeredBy(triggeredByFunc);
 
     /// <inheritdoc />
-    public ITriggerBuilder<TState> TriggeredBy(Func<bool> triggeredByFunc)
-    {
-        var triggerBuilder = new TriggerBuilder<TState>(this, triggeredByFunc);
-        RootStateBuilder.State.Trigger.Add(triggerBuilder.Trigger);
-
-        return triggerBuilder;
-    }
-
-    /// <inheritdoc />
-    public ITriggerBuilder<TState> TriggeredByState(TState state, Func<TimeSpan> dwellTime)
-    {
-        var triggerBuilder = new TriggerBuilder<TState>(this, () => true);
-        triggerBuilder.WhenInState(state, dwellTime);
-        RootStateBuilder.State.Trigger.Add(triggerBuilder.Trigger);
-
-        return triggerBuilder;
-    }
+    public ITriggerBuilder<TState> TriggeredByState(TState state, Func<TimeSpan> dwellTime) =>
+        _trigger.TriggeredByState(state, dwellTime);
 
 
     /// <inheritdoc />

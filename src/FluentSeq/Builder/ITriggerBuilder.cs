@@ -6,12 +6,13 @@ using Core;
 /// Provides methods for further describing a trigger
 /// </summary>
 /// <typeparam name="TState">The type of the state</typeparam>
-public interface ITriggerBuilder<TState>: IHasSequenceBuilder<TState>, ICanConfigureState<TState>, ICanConfigureActions<TState>
+public interface ITriggerBuilder<TState>: IHasSequenceBuilder<TState>, ICanConfigureState<TState>, ICanConfigureActions<TState>, ICanConfigureTrigger<TState>
 {
     /// <summary>
     /// Returns the trigger the builder is for
     /// </summary>
     Trigger<TState> Trigger { get; }
+
 
     /// <summary>
     /// Describes what CurrentState the sequence can be for the trigger to be valid.

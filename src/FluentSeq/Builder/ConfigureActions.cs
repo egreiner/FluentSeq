@@ -3,7 +3,7 @@
 /// <summary>
 /// A helper class for configuring actions on a state
 /// </summary>
-/// <typeparam name="TState"></typeparam>
+/// <typeparam name="TState">The state type</typeparam>
 public class ConfigureActions<TState>(IStateBuilder<TState> stateBuilder) : ICanConfigureActions<TState>
 {
     /// <inheritdoc />

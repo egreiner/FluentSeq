@@ -9,6 +9,7 @@ using Core;
 public class TriggerBuilder<TState> : ITriggerBuilder<TState>
 {
     private readonly ConfigureActions<TState> _actions;
+    private readonly ConfigureTrigger<TState> _trigger;
 
     /// <summary>
     /// Provides methods to parametrize a trigger
@@ -19,6 +20,7 @@ public class TriggerBuilder<TState> : ITriggerBuilder<TState>
         RootStateBuilder    = stateBuilder.RootStateBuilder;
         Trigger             = new Trigger<TState>(stateBuilder, triggeredByFunc);
         _actions            = new ConfigureActions<TState>(RootStateBuilder);
+        _trigger            = new ConfigureTrigger<TState>(RootStateBuilder);
     }
 
     /// <summary>
@@ -31,6 +33,31 @@ public class TriggerBuilder<TState> : ITriggerBuilder<TState>
 
     /// <inheritdoc />
     public Trigger<TState> Trigger { get; }
+
+
+    /// <inheritdoc />
+    public ITriggerBuilder<TState> TriggeredBy(Func<bool> triggeredByFunc) =>
+        _trigger.TriggeredBy(triggeredByFunc);
+
+    /// <inheritdoc />
+    public ITriggerBuilder<TState> TriggeredByState(TState state, Func<TimeSpan> dwellTime) =>
+        _trigger.TriggeredByState(state, dwellTime);
+
+
+    /// <inheritdoc />
+    public ITriggerBuilder<TState> WhenInState(TState state, Func<TimeSpan> dwellTime)
+    {
+        Trigger.WhenInStates.Add(new TriggerCondition<TState>(state, dwellTime));
+        return this;
+    }
+
+    /// <inheritdoc />
+    public ITriggerBuilder<TState> WhenInStates(params TState[] states)
+    {
+        var triggerConditions = states.Select(state => new TriggerCondition<TState>(state));
+        Trigger.WhenInStates.AddRange(triggerConditions);
+        return this;
+    }
 
 
     /// <inheritdoc />
@@ -50,21 +77,6 @@ public class TriggerBuilder<TState> : ITriggerBuilder<TState>
     public ITriggerBuilder<TState> WhenInState(TState state)
     {
         Trigger.WhenInStates.Add(new TriggerCondition<TState>(state));
-        return this;
-    }
-
-    /// <inheritdoc />
-    public ITriggerBuilder<TState> WhenInState(TState state, Func<TimeSpan> dwellTime)
-    {
-        Trigger.WhenInStates.Add(new TriggerCondition<TState>(state, dwellTime));
-        return this;
-    }
-
-    /// <inheritdoc />
-    public ITriggerBuilder<TState> WhenInStates(params TState[] states)
-    {
-        var triggerConditions = states.Select(state => new TriggerCondition<TState>(state));
-        Trigger.WhenInStates.AddRange(triggerConditions);
         return this;
     }
 

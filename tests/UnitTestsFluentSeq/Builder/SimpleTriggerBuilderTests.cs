@@ -148,4 +148,32 @@ public sealed class SimpleTriggerBuilderTests
 
         actual.Count.ShouldBe(4);
     }
+
+    [Fact]
+    public void TwoTriggeredBy_ShouldCreate_two_elements()
+    {
+        var stateBuilder = new FluentSeq<string>().Create("INIT")
+            .ConfigureState("State1");
+
+        stateBuilder.TriggeredBy(() => true).WhenInState("Bla")
+            .TriggeredBy(() => false).WhenInState("Blub");
+
+        var actual = stateBuilder.State.Trigger;
+
+        actual.Count.ShouldBe(2);
+    }
+
+    [Fact]
+    public void TriggeredBy_andTriggeredByState_ShouldCreate_two_elements()
+    {
+        var stateBuilder = new FluentSeq<string>().Create("INIT")
+            .ConfigureState("State1");
+
+        stateBuilder.TriggeredBy(() => true).WhenInState("Bla")
+                    .TriggeredByState("Bla", () => TimeSpan.FromMilliseconds(20));
+
+        var actual = stateBuilder.State.Trigger;
+
+        actual.Count.ShouldBe(2);
+    }
 }
