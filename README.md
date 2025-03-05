@@ -1,8 +1,5 @@
 # FluentSeq
 
-TBD ... Documentation must be completely reworked...  
-
-
 FluentSeq provides a fluent interface for creating easy-to-read sequences, 
 eliminating the need for lengthy if/else statements.  
 The library is written in C# 14 and targets .NET Standard 2.0 (.NET (Core) and .NET Framework).  
@@ -198,14 +195,13 @@ The sequence will be validated on build.
 `_sequence = builder.Build();` 
 
 
-Validations
-
+Validations:  
 - The InitialState must be defined (not null or empty)  
 - The InitialState must be configured  
-- Every State must have a TriggeredBY(...)  
+- Every State must have a TriggeredBy(...)  
 - A Sequence must at least have configured two States  
 
-Validation could be disabled
+Validation could be disabled  
 - completely turn off validation  
     `builder.DisableValidation()`  
 
