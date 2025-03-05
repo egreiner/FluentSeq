@@ -1,5 +1,4 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
@@ -46,4 +45,25 @@
       <PackageReference Include="JetBrains.Annotations" Version="2024.3.0" />
     </ItemGroup>
 
+    <ItemGroup>
+        <None Include="..\..\images\icon2.png">
+            <Pack>True</Pack>
+            <PackagePath>docs</PackagePath>
+            <Link>icon2.png</Link>
+        </None>
+
+        <None Include="..\..\README.md">
+            <Pack>true</Pack>
+            <PackagePath>docs</PackagePath>
+            <Link>README.md</Link>
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+
+        <None Include="..\..\LICENSE.txt">
+            <Pack>true</Pack>
+            <PackagePath>docs</PackagePath>
+            <Link>LICENSE.txt</Link>
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
 </Project>
