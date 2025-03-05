@@ -24,25 +24,26 @@ The library allows you to configure:
 [Installation](#installation)  
 [Usage](#usage)  
 [States](#states)  
-[Validation](#validation)  
+[Trigger](#trigger)  
+[Actions](#actions)  
+[Validation](#sequence-validation)  
 [Version Changes](#version-changes)  
 [Breaking Changes](#breaking-changes)  
 [Preview next Version v2.0](#preview-next-version-v2)  
 
 
-# Installation  
+# Installation
 The library is available as a [NuGet package](https://www.nuget.org/packages/FluentSeq/).  
 
 
 
-# Usage  
+# Usage
 ## Configure, build and run a sequence  
 ### Create a sequence in a compact style  
 
 A simple example configuration and usage for an OnTimer-sequence as xUnit-Test:  
 
 ``` c#
-
 using FluentSeq.Builder;
 using FluentSeq.Core;
 
@@ -105,7 +106,6 @@ public class OnTimerCreateExampleTests
 A simple example configuration and usage for an OffTimer-sequence as xUnit-Test:  
 
 ``` c#
-
 using FluentSeq.Builder;
 using FluentSeq.Core;
 
@@ -170,26 +170,48 @@ For more examples -> IntegrationsTestsFluentSeq/Examples
 [Top 🠉](#table-of-contents)
 
 
-## Configurations in Detail
+## Configuration in Detail
 
-TBD  
+### States
+
+States can be defined as strings, enums, int, objects, and so on.  
+Internally they will be stored as type SeqState.
+
+
+``` c#
+        var builder = new FluentSeq<TimerState>().Create(TimerState.Off)
+            .ConfigureState(TimerState.Off)
+            .Builder()
+
+// or
+        var builder = new FluentSeq<string>().Create("Off")
+            .ConfigureState("Off")
+            .Builder()
+
+```
 
 
 [Top 🠉](#table-of-contents)
 
 
-# States
 
-States can be defined as strings, enums, int, objects...  
+### Trigger
+
+TBD
 
 [Top 🠉](#table-of-contents)
 
 
 
+### Actions
+
+TBD
+
+[Top 🠉](#table-of-contents)
 
 
 
-# Validation
+# Sequence Validation
 
 The sequence will be validated on build.  
 `_sequence = builder.Build();` 
@@ -201,20 +223,31 @@ Validations:
 - Every State must have a TriggeredBy(...)  
 - A Sequence must at least have configured two States  
 
-Validation could be disabled  
+Validation could be disabled:  
 - completely turn off validation  
-    `builder.DisableValidation()`  
+
+``` c#
+        var builder = new FluentSeq<TimerState>().Create(TimerState.Off)
+            .DisableValidation()
+            .ConfigureState(TimerState.Off)
+            .Builder()
+```
 
 - or with specifying states that shouldn't be validated:  
-    `builder.DisableValidationForStates("state1", "state2", ...)`  
-    `builder.DisableValidationForStates(Enum.State1, Enum.State2, ...)`  
+
+``` c#
+        var builder = new FluentSeq<TimerState>().Create(Enum.Off)
+            .DisableValidationForStates(Enum.State1, Enum.State2, ...)
+            .ConfigureState(Enum.Off)
+            .Builder()
+```
 
 
 [Top 🠉](#table-of-contents)
 
 
 
-# Version Changes  
+# Version Changes
 
 [Top 🠉](#table-of-contents)  
 
