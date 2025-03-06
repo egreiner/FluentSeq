@@ -170,7 +170,7 @@ public sealed class SimpleTriggerBuilderTests
             .ConfigureState("State1");
 
         stateBuilder.TriggeredBy(() => true).WhenInState("Bla")
-                    .TriggeredByState("Bla", () => TimeSpan.FromMilliseconds(20));
+                    .TriggeredByState("INIT", () => TimeSpan.FromMilliseconds(20));
 
         var actual = stateBuilder.State.Trigger;
 

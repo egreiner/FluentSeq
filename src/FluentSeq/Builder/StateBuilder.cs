@@ -27,10 +27,10 @@ public class StateBuilder<TState> : IStateBuilder<TState>
     /// <summary>
     /// The root SequenceBuilder
     /// </summary>
-    private ISequenceBuilder<TState> RootSequenceBuilder { get; set; }
+    private ISequenceBuilder<TState> RootSequenceBuilder { get; }
 
     /// <inheritdoc />
-    public StateBuilder<TState> RootStateBuilder { get; protected set; }
+    public StateBuilder<TState> RootStateBuilder { get; }
 
     /// <inheritdoc />
     public SeqState<TState> State { get; }

@@ -26,9 +26,9 @@ public class TriggerBuilder<TState> : ITriggerBuilder<TState>
     /// <summary>
     /// The root SequenceBuilder
     /// </summary>
-    private ISequenceBuilder<TState> RootSequenceBuilder { get; set; }
+    private ISequenceBuilder<TState> RootSequenceBuilder { get; }
 
-    private StateBuilder<TState> RootStateBuilder { get; set; }
+    private StateBuilder<TState> RootStateBuilder { get; }
 
 
     /// <inheritdoc />
