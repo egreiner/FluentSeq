@@ -1,8 +1,5 @@
 ﻿namespace IntegrationTestsFluentSeq.Examples;
 
-using FluentSeq.Builder;
-using FluentSeq.Core;
-
 public class OffTimerCreateExampleTests
 {
     private ISequence<TimerState>? _sequence;

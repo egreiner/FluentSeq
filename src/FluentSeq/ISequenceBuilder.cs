@@ -1,5 +1,6 @@
-namespace FluentSeq.Builder;
+namespace FluentSeq;
 
+using Builder;
 using Core;
 
 /// <summary>

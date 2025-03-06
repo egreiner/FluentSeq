@@ -1,4 +1,6 @@
-﻿namespace FluentSeq.Core;
+﻿namespace FluentSeq;
+
+using Core;
 
 // using Logging;
 
