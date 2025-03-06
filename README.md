@@ -12,7 +12,7 @@ The library allows you to configure:
 - Sequences with States  
 - different kinds of State-Triggers  
 - Actions that can be executed on State-Entry, State-Exit or WhileInState  
-- Validate a sequence on build  
+- Validate a sequence on build to avoid misconfigurations (missing states, triggers, etc.)
 
 
 ### Build Status  
