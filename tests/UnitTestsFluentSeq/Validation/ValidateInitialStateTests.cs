@@ -6,7 +6,7 @@ using Builder;
 public sealed class ValidateInitialStateTests
 {
     [Fact]
-    public void Builder_ShouldThrow_InitialStateEmpty_when_Empty()
+    public void Build_ShouldThrow_InitialStateEmpty_when_Empty()
     {
         var builder = new FluentSeq<string>().Create("")
             .DisableValidationForStates("", "State1")
@@ -23,7 +23,7 @@ public sealed class ValidateInitialStateTests
     }
 
     [Fact]
-    public void Builder_ShouldThrow_InitialStateEmpty_when_null()
+    public void Build_ShouldThrow_InitialStateEmpty_when_null()
     {
         var builder = new FluentSeq<string>().Create(null!)
             .DisableValidationForStates("", "State1")
@@ -40,7 +40,7 @@ public sealed class ValidateInitialStateTests
 
 
     [Fact]
-    public void Builder_ShouldThrow_InitialStateNotConfigured()
+    public void Build_ShouldThrow_InitialStateNotConfigured()
     {
         var builder = new FluentSeq<string>().Create("INIT")
             .DisableValidationForStates("State1", "State2")
@@ -57,7 +57,7 @@ public sealed class ValidateInitialStateTests
 
 
     [Fact]
-    public void SequenceBuilder_with_enum_states_ShouldThrow_InitialStateNotConfigured()
+    public void SequenceBuilder_with_enum_states_ShouldNotThrow_InitialStateNotConfigured()
     {
         var builder = new FluentSeq<TestState>().Create(TestState.Init)
             .DisableValidationForStates(TestState.State1, TestState.State2)

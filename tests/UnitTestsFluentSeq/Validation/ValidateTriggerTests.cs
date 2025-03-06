@@ -5,7 +5,7 @@ using FluentValidation;
 public sealed class ValidateTriggerTests
 {
     [Fact]
-    public void Builder_ShouldThrow_TriggerNotConfigured()
+    public void Build_ShouldThrow_TriggerNotConfigured()
     {
         var builder = new FluentSeq<string>().Create("State1")
             .ConfigureState("State1")
@@ -22,7 +22,7 @@ public sealed class ValidateTriggerTests
     }
 
     [Fact]
-    public void Builder_ShouldNotThrow_TriggerNotConfigured()
+    public void Build_ShouldNotThrow_TriggerNotConfigured()
     {
         var builder = new FluentSeq<string>().Create("State1")
             .ConfigureState("State1")
