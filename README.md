@@ -213,14 +213,15 @@ TBD
 
 # Sequence Validation
 
-The validation checks the sequence configuration for principle completeness.  
-Validation is enabled by default but could be disabled either completely or for specific states.  
-The sequence will be validated on build.  
+The validation process ensures the sequence configuration is complete and adheres to the defined principles.  
+By default, validation is enabled but can be disabled either entirely or for specific states.  
+The sequence is validated during the build process.
 
+To build a sequence:  
 `_sequence = builder.Build();` 
 
 
-Validations:  
+Validation Principles:  
 - A Sequence must at least have two configured States  
 - The InitialState must be defined and configured (not null or empty)  
 - Every State must have a TriggeredBy(...)  
