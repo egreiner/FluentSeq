@@ -18,7 +18,7 @@ public class TriggerBuilder<TState> : ITriggerBuilder<TState>
     {
         RootSequenceBuilder = stateBuilder.Builder();
         RootStateBuilder    = stateBuilder.RootStateBuilder;
-        Trigger             = new Trigger<TState>(stateBuilder, triggeredByFunc);
+        Trigger             = new Trigger<TState>(RootStateBuilder, triggeredByFunc);
         _actions            = new ConfigureActions<TState>(RootStateBuilder);
         _trigger            = new ConfigureTrigger<TState>(RootStateBuilder);
     }
@@ -43,6 +43,13 @@ public class TriggerBuilder<TState> : ITriggerBuilder<TState>
     public ITriggerBuilder<TState> TriggeredByState(TState state, Func<TimeSpan> dwellTime) =>
         _trigger.TriggeredByState(state, dwellTime);
 
+
+    /// <inheritdoc />
+    public ITriggerBuilder<TState> WhenInState(TState state)
+    {
+        Trigger.WhenInStates.Add(new TriggerCondition<TState>(state));
+        return this;
+    }
 
     /// <inheritdoc />
     public ITriggerBuilder<TState> WhenInState(TState state, Func<TimeSpan> dwellTime)
@@ -72,13 +79,6 @@ public class TriggerBuilder<TState> : ITriggerBuilder<TState>
     public IStateBuilder<TState> WhileInState(Action action) =>
         _actions.WhileInState(action);
 
-
-    /// <inheritdoc />
-    public ITriggerBuilder<TState> WhenInState(TState state)
-    {
-        Trigger.WhenInStates.Add(new TriggerCondition<TState>(state));
-        return this;
-    }
 
     /// <inheritdoc />
     public ISequenceBuilder<TState> Builder() =>
