@@ -19,15 +19,14 @@ public sealed class SequenceConfigurationValidator<TState> : AbstractValidator<I
 
         AddRulesForMinimumStateCount();
         AddRulesForInitialState();
-        AddRulesForConfiguredStates();
+        AddRulesForStateTrigger();
+        AddRulesForTriggerWhenInStates();
     }
 
-    private void AddRulesForMinimumStateCount()
-    {
+    private void AddRulesForMinimumStateCount() =>
         RuleFor(builder => builder.Builder().RegisteredStates.Count)
             .GreaterThan(1)
             .WithMessage("The sequence must have more than one state.");
-    }
 
     private void AddRulesForInitialState()
     {
@@ -42,10 +41,21 @@ public sealed class SequenceConfigurationValidator<TState> : AbstractValidator<I
             .WithMessage("The InitialState must be configured.");
     }
 
-    private void AddRulesForConfiguredStates()
-    {
+    private void AddRulesForStateTrigger() =>
         RuleForEach(builder => builder.Builder().RegisteredStates)
             .Must((builder, state) => builder.Builder().NoValidationRequiredFor(state.State) || state.Trigger.Count > 0)
             .WithMessage((_, state) => $"The state {state.State} must have at least one trigger.");
+
+    private void AddRulesForTriggerWhenInStates()
+    {
+        RuleForEach(builder => builder.Builder().StateBuilders
+                .SelectMany(x => x.State.Trigger)
+                .SelectMany(x => x.WhenInStates)
+                .Select(x => x.State).Distinct())
+            .Must((builder, state) => builder.Builder().RegisteredStates.Select(x => x.State).Contains(state))
+            .OverridePropertyName("MyState")
+            .WithMessage((_, state) =>
+                $"In a WhenInStates(...)-configuration the State '{state}' is specified, but this State was never configured. " +
+                $"Is it a typo or did you forget to configure this State?");
     }
 }
