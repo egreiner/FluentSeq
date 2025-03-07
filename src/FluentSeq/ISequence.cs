@@ -2,18 +2,11 @@
 
 using Core;
 
-// using Logging;
-
 /// <summary>
 /// Interface for a sequence
 /// </summary>
 public interface ISequence<TState>
 {
-    // // /// <summary>
-    // // /// The debug logger
-    // // /// </summary>
-    // // ILoggerAdapter Logger { get; set; }
-
     /// <summary>
     /// The sequence options
     /// </summary>

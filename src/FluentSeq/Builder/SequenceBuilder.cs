@@ -9,7 +9,7 @@ using Validation;
 /// Provides methods to configure a sequence
 /// </summary>
 /// <typeparam name="TState">The type of the state</typeparam>
-public class SequenceBuilder<TState> : ISequenceBuilder<TState>
+public sealed class SequenceBuilder<TState> : ISequenceBuilder<TState>
 {
     private readonly SequenceConfigurationValidator<TState> _validator = new();
 
@@ -21,7 +21,6 @@ public class SequenceBuilder<TState> : ISequenceBuilder<TState>
     /// <param name="initialState">The initial state of the sequence</param>
     public SequenceBuilder(TState initialState)
     {
-        RootSequenceBuilder  = this;
         Options.InitialState = initialState;
     }
     
@@ -37,13 +36,6 @@ public class SequenceBuilder<TState> : ISequenceBuilder<TState>
     /// <inheritdoc />
     public SeqStateCollection<TState> RegisteredStates =>
         new(Builder().StateBuilders.Select(x => x.State));
-
-
-    /// <summary>
-    /// The root SequenceBuilder
-    /// </summary>
-    protected ISequenceBuilder<TState> RootSequenceBuilder { get; set; }
-
 
 
     /// <inheritdoc />
@@ -65,9 +57,7 @@ public class SequenceBuilder<TState> : ISequenceBuilder<TState>
 
 
     /// <inheritdoc />
-    public ISequenceBuilder<TState> Builder() =>
-        RootSequenceBuilder;
-
+    public ISequenceBuilder<TState> Builder() => this;
 
 
     /// <inheritdoc />

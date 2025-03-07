@@ -1,9 +1,7 @@
 ﻿namespace FluentSeq.Validation;
 
-using Builder;
 using Extensions;
 using FluentValidation;
-using FluentValidation.Results;
 
 /// <summary>
 /// The sequence configuration validator.
@@ -46,8 +44,7 @@ public sealed class SequenceConfigurationValidator<TState> : AbstractValidator<I
             .Must((builder, state) => builder.Builder().NoValidationRequiredFor(state.State) || state.Trigger.Count > 0)
             .WithMessage((_, state) => $"The state {state.State} must have at least one trigger.");
 
-    private void AddRulesForTriggerWhenInStates()
-    {
+    private void AddRulesForTriggerWhenInStates() =>
         RuleForEach(builder => builder.Builder().StateBuilders
                 .SelectMany(x => x.State.Trigger)
                 .SelectMany(x => x.WhenInStates)
@@ -57,5 +54,4 @@ public sealed class SequenceConfigurationValidator<TState> : AbstractValidator<I
             .WithMessage((_, state) =>
                 $"In a WhenInStates(...)-configuration the State '{state}' is specified, but this State was never configured. " +
                 $"Is it a typo or did you forget to configure this State?");
-    }
 }
