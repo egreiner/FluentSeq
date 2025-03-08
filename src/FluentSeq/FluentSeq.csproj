@@ -14,7 +14,7 @@
 
         <PackageId>FluentSeq</PackageId>
         <Title>FluentSeq</Title>
-        <Version>1.0.2-RC1</Version>
+        <Version>1.0.3-pre1</Version>
 
         <Company>ieg Systems</Company>
         <Authors>Ing. Ernst Greiner</Authors>
@@ -27,7 +27,7 @@
             - new architecture, state-based instead of transaction-based
         </Description>
 
-        <PackageReleaseNotes>v1.0.2-RC1 kickoff</PackageReleaseNotes>
+        <PackageReleaseNotes>1.0.3-pre1</PackageReleaseNotes>
 
         <PackageTags>sequence, sequencer, state-machine, state-engine, finite-state-machine, fsm, finite-state-automation, fsa</PackageTags>
 
