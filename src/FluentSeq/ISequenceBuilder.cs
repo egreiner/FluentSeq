@@ -40,4 +40,15 @@ public interface ISequenceBuilder<TState> : IHasSequenceBuilder<TState>, ICanCon
     /// The validation for the specified states within the sequence configuration will be disabled
     /// </summary>
     ISequenceBuilder<TState> DisableValidationForStates(params TState[] states);
+
+    /// <summary>
+    /// An Action that will be executed when the state of the sequence changes
+    /// </summary>
+    ISequenceBuilder<TState> OnStateChanged(Action onStateChangedAction);
+
+    /// <summary>
+    /// An Action that will be executed when the state of the sequence changes
+    /// The enableFunc will be used to determine if the action should be executed
+    /// </summary>
+    ISequenceBuilder<TState> OnStateChanged(Action onStateChangedAction, Func<bool> enableFunc);
 }

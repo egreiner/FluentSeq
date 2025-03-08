@@ -84,4 +84,15 @@ public sealed class SequenceBuilder<TState> : ISequenceBuilder<TState>
 
         return builder;
     }
+
+    /// <inheritdoc />
+    public ISequenceBuilder<TState> OnStateChanged(Action onStateChangedAction) =>
+        OnStateChanged(onStateChangedAction, () => true);
+
+    /// <inheritdoc />
+    public ISequenceBuilder<TState> OnStateChanged(Action onStateChangedAction, Func<bool> enableFunc)
+    {
+        Options.OnStateChangedAction = (onStateChangedAction, enableFunc);
+        return this;
+    }
 }

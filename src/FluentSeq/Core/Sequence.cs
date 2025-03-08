@@ -88,6 +88,9 @@ public class Sequence<TState> : ISequence<TState>
             callAllEntryActions(CurrentState);
         }
 
+        if (CurrentStateHasChanged())
+            invokeStateChangedAction();
+
         return this;
 
         void callAllExitActions(TState theState) =>
@@ -95,6 +98,12 @@ public class Sequence<TState> : ISequence<TState>
 
         void callAllEntryActions(TState theState) =>
             GetSeqState(theState)?.EntryActions.ForEach(x => x());
+
+        void invokeStateChangedAction()
+        {
+            if (Options.OnStateChangedAction.HasValue && Options.OnStateChangedAction.Value.enableFunc())
+                Options.OnStateChangedAction.Value.onStateChangedAction();
+        }
     }
 
     private SeqState<TState>? GetSeqState(TState state) =>

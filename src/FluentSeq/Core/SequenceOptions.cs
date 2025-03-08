@@ -20,4 +20,9 @@ public class SequenceOptions<TState>
     /// The state the sequence will start from
     /// </summary>
     public TState InitialState { get; set; } = default!;
+
+    /// <summary>
+    /// An Action that will be executed when the state of the sequence changes
+    /// </summary>
+    public (Action onStateChangedAction, Func<bool> enableFunc)? OnStateChangedAction { get; set; }
 }
