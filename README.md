@@ -59,10 +59,10 @@ public class OnTimerCreateExampleTests
                 .TriggeredBy(() => !_onTimerInput)
             .ConfigureState(TimerState.Pending)
                 .TriggeredBy(() => _onTimerInput)
-                .WhenInState(TimerState.Off)
+                    .WhenInState(TimerState.Off)
             .ConfigureState(TimerState.On)
                 .TriggeredBy(() => _onTimerInput)
-                .WhenInState(TimerState.Pending, () => TimeSpan.FromMilliseconds(dwellTimeInMs))
+                    .WhenInState(TimerState.Pending, () => TimeSpan.FromMilliseconds(dwellTimeInMs))
             .Builder();
 
     [Theory]
@@ -123,11 +123,11 @@ public class OffTimerConfigureExampleTests
 
             builder.ConfigureState(TimerState.Pending)
                 .TriggeredBy(() => !_onTimerInput)
-                .WhenInState(TimerState.On);
+                    .WhenInState(TimerState.On);
 
             builder.ConfigureState(TimerState.Off)
                 .TriggeredBy(() => !_onTimerInput)
-                .WhenInState(TimerState.Pending, () => TimeSpan.FromMilliseconds(dwellTimeInMs));
+                    .WhenInState(TimerState.Pending, () => TimeSpan.FromMilliseconds(dwellTimeInMs));
         }).Builder();
 
 
@@ -164,7 +164,7 @@ public class OffTimerConfigureExampleTests
 ```
 
 
-For more examples -> IntegrationsTestsFluentSeq/Examples  
+For more examples -> IntegrationTestsFluentSeq/Examples  
 
 
 [Top 🠉](#table-of-contents)
@@ -222,10 +222,10 @@ To build a sequence:
 
 
 Validation Principles:  
-- A Sequence must at least have two configured States  
-- The InitialState must be defined and configured (not null or empty)  
-- Every State must have a TriggeredBy(...)  
-- Every TriggeredBy().WhenInState(s)(...) must have a configured State  
+- A sequence must have at least two configured states.
+- The initial state must be defined and configured (not null or empty).
+- Every state must have a TriggeredBy(...) method.
+- Every TriggeredBy().WhenInState(s)(...) must point to a configured state.  
 
 
 Validation could be disabled:  
