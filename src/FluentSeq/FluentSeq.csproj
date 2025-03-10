@@ -14,20 +14,19 @@
 
         <PackageId>FluentSeq</PackageId>
         <Title>FluentSeq</Title>
-        <Version>1.0.3-pre1</Version>
+        <Version>1.0.3-pre2</Version>
 
         <Company>ieg Systems</Company>
         <Authors>Ing. Ernst Greiner</Authors>
         <Copyright>(c) 2025 ieg Systems - Ing. Ernst Greiner</Copyright>
 
         <Description>
-            FluentSeq provides a fluent interface for creating easy-to-read sequences,
-            eliminating the need for lengthy if/else statements.
+            FluentSeq provides a fluent interface for creating easy-to-read sequences, eliminating the need for lengthy if/else statements.
             Successor of IegTools.Sequencer
             - new architecture, state-based instead of transaction-based
         </Description>
 
-        <PackageReleaseNotes>1.0.3-pre1</PackageReleaseNotes>
+        <PackageReleaseNotes>wip configuration, add .WhenInStatesStartingWith()...</PackageReleaseNotes>
 
         <PackageTags>sequence, sequencer, state-machine, state-engine, finite-state-machine, fsm, finite-state-automation, fsa</PackageTags>
 
