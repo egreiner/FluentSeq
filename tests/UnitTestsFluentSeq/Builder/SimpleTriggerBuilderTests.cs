@@ -9,7 +9,7 @@ public sealed class SimpleTriggerBuilderTests
     {
         var actual = new FluentSeq<string>().Create("INIT")
             .ConfigureState("State1")
-            .TriggeredBy(() => true);
+                .TriggeredBy(() => true);
 
         actual.ShouldBeOfType<TriggerBuilder<string>>();
     }
@@ -19,7 +19,7 @@ public sealed class SimpleTriggerBuilderTests
     {
         var builder = new FluentSeq<string>().Create("INIT")
             .ConfigureState("State1")
-            .TriggeredBy(() => true);
+                .TriggeredBy(() => true);
 
         var actual = builder.Trigger;
 
@@ -61,7 +61,7 @@ public sealed class SimpleTriggerBuilderTests
     {
         var builder = new FluentSeq<string>().Create("INIT")
             .ConfigureState("State1")
-            .TriggeredBy(() => true);
+                .TriggeredBy(() => true);
 
         var actual = builder.Trigger.WhenInStates;
 
@@ -73,8 +73,8 @@ public sealed class SimpleTriggerBuilderTests
     {
         var builder = new FluentSeq<string>().Create("INIT")
             .ConfigureState("State1")
-            .TriggeredBy(() => true)
-            .WhenInState("Bla");
+                .TriggeredBy(() => true)
+                    .WhenInState("Bla");
 
         var actual = builder.Trigger.WhenInStates;
 
@@ -86,8 +86,8 @@ public sealed class SimpleTriggerBuilderTests
     {
         var builder = new FluentSeq<string>().Create("INIT")
             .ConfigureState("State1")
-            .TriggeredBy(() => true)
-            .WhenInState("Bla", () => TimeSpan.FromMilliseconds(20));
+                .TriggeredBy(() => true)
+                    .WhenInState("Bla", () => TimeSpan.FromMilliseconds(20));
 
         var actual = builder.Trigger.WhenInStates;
 
@@ -99,9 +99,9 @@ public sealed class SimpleTriggerBuilderTests
     {
         var builder = new FluentSeq<string>().Create("INIT")
             .ConfigureState("State1")
-            .TriggeredBy(() => true)
-            .WhenInState("Bla")
-            .WhenInState("Blub");
+                .TriggeredBy(() => true)
+                    .WhenInState("Bla")
+                    .WhenInState("Blub");
 
         var actual = builder.Trigger.WhenInStates;
 
@@ -113,8 +113,8 @@ public sealed class SimpleTriggerBuilderTests
     {
         var builder = new FluentSeq<string>().Create("INIT")
             .ConfigureState("State1")
-            .TriggeredBy(() => true)
-            .WhenInStates("Bla");
+                .TriggeredBy(() => true)
+                    .WhenInStates("Bla");
 
         var actual = builder.Trigger.WhenInStates;
 
@@ -126,8 +126,8 @@ public sealed class SimpleTriggerBuilderTests
     {
         var builder = new FluentSeq<string>().Create("INIT")
             .ConfigureState("State1")
-            .TriggeredBy(() => true)
-            .WhenInStates("Bla", "Blub", "Fizz", "Buzz");
+                .TriggeredBy(() => true)
+                    .WhenInStates("Bla", "Blub", "Fizz", "Buzz");
 
         var actual = builder.Trigger.WhenInStates;
 
@@ -140,9 +140,9 @@ public sealed class SimpleTriggerBuilderTests
     {
         var builder = new FluentSeq<string>().Create("INIT")
             .ConfigureState("State1")
-            .TriggeredBy(() => true)
-            .WhenInState("Bla")
-            .WhenInStates("Blub", "Fizz", "Buzz");
+                .TriggeredBy(() => true)
+                    .WhenInState("Bla")
+                    .WhenInStates("Blub", "Fizz", "Buzz");
 
         var actual = builder.Trigger.WhenInStates;
 
@@ -156,7 +156,8 @@ public sealed class SimpleTriggerBuilderTests
             .ConfigureState("State1");
 
         stateBuilder.TriggeredBy(() => true).WhenInState("Bla")
-            .TriggeredBy(() => false).WhenInState("Blub");
+            .TriggeredBy(() => false)
+                .WhenInState("Blub");
 
         var actual = stateBuilder.State.Trigger;
 
