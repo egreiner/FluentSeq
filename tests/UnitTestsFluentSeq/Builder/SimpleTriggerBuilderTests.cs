@@ -177,4 +177,23 @@ public sealed class SimpleTriggerBuilderTests
 
         actual.Count.ShouldBe(2);
     }
+
+
+    [Fact]
+    public void WhenInStatesStartingWith_ShouldCreate_two_elements()
+    {
+        var builder = new FluentSeq<string>().Create("INIT")
+            .ConfigureState("INIT")
+            .ConfigureState("State1")
+            .ConfigureState("State2")
+                .TriggeredBy(() => true)
+                    .WhenInStatesStartingWith("State");
+
+        var actual = builder.Trigger.WhenInStates.Select(x => x.State.ToString()).ToList();
+
+        actual.Count.ShouldBe(2);
+        actual.ShouldContain("State1");
+        actual.ShouldContain("State2");
+        actual.ShouldNotContain("INIT");
+    }
 }

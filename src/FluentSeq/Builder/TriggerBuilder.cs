@@ -66,6 +66,15 @@ public class TriggerBuilder<TState> : ITriggerBuilder<TState>
         return this;
     }
 
+    /// <inheritdoc />
+    public ITriggerBuilder<TState> WhenInStatesStartingWith(string statePrefix)
+    {
+        Builder().RegisteredStates
+            .Where(x => x.State?.ToString().StartsWith(statePrefix) ?? false).ToList()
+                .ForEach(x => WhenInState(x.State));
+        return this;
+    }
+
 
     /// <inheritdoc />
     public IStateBuilder<TState> OnExit(Action action) =>

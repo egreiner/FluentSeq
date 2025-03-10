@@ -32,4 +32,11 @@ public interface ITriggerBuilder<TState>: IHasSequenceBuilder<TState>, ICanConfi
     /// </summary>
     /// <param name="states">The condition of the current states of the sequence</param>
     ITriggerBuilder<TState> WhenInStates(params TState[] states);
+
+    /// <summary>
+    /// Describes what current states the sequence can be in for the trigger to be valid,
+    /// based on a prefix match with the state names.
+    /// </summary>
+    /// <param name="statePrefix">The condition of the current states-prefix of the sequence</param>
+    ITriggerBuilder<TState> WhenInStatesStartingWith(string statePrefix);
 }
