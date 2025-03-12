@@ -76,6 +76,17 @@ public class TriggerBuilder<TState> : ITriggerBuilder<TState>
     }
 
 
+    // fex
+    // public ITriggerBuilder<TState> WhenStateIsInCondition(Func<TState, bool> predicate)
+    // {
+    //     var matchingStates = Builder().RegisteredStates
+    //         .Where(x => predicate(x.State))
+    //         .Select(x => new TriggerCondition<TState>(x.State));
+    //
+    //     Trigger.WhenInStates.AddRange(matchingStates);
+    //     return this;
+    // }
+
     /// <inheritdoc />
     public IStateBuilder<TState> OnExit(Action action) =>
         _actions.OnExit(action);
