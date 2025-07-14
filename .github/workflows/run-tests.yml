@@ -12,20 +12,22 @@ jobs:
         os: [ ubuntu-latest ]
 
     steps:
-      - name: Setup .NET 6 SDK
+      - uses: actions/checkout@v4
+
+      # 👉 Das SDK aus der Matrix aktiv setzen
+      - name: Setup active .NET SDK ${{ matrix.dotnet-version }}
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 6.0.x
-      
-      - name: Setup .NET 7 SDK
+          dotnet-version: ${{ matrix.dotnet-version }}
+
+      # 👉 Alle SDKs installieren, damit Multi-Targeting (net6/7/8) funktioniert
+      - name: Setup additional SDKs for multi-targeting
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 7.0.x
-      
-      - name: Setup .NET 8 SDK
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: 8.0.x      
+          dotnet-version: |
+            6.0.x
+            7.0.x
+            8.0.x
 
       - name: 'Install dependencies'
         run: dotnet restore
@@ -35,5 +37,3 @@ jobs:
       
       - name: 'Test project'
         run: dotnet test --no-restore --verbosity normal 
-
-        
