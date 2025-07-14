@@ -43,10 +43,14 @@
       <PackageReference Include="JetBrains.Annotations" Version="2024.3.0" />
     </ItemGroup>
 
-    <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0' Or '$(TargetFramework)' == 'netstandard2.1' Or '$(TargetFramework)' == 'net6.0' Or '$(TargetFramework)' == 'net7.0' Or '$(TargetFramework)' == 'net8.0'">
+    <PropertyGroup>
+        <LegacyFrameworks>netstandard2.0;netstandard2.1;net6.0;net7.0;net8.0</LegacyFrameworks>
+    </PropertyGroup>
+    
+    <ItemGroup Condition="'$(LegacyFrameworks)' != '' And $(LegacyFrameworks.Contains('$(TargetFramework)'))">
         <PackageReference Include="FluentValidation" Version="11.11.0" />
     </ItemGroup>
-
+    
     <ItemGroup Condition="'$(TargetFramework)' == 'net9.0'">
         <PackageReference Include="FluentValidation" Version="12.0.0" />
     </ItemGroup>
