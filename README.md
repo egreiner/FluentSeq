@@ -2,21 +2,20 @@
 
 FluentSeq provides a fluent interface for creating easy-to-read sequences, 
 eliminating the need for lengthy if/else statements.  
-The library is written in C# 13 and multi-targets 
+The library is written in C# 13 and multi-targets
 - .NET 6.0 - .NET 9.0
 - .NET Standard 2.0/2.1  
-
-The Test coverage for .NET 6.0 - 9.0 is greater than 95%  
-
-FluentSeq is the successor of [IegTools.Sequencer](https://github.com/egreiner/IegTools.Sequencer).  
-
 
 The library allows you to configure:  
 
 - Sequences with States  
 - different kinds of State-Triggers  
-- Actions that can be executed on State-Entry, State-Exit or WhileInState  
-- Validate a sequence on build to avoid misconfigurations (missing states, triggers, etc.)
+- Actions that can be executed on State-Entry, State-Exit or WhileInState    
+- Validate a sequence on build to avoid misconfigurations (missing states, triggers, etc.)  
+
+The Test coverage for .NET 6.0 - 9.0 is greater than 95%  
+
+FluentSeq is the successor of [IegTools.Sequencer](https://github.com/egreiner/IegTools.Sequencer).  
 
 
 ### Build Status  
