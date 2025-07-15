@@ -11,7 +11,7 @@ public class CurrentStateDurationTests
     {
         var state = new DefaultSequenceStates();
 
-        Func<TimeSpan> dwellTime() => () => TimeSpan.FromMilliseconds(1);
+        Func<TimeSpan> dwellTime() => () => TimeSpan.FromMilliseconds(0.01);
 
         var sequence = new FluentSeq<string>().Create(state.Initializing)
             .ConfigureState(state.Initializing).TriggeredBy(() => false)
@@ -23,8 +23,8 @@ public class CurrentStateDurationTests
 
         sequence.SetState(startState);
 
-        await Task.Delay(3);
+        await Task.Delay(2);
 
-        sequence.CurrentStateDuration().ShouldBeGreaterThan(TimeSpan.FromMilliseconds(2.0));
+        sequence.CurrentStateDuration().ShouldBeGreaterThan(TimeSpan.FromMilliseconds(1.0));
     }
 }

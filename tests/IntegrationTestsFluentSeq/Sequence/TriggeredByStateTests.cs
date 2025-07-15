@@ -10,7 +10,7 @@ public class TriggeredByStateTests
     {
         var state = new DefaultSequenceStates();
 
-        Func<TimeSpan> dwellTime() => () => TimeSpan.FromMilliseconds(1);
+        Func<TimeSpan> dwellTime() => () => TimeSpan.FromMilliseconds(0.01);
 
         var sequence = new FluentSeq<string>().Create(state.Initializing)
             .ConfigureState(state.Initializing).TriggeredBy(() => false)
@@ -22,7 +22,7 @@ public class TriggeredByStateTests
 
         sequence.SetState(startState);
 
-        await Task.Delay(2);
+        await Task.Delay(1);
 
         await sequence.RunAsync();
         sequence.CurrentState.ShouldBe(expectedState);
