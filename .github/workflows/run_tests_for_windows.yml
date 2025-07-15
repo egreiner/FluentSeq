@@ -23,9 +23,9 @@ jobs:
       
       - name: Build project
         run: |
-          "${{ steps.msbuild.outputs.path }}" src/FluentSeq/FluentSeq.csproj /p:Configuration=Release /p:TargetFramework=${{ matrix.framework }}
+          "${{ steps.msbuild.outputs.path }}" "src/FluentSeq/FluentSeq.csproj" /p:Configuration=Release /p:TargetFramework=${{ matrix.framework }}
         shell: pwsh
   
       - name: 'Run tests'
         run: |
-          vstest.console.exe $(Get-ChildItem -Path src/FluentSeq/bin/Release/${{ matrix.framework }}/*.Tests.dll | Select-Object -First 1)
+          vstest.console.exe $(Get-ChildItem -Path "src/FluentSeq/bin/Release/${{ matrix.framework }}/*Tests*.dll" | Select-Object -First 1)
