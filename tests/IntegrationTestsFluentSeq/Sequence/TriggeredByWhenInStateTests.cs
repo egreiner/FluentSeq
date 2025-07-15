@@ -40,9 +40,9 @@ public class TriggeredByWhenInStateTests
     }
 
     [Theory]
-    [InlineData(9, 0, "Initialized")]
-    [InlineData(1, 2, "On")]
-    public async Task TriggeredSeq_ShouldSwitch_when_correct_CurrentState_with_dwellTime(int dwellTimeInMs, int delayInMs, string expectedState)
+    [InlineData(100, 0, "Initialized")]
+    [InlineData(0.1, 2, "On")]
+    public async Task TriggeredSeq_ShouldSwitch_when_correct_CurrentState_with_dwellTime(double dwellTimeInMs, int delayInMs, string expectedState)
     {
         var state = new DefaultSequenceStates();
 
