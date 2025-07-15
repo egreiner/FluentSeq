@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFrameworks>netstandard2.0;netstandard2.1;net6.0;net7.0;net8.0;net9.0</TargetFrameworks>
+        <TargetFrameworks>netstandard2.0;netstandard2.1;net48;net6.0;net7.0;net8.0;net9.0</TargetFrameworks>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <IsPackable>true</IsPackable>
@@ -26,7 +26,7 @@
             - new architecture, state-based instead of transaction-based
         </Description>
 
-        <PackageReleaseNotes>Multi-Targetting, .NET 6.0 - 9.0, .NET Standard 2.0 and .NET Standard 2.1</PackageReleaseNotes>
+        <PackageReleaseNotes>Multi-Targetting, .NET 6.0 - 9.0, .NET Framework 4.8, .NET Standard 2.0 and .NET Standard 2.1</PackageReleaseNotes>
 
         <PackageTags>sequence, sequencer, state-machine, state-engine, finite-state-machine, fsm, finite-state-automation, fsa</PackageTags>
 
@@ -44,7 +44,7 @@
     </ItemGroup>
 
     <PropertyGroup>
-        <LegacyFrameworks>netstandard2.0;netstandard2.1;net6.0;net7.0;net8.0</LegacyFrameworks>
+        <LegacyFrameworks>netstandard2.0;netstandard2.1;net48;net6.0;net7.0;net8.0</LegacyFrameworks>
     </PropertyGroup>
     
     <ItemGroup Condition="'$(LegacyFrameworks)' != '' And $(LegacyFrameworks.Contains('$(TargetFramework)'))">
