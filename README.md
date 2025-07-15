@@ -2,9 +2,13 @@
 
 FluentSeq provides a fluent interface for creating easy-to-read sequences, 
 eliminating the need for lengthy if/else statements.  
-The library is written in C# 14 and targets .NET Standard 2.0 (.NET and .NET Framework).  
+The library is written in C# 13 and multi-targets 
+- .NET 6.0 - .NET 9.0
+- .NET Standard 2.0/2.1  
 
-FluentSeq is the successor of IegTools.Sequencer  
+The Test coverage for .NET 6.0 - 9.0 is greater than 95%  
+
+FluentSeq is the successor of [IegTools.Sequencer](https://github.com/egreiner/IegTools.Sequencer).  
 
 
 The library allows you to configure:  
@@ -32,7 +36,7 @@ The library allows you to configure:
 
 
 # Installation
-The library is available as a [NuGet package](https://www.nuget.org/packages/FluentSeq/).  
+The library is available as a [NuGet package](https://www.nuget.org/packages/FluentSeq/).
 
 
 
