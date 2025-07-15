@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFrameworks>netstandard2.0;netstandard2.1;net48;net6.0;net7.0;net8.0;net9.0</TargetFrameworks>
+        <TargetFrameworks>netstandard2.0;netstandard2.1;net6.0;net7.0;net8.0;net9.0</TargetFrameworks>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <IsPackable>true</IsPackable>
@@ -51,11 +51,14 @@
         <PackageReference Include="FluentValidation" Version="11.11.0" />
     </ItemGroup>
     
-    <ItemGroup Condition="'$(TargetFramework)' == 'net9.0'">
+    <PropertyGroup>
+        <LatestFrameworks>net9.0</LatestFrameworks>
+    </PropertyGroup>
+
+    <ItemGroup Condition="'$(LatestFrameworks)' != '' And $(LegacyFrameworks.Contains('$(TargetFramework)'))">
         <PackageReference Include="FluentValidation" Version="12.0.0" />
     </ItemGroup>
-
-
+    
     <ItemGroup>
         <None Include="..\..\images\icon2.png">
             <Pack>True</Pack>
