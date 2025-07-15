@@ -70,7 +70,7 @@ public class TriggerBuilder<TState> : ITriggerBuilder<TState> where TState : not
     public ITriggerBuilder<TState> WhenInStatesStartingWith(string statePrefix)
     {
         Builder().RegisteredStates
-            .Where(x => x.State?.ToString().StartsWith(statePrefix) ?? false).ToList()
+            .Where(x => x.State.ToString()?.StartsWith(statePrefix) ?? false).ToList()
                 .ForEach(x => WhenInState(x.State));
         return this;
     }

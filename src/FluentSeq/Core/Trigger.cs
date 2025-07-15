@@ -6,7 +6,7 @@ using Builder;
 /// Describes a trigger, how a state can be set as current state
 /// </summary>
 /// <typeparam name="TState"></typeparam>
-public class Trigger<TState>
+public class Trigger<TState> where TState : notnull
 {
     // private readonly IStateBuilder<TState> _stateBuilder;
 

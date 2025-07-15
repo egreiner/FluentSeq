@@ -31,7 +31,7 @@ public sealed class SequenceConfigurationValidator<TState> : AbstractValidator<I
         RuleFor(builder => builder.Builder().Options.InitialState).NotNull();
 
         RuleFor(builder => builder.Builder().Options.InitialState)
-            .Must((builder, initialState) => initialState != null && initialState?.ToString().Length > 0)
+            .Must((builder, initialState) => initialState != null && initialState.ToString()?.Length > 0)
             .WithMessage("The InitialState must not be empty.");
 
         RuleFor(builder => builder.Builder().RegisteredStates)

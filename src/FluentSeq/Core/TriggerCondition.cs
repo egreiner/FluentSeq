@@ -4,7 +4,7 @@
 /// The trigger condition
 /// </summary>
 /// <typeparam name="TState">The state</typeparam>
-public class TriggerCondition<TState>(TState state, Func<TimeSpan>? dwellTime = null)
+public class TriggerCondition<TState>(TState state, Func<TimeSpan>? dwellTime = null) where TState : notnull
 {
     /// <summary>
     /// The state

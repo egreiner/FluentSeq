@@ -13,7 +13,8 @@ public static class SequenceBuilderExtensions
     /// Later on you can find the usage of the DisableValidationTemporarily method very easy.
     /// </summary>
     /// <param name="builder">The sequence builder</param>
-    public static ISequenceBuilder<TState> DisableValidationTemporarily<TState>(this ISequenceBuilder<TState> builder) =>
+    public static ISequenceBuilder<TState> DisableValidationTemporarily<TState>(this ISequenceBuilder<TState> builder) 
+        where TState : notnull =>
         builder.Builder().DisableValidation();
 
 
@@ -22,7 +23,8 @@ public static class SequenceBuilderExtensions
     /// </summary>
     /// <param name="builder">The sequence builder</param>
     /// <param name="state">The specified state</param>
-    public static bool ValidationRequiredFor<TState>(this ISequenceBuilder<TState> builder , TState state) =>
+    public static bool ValidationRequiredFor<TState>(this ISequenceBuilder<TState> builder , TState state)
+        where TState : notnull =>
         !builder.Builder().Options.DisableValidation &&
         !builder.Builder().Options.DisableValidationForStates.Contains(state);
 
@@ -32,6 +34,7 @@ public static class SequenceBuilderExtensions
     /// </summary>
     /// <param name="builder">The sequence builder</param>
     /// <param name="state">The specified state</param>
-    public static bool NoValidationRequiredFor<TState>(this ISequenceBuilder<TState> builder , TState state) =>
+    public static bool NoValidationRequiredFor<TState>(this ISequenceBuilder<TState> builder , TState state)
+        where TState : notnull =>
         !builder.Builder().ValidationRequiredFor(state);
 }
