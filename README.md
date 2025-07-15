@@ -256,6 +256,15 @@ Validation could be disabled:
 
 # Version Changes
 
+## Version 1.2.0
+- Multi-Targeting to .NET 6.0 - .NET 9.0 and .NET Standard 2.0/2.1  
+- working on warnings regarding nullable reference types (for States)  
+
+
+## Version 1.1.0
+- public Release of FluentSeq  
+
+
 [Top 🠉](#table-of-contents)  
 
 
