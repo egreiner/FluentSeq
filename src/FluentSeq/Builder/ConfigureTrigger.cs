@@ -4,8 +4,8 @@
 /// A helper class for configuring trigger on a state
 /// </summary>
 /// <typeparam name="TState"></typeparam>
-public class ConfigureTrigger<TState>(IStateBuilder<TState> stateBuilder) //: ICanConfigureActions<TState>
-    : ICanConfigureTrigger<TState>
+public class ConfigureTrigger<TState>(IStateBuilder<TState> stateBuilder)
+    : ICanConfigureTrigger<TState> where TState : notnull
 {
 
     /// <inheritdoc />

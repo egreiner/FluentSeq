@@ -9,7 +9,7 @@ using Validation;
 /// Provides methods to configure a sequence
 /// </summary>
 /// <typeparam name="TState">The type of the state</typeparam>
-public sealed class SequenceBuilder<TState> : ISequenceBuilder<TState>
+public sealed class SequenceBuilder<TState> : ISequenceBuilder<TState> where TState : notnull
 {
     private readonly SequenceConfigurationValidator<TState> _validator = new();
 

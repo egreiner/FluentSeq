@@ -4,7 +4,7 @@
 /// Provides methods to enhance a state builder with trigger
 /// </summary>
 /// <typeparam name="TState">The type of the state</typeparam>
-public interface ICanConfigureTrigger<TState>
+public interface ICanConfigureTrigger<TState> where TState : notnull
 {
     /// <summary>
     /// The sequence can be forced to this state when the state is triggered by a function

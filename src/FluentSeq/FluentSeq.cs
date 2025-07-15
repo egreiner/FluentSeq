@@ -6,7 +6,7 @@ using Builder;
 /// This is the root element for FluentSeq
 /// </summary>
 /// <typeparam name="TState">The type of the state</typeparam>
-public class FluentSeq<TState>
+public class FluentSeq<TState> where TState : notnull
 {
     private ISequenceBuilder<TState> _sequenceBuilder = null!;
 

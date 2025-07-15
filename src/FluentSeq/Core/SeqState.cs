@@ -3,7 +3,7 @@ namespace FluentSeq.Core;
 /// <summary>
 /// Describes a state
 /// </summary>
-public class SeqState<TState>
+public class SeqState<TState> where TState : notnull
 {
     /// <summary>
     /// Describes a state

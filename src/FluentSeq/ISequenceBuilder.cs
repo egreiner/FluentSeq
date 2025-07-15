@@ -7,7 +7,7 @@ using Core;
 /// Provides methods to configure a sequence
 /// </summary>
 /// <typeparam name="TState">The type of the state</typeparam>
-public interface ISequenceBuilder<TState> : IHasSequenceBuilder<TState>, ICanConfigureState<TState>
+public interface ISequenceBuilder<TState> : IHasSequenceBuilder<TState>, ICanConfigureState<TState> where TState : notnull
 {
     internal HashSet<StateBuilder<TState>> StateBuilders { get; }
 

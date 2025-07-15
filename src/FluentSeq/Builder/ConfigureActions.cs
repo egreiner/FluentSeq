@@ -4,7 +4,8 @@
 /// A helper class for configuring actions on a state
 /// </summary>
 /// <typeparam name="TState">The state type</typeparam>
-public class ConfigureActions<TState>(IStateBuilder<TState> stateBuilder) : ICanConfigureActions<TState>
+public class ConfigureActions<TState>(IStateBuilder<TState> stateBuilder) : ICanConfigureActions<TState> where TState : notnull
+    
 {
     /// <inheritdoc />
     public IStateBuilder<TState> OnExit(Action action)

@@ -4,7 +4,7 @@ namespace FluentSeq.Builder;
 /// Provides methods to enhance a state builder with actions
 /// </summary>
 /// <typeparam name="TState">The type of the state</typeparam>
-public interface ICanConfigureActions<TState>
+public interface ICanConfigureActions<TState> where TState : notnull
 {
     /// <summary>
     /// Adds an action to be executed when the state is exited.

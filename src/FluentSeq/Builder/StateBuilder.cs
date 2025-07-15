@@ -6,7 +6,7 @@ using Core;
 /// Provides methods for further describing a state
 /// </summary>
 /// <typeparam name="TState">The type of the state</typeparam>
-public class StateBuilder<TState> : IStateBuilder<TState>
+public class StateBuilder<TState> : IStateBuilder<TState> where TState : notnull
 {
     private readonly ConfigureActions<TState> _actions;
     private readonly ConfigureTrigger<TState> _trigger;

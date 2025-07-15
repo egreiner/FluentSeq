@@ -4,7 +4,7 @@
 /// Can configure a state
 /// </summary>
 /// <typeparam name="TState">The type of the state</typeparam>
-public interface ICanConfigureState<TState>
+public interface ICanConfigureState<TState> where TState : notnull
 {
     /// <summary>
     /// Creates a new State

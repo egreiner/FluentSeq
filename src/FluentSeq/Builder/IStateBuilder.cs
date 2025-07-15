@@ -7,6 +7,7 @@ using Core;
 /// </summary>
 /// <typeparam name="TState">The type of the state</typeparam>
 public interface IStateBuilder<TState>: IHasSequenceBuilder<TState>, ICanConfigureState<TState>, ICanConfigureActions<TState>, ICanConfigureTrigger<TState>
+    where TState : notnull
 {
     /// <summary>
     /// The state that the builder should parameterize

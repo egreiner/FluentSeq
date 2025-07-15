@@ -6,7 +6,7 @@ using Extensions;
 /// A sequence that could be executed
 /// </summary>
 /// <typeparam name="TState">Type of the state (string, enum, int...)</typeparam>
-public class Sequence<TState> : ISequence<TState>
+public class Sequence<TState> : ISequence<TState> where TState : notnull
 {
     /// <summary>
     /// A sequence that could be executed

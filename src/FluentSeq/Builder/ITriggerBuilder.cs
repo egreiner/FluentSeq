@@ -7,6 +7,7 @@ using Core;
 /// </summary>
 /// <typeparam name="TState">The type of the state</typeparam>
 public interface ITriggerBuilder<TState>: IHasSequenceBuilder<TState>, ICanConfigureState<TState>, ICanConfigureActions<TState>, ICanConfigureTrigger<TState>
+    where TState : notnull
 {
     /// <summary>
     /// Returns the trigger the builder is for

@@ -5,7 +5,7 @@ using Core;
 /// <summary>
 /// Interface for a sequence
 /// </summary>
-public interface ISequence<TState>
+public interface ISequence<TState> where TState : notnull
 {
     /// <summary>
     /// The sequence options
@@ -15,7 +15,7 @@ public interface ISequence<TState>
     /// <summary>
     /// All States that are registered for this sequence
     /// </summary>
-    SeqStateCollection<TState> RegisteredStates { get; }
+    SeqStateCollection<TState> RegisteredStates { get; } 
 
 
     /// <summary>

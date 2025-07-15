@@ -6,7 +6,7 @@ using Core;
 /// Provides methods for further describing a trigger
 /// </summary>
 /// <typeparam name="TState">The type of the state</typeparam>
-public class TriggerBuilder<TState> : ITriggerBuilder<TState>
+public class TriggerBuilder<TState> : ITriggerBuilder<TState> where TState : notnull
 {
     private readonly ConfigureActions<TState> _actions;
     private readonly ConfigureTrigger<TState> _trigger;
