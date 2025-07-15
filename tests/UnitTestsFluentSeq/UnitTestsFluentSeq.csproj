@@ -31,7 +31,7 @@
         <LatestFrameworks>net8.0;net9.0</LatestFrameworks>
     </PropertyGroup>
 
-    <ItemGroup Condition="'$(LatestFrameworks)' != '' And $(LegacyFrameworks.Contains('$(TargetFramework)'))">
+    <ItemGroup Condition="'$(LatestFrameworks)' != '' And $(LatestFrameworks.Contains('$(TargetFramework)'))">
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
         <PackageReference Include="xunit" Version="2.9.3" />
     </ItemGroup>
