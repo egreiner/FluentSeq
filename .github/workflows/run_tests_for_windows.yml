@@ -1,0 +1,37 @@
+name: run-tests
+
+on: [workflow_dispatch, push]
+
+jobs:
+  build:
+
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        dotnet-version: [ '4.8.x' ]
+        os: [ windows-latest ]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      # 👉 Das SDK aus der Matrix aktiv setzen
+      - name: Setup active .NET SDK ${{ matrix.dotnet-version }}
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: ${{ matrix.dotnet-version }}
+
+      # 👉 Alle SDKs installieren, damit Multi-Targeting (net6/7/8) funktioniert
+      - name: Setup additional SDKs for multi-targeting
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: |
+            4.8.x
+
+      - name: 'Install dependencies'
+        run: dotnet restore
+      
+      - name: 'Build project'
+        run: dotnet build --configuration Release --no-restore  /p:TreatWarningsAsErrors=false
+      
+      - name: 'Test project'
+        run: dotnet test --no-restore --verbosity normal 
