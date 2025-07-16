@@ -31,6 +31,8 @@ jobs:
             9.0.x
 
       - name: Cache NuGet packages
+        # caching doesn't make any sense here, there are too few packages, it takes longer with caching
+        if: false
         uses: actions/cache@v3
         with:
           path: ~/.nuget/packages
