@@ -1,6 +1,6 @@
 ﻿namespace IntegrationTestsFluentSeq.Sequence;
 
-public class SequenceIsInStateTests
+public sealed class SequenceIsInStateTests
 {
     [Fact]
     public void IsInState_ShouldBeTrue()

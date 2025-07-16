@@ -1,6 +1,6 @@
 ﻿namespace IntegrationTestsFluentSeq.Sequence;
 
-public class SequenceRunAsyncTests
+public sealed class SequenceRunAsyncTests
 {
     [Fact]
     public async Task RunAsync_ShouldRun_as_expected()

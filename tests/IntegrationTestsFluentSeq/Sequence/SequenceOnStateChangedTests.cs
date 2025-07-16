@@ -1,6 +1,6 @@
 ﻿namespace IntegrationTestsFluentSeq.Sequence;
 
-public class SequenceOnStateChangedTests
+public sealed class SequenceOnStateChangedTests
 {
     [Fact]
     public async Task StateChange_ShouldNotTrigger_missing_Action()

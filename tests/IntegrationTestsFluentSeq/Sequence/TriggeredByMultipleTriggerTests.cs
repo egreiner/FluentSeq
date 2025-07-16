@@ -1,6 +1,6 @@
 ﻿namespace IntegrationTestsFluentSeq.Sequence;
 
-public class TriggeredByMultipleTriggerTests
+public sealed class TriggeredByMultipleTriggerTests
 {
     [Theory]
     [InlineData(1, 2)]

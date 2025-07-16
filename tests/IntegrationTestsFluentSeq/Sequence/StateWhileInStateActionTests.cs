@@ -1,6 +1,6 @@
 ﻿namespace IntegrationTestsFluentSeq.Sequence;
 
-public class StateWhileInStateActionTests
+public sealed class StateWhileInStateActionTests
 {
     [Fact]
     public void SequenceRun_ShouldRaise_WhileInStateAction_repeatedly()

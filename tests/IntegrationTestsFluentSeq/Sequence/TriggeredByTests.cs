@@ -1,6 +1,6 @@
 ﻿namespace IntegrationTestsFluentSeq.Sequence;
 
-public class TriggeredByTests
+public sealed class TriggeredByTests
 {
     [Fact]
     public void TriggeredSeq_ShouldSwitch_to_initialized()

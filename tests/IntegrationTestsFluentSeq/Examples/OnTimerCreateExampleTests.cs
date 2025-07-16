@@ -1,6 +1,6 @@
 ﻿namespace IntegrationTestsFluentSeq.Examples;
 
-public class OnTimerCreateExampleTests
+public sealed class OnTimerCreateExampleTests
 {
     private ISequence<TimerState>? _sequence;
     private bool _onTimerInput;

@@ -1,6 +1,6 @@
 ﻿namespace IntegrationTestsFluentSeq.Sequence;
 
-public class TriggeredByWhenInStateTests
+public sealed class TriggeredByWhenInStateTests
 {
     [Fact]
     public void TriggeredSeq_ShouldNotSwitch_when_incorrect_CurrentState()

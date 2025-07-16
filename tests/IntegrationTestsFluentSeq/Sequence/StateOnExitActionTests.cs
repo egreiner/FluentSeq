@@ -1,6 +1,6 @@
 ﻿namespace IntegrationTestsFluentSeq.Sequence;
 
-public class StateOnExitActionTests
+public sealed class StateOnExitActionTests
 {
     [Fact]
     public void TriggeredSeq_ShouldRaise_OnExitAction()

@@ -1,6 +1,6 @@
 ﻿namespace IntegrationTestsFluentSeq.Sequence;
 
-public class CurrentStateDurationTests
+public sealed class CurrentStateDurationTests
 {
     [Theory]
     [InlineData("Initializing")]

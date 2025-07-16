@@ -1,6 +1,6 @@
 ﻿namespace IntegrationTestsFluentSeq.Sequence;
 
-public class TriggeredByStateTests
+public sealed class TriggeredByStateTests
 {
     [Theory]
     [InlineData("Initializing", "Initialized")]
