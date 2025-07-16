@@ -1,7 +1,7 @@
 # FluentSeq
 
 FluentSeq provides a fluent interface for creating easy-to-read sequences, 
-eliminating the need for lengthy if/else statements.  
+eliminating the need for lengthy if-else statements.  
 The library is written in C# 13 and multi-targets
 - .NET 6.0 - .NET 9.0
 - .NET Standard 2.0/2.1  
@@ -20,6 +20,7 @@ FluentSeq is the successor of [IegTools.Sequencer](https://github.com/egreiner/I
 
 ### Build Status  
 &nbsp; ![workflow tests](https://github.com/egreiner/FluentSeq/actions/workflows/run-tests.yml/badge.svg)  
+&nbsp; ![workflow NuGet package](https://github.com/egreiner/FluentSeq/actions/workflows/create-nuget-package.yml/badge.svg)  
 
 
 # Table of Contents
@@ -49,7 +50,7 @@ A simple example configuration and usage for an OnTimer-sequence as xUnit-Test:
 using FluentSeq.Builder;
 using FluentSeq.Core;
 
-public class OnTimerCreateExampleTests
+public sealed class OnTimerCreateExampleTests
 {
     private ISequence<TimerState>? _sequence;
     private bool _onTimerInput;
@@ -111,7 +112,7 @@ A simple example configuration and usage for an OffTimer-sequence as xUnit-Test:
 using FluentSeq.Builder;
 using FluentSeq.Core;
 
-public class OffTimerConfigureExampleTests
+public sealed class OffTimerConfigureExampleTests
 {
     private ISequence<TimerState>? _sequence;
     private bool _onTimerInput;

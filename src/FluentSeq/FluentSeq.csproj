@@ -21,9 +21,9 @@
         <Copyright>(c) 2025 ieg Systems - Ing. Ernst Greiner</Copyright>
 
         <Description>
-            FluentSeq provides a fluent interface for creating easy-to-read sequences, eliminating the need for lengthy if/else statements.
-            Successor of IegTools.Sequencer
-            - new architecture, state-based instead of transaction-based
+            FluentSeq provides a fluent interface for creating easy-to-read sequences, eliminating the need for lengthy if-else statements.  
+            Successor of IegTools.Sequencer  
+            - new architecture, state-based instead of transaction-based  
         </Description>
 
         <PackageReleaseNotes>Multi-Targeting, .NET 6.0 - 9.0 and .NET Standard 2.0/2.1</PackageReleaseNotes>
