@@ -30,17 +30,17 @@ jobs:
             8.0.x
             9.0.x
 
-      - name: Install dependencies
-        run: dotnet restore
-
       - name: Cache NuGet packages
         uses: actions/cache@v3
         with:
           path: ~/.nuget/packages
-          key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj') }}
           restore-keys: |
             ${{ runner.os }}-nuget-
             
+      - name: Install dependencies
+        run: dotnet restore
+
       - name: 'Build project'
         run: dotnet build --configuration Release --no-restore  /p:TreatWarningsAsErrors=false
 
