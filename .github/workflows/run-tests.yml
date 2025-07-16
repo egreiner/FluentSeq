@@ -40,8 +40,9 @@ jobs:
           key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
           restore-keys: |
             ${{ runner.os }}-nuget-
-            - name: 'Build project'
-              run: dotnet build --configuration Release --no-restore  /p:TreatWarningsAsErrors=false
+            
+      - name: 'Build project'
+        run: dotnet build --configuration Release --no-restore  /p:TreatWarningsAsErrors=false
 
       - name: Static Code Analysis
         run: dotnet tool install --global dotnet-analyzer && dotnet-analyzer analyze src
