@@ -3,7 +3,7 @@
 using System.Collections.Generic;
 using FluentSeq.Extensions;
 
-public class EnumerableGenericExtensionsTest
+public sealed class EnumerableGenericExtensionsTest
 {
     [Fact]
     public void HasItems_Generic_empty()

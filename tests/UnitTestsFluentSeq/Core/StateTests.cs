@@ -2,7 +2,7 @@
 
 using FluentSeq.Core;
 
-public class StateTests
+public sealed class StateTests
 {
     [Fact]
     public void Equals_SameName_ReturnsTrue()

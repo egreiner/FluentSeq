@@ -3,7 +3,7 @@ namespace UnitTestsFluentSeq.Extensions.CollectionTests;
 using System.Collections.Generic;
 using FluentSeq.Extensions;
 
-public class EnumerableExtensionsTests
+public sealed class EnumerableExtensionsTests
 {
     [Fact]
     public void IEnumerable_IsNullOrEmpty_ShouldBe_true_when_null()
