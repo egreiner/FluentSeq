@@ -1,6 +1,6 @@
 ﻿namespace LearningTests.Dojo.FizzBuzz;
 
-public class FizzBuzzExampleFromInternet
+public sealed class FizzBuzzExampleFromInternet
 {
     public void Console_FizzBuzz()
     {

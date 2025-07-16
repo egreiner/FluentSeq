@@ -8,7 +8,7 @@ using System.Collections.Concurrent;
 // 3. If the number is divisible by 3 and 5, print FizzBuzz
 
 
-public class FizzBuzzAsyncTests
+public sealed class FizzBuzzAsyncTests
 {
     [Theory]
     [InlineData(3)]

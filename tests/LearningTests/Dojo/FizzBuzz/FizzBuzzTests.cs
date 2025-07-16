@@ -6,7 +6,7 @@
 // 3. If the number is divisible by 3 and 5, print FizzBuzz
 
 
-public class FizzBuzzTests
+public sealed class FizzBuzzTests
 {
     [Theory]
     [InlineData(3)]
