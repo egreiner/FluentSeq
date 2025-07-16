@@ -1,6 +1,6 @@
 ﻿namespace UnitTestsFluentSeq.StateTypes;
 
-public sealed class PrimitiveTypeTests
+public sealed class PrimitiveTypesTests
 {
     [Fact]
     public void Use_String_as_StateType_ShouldNotThrow()
