@@ -1,5 +1,10 @@
 # FluentSeq
 
+&nbsp; ![Github tests](https://github.com/egreiner/FluentSeq/actions/workflows/run-tests.yml/badge.svg)
+&nbsp; [![NuGet package](https://img.shields.io/nuget/v/FluentSeq.svg?logo=NuGet)](https://www.nuget.org/packages/FluentSeq)
+&nbsp; [![NuGet package](https://img.shields.io/nuget/dt/FluentSeq?logo=NuGet)](https://www.nuget.org/packages/FluentSeq)  
+
+
 FluentSeq provides a fluent interface for creating easy-to-read sequences, 
 eliminating the need for lengthy if-else statements.  
 The library is written in C# 13 and multi-targets
@@ -16,11 +21,6 @@ The library allows you to configure:
 The Test coverage for .NET 6.0 - 9.0 is greater than 95%  
 
 FluentSeq is the successor of [IegTools.Sequencer](https://github.com/egreiner/IegTools.Sequencer).  
-
-
-### Build Status  
-&nbsp; ![workflow tests](https://github.com/egreiner/FluentSeq/actions/workflows/run-tests.yml/badge.svg)  
-&nbsp; ![workflow NuGet package](https://github.com/egreiner/FluentSeq/actions/workflows/create-nuget-package.yml/badge.svg)  
 
 
 # Table of Contents
