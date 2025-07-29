@@ -46,7 +46,7 @@ The library is available as a [NuGet package](https://www.nuget.org/packages/Flu
 
 A simple example configuration and usage for an OnTimer-sequence as xUnit-Test:  
 
-``` c#
+``` C#
 using FluentSeq.Builder;
 using FluentSeq.Core;
 
@@ -108,7 +108,7 @@ public sealed class OnTimerCreateExampleTests
 
 A simple example configuration and usage for an OffTimer-sequence as xUnit-Test:  
 
-``` c#
+``` C#
 using FluentSeq.Builder;
 using FluentSeq.Core;
 
@@ -181,7 +181,7 @@ States can be defined as strings, enums, int, objects, and so on.
 Internally they will be stored as type SeqState.
 
 
-``` c#
+``` C#
         var builder = new FluentSeq<TimerState>().Create(TimerState.Off)
             .ConfigureState(TimerState.Off)
             .Builder()
@@ -234,7 +234,7 @@ Validation Principles:
 Validation could be disabled:  
 - completely turn off validation  
 
-``` c#
+``` C#
         var builder = new FluentSeq<TimerState>().Create(TimerState.Off)
             .DisableValidation()
             .ConfigureState(TimerState.Off)
@@ -243,7 +243,7 @@ Validation could be disabled:
 
 - or with specifying states that shouldn't be validated:  
 
-``` c#
+``` C#
         var builder = new FluentSeq<TimerState>().Create(Enum.Off)
             .DisableValidationForStates(Enum.State1, Enum.State2, ...)
             .ConfigureState(Enum.Off)
