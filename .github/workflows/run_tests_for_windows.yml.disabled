@@ -1,0 +1,31 @@
+name: run-tests-for-windows
+
+on: [workflow_dispatch, push]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        framework: [ 'net48' ]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 'Restore NuGet packages'
+        run: nuget restore src/FluentSeq/FluentSeq.csproj
+        
+      - name: Find MSBuild path
+        id: msbuild
+        run: |
+          echo "##[set-output name=path;]$(vswhere -latest -products * -requires Microsoft.Component.MSBuild -find MSBuild\**\Bin\MSBuild.exe)"
+        shell: pwsh
+      
+      - name: Build project
+        run: |
+          "${{ steps.msbuild.outputs.path }}" "src/FluentSeq/FluentSeq.csproj" /p:Configuration=Release /p:TargetFramework=${{ matrix.framework }}
+        shell: pwsh
+  
+      - name: 'Run tests'
+        run: |
+          vstest.console.exe $(Get-ChildItem -Path "src/FluentSeq/bin/Release/${{ matrix.framework }}/*Tests*.dll" | Select-Object -First 1)
