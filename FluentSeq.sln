@@ -8,6 +8,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LearningTests", "tests\Lear
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntegrationTestsFluentSeq", "tests\IntegrationTestsFluentSeq\IntegrationTestsFluentSeq.csproj", "{069AD131-D317-454D-AB40-542D4DD1774E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GitHubActions", "GitHubActions", "{218E9547-19A7-4F78-88B4-1484CE19C15F}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\create-nuget-package.yml = .github\workflows\create-nuget-package.yml
+		.github\workflows\run_tests_for_windows.yml.disabled = .github\workflows\run_tests_for_windows.yml.disabled
+		.github\workflows\run-tests.yml = .github\workflows\run-tests.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
