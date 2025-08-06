@@ -15,6 +15,7 @@
         <PackageId>FluentSeq</PackageId>
         <Title>FluentSeq</Title>
         <Version>1.2.0-pre01</Version>
+        <PackageReleaseNotes>Multi-Targeting, .NET 6.0 - 9.0 and .NET Standard 2.0/2.1</PackageReleaseNotes>
 
         <Company>ieg Systems</Company>
         <Authors>Ing. Ernst Greiner</Authors>
@@ -25,8 +26,6 @@
             Successor of IegTools.Sequencer  
             - new architecture, state-based instead of transaction-based  
         </Description>
-
-        <PackageReleaseNotes>Multi-Targeting, .NET 6.0 - 9.0 and .NET Standard 2.0/2.1</PackageReleaseNotes>
 
         <PackageTags>sequence, sequencer, state-machine, state-engine, finite-state-machine, fsm, finite-state-automation, fsa</PackageTags>
 
