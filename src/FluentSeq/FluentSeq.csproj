@@ -14,7 +14,7 @@
 
         <PackageId>FluentSeq</PackageId>
         <Title>FluentSeq</Title>
-        <Version>1.2.0-pre01</Version>
+        <Version>1.2.0</Version>
         <PackageReleaseNotes>Multi-Targeting, .NET 6.0 - 9.0 and .NET Standard 2.0/2.1</PackageReleaseNotes>
 
         <Company>ieg Systems</Company>
@@ -39,7 +39,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="JetBrains.Annotations" Version="2024.3.0" />
+      <PackageReference Include="JetBrains.Annotations" Version="2025.2.0" />
     </ItemGroup>
 
     <PropertyGroup>
