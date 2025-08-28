@@ -1,6 +1,6 @@
 ﻿namespace FluentSeq.Core;
 
-using Extensions;
+using IegTools.Extensions;
 
 /// <summary>
 /// A sequence that could be executed
