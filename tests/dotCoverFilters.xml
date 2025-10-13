@@ -1,0 +1,9 @@
+<CoverageFilter>
+    <ExcludeFilters>
+        <FilterEntry>
+            <ModuleMask>*</ModuleMask>
+            <ClassMask>*</ClassMask>
+            <FunctionMask>*ToString*</FunctionMask>
+        </FilterEntry>
+    </ExcludeFilters>
+</CoverageFilter>

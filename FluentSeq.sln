@@ -15,6 +15,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GitHubActions", "GitHubActi
 		.github\workflows\run-tests.yml = .github\workflows\run-tests.yml
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dotCover", "dotCover", "{A6D3BE76-F801-4C5F-BBD4-93CDC3BE2CFF}"
+	ProjectSection(SolutionItems) = preProject
+		tests\dotCoverFilters.xml = tests\dotCoverFilters.xml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
