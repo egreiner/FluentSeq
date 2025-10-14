@@ -20,18 +20,14 @@
 
     <PropertyGroup>
         <LegacyFrameworks>netstandard2.0;netstandard2.1;net48;net6.0;net7.0</LegacyFrameworks>
+        <LatestFrameworks>net8.0;net9.0;net10.0</LatestFrameworks>
     </PropertyGroup>
 
     <ItemGroup Condition="'$(LegacyFrameworks)' != '' And $(LegacyFrameworks.Contains('$(TargetFramework)'))">
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.11.1" />
         <PackageReference Include="xunit" Version="2.8.1" />
     </ItemGroup>
-
-
-    <PropertyGroup>
-        <LatestFrameworks>net8.0;net9.0</LatestFrameworks>
-    </PropertyGroup>
-
+    
     <ItemGroup Condition="'$(LatestFrameworks)' != '' And $(LatestFrameworks.Contains('$(TargetFramework)'))">
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
         <PackageReference Include="xunit" Version="2.9.3" />
