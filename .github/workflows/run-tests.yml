@@ -8,7 +8,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        dotnet-version: [ '8.0.x', '9.0.x' ]
+        dotnet-version: [ '8.0.x', '9.0.x', '10.0.x' ]
         os: [ ubuntu-latest ]
 
     steps:
@@ -27,6 +27,7 @@ jobs:
           dotnet-version: |
             8.0.x
             9.0.x
+            10.0.x
 
       - name: Cache NuGet packages
         # caching doesn't make any sense here, there are too few packages, it takes longer with caching
