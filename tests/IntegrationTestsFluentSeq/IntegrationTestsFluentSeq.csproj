@@ -15,6 +15,7 @@
 
     <ItemGroup>
       <PackageReference Include="Shouldly" Version="4.3.0" />
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.0.0" />
     </ItemGroup>
 
 
@@ -24,12 +25,10 @@
     </PropertyGroup>
 
     <ItemGroup Condition="'$(LegacyFrameworks)' != '' And $(LegacyFrameworks.Contains('$(TargetFramework)'))">
-        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.11.1" />
         <PackageReference Include="xunit" Version="2.8.1" />
     </ItemGroup>
     
     <ItemGroup Condition="'$(LatestFrameworks)' != '' And $(LatestFrameworks.Contains('$(TargetFramework)'))">
-        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
         <PackageReference Include="xunit" Version="2.9.3" />
     </ItemGroup>
 

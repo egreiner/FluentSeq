@@ -14,7 +14,7 @@
 
         <PackageId>FluentSeq</PackageId>
         <Title>FluentSeq</Title>
-        <Version>2.0.0-alpha</Version>
+        <Version>2.0.0-rc1</Version>
         <PackageReleaseNotes>Remove .NET 6.0 and .NET 7.0 from supported Frameworks, add .NET 10 RC1 (LTS)</PackageReleaseNotes>
 
         <Company>ieg Systems</Company>
@@ -39,7 +39,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="IegTools.Extensions" Version="0.1.8-alpha" />
+      <PackageReference Include="IegTools.Extensions" Version="0.2.0-alpha" />
       <PackageReference Include="JetBrains.Annotations" Version="2025.2.2" />
     </ItemGroup>
 
