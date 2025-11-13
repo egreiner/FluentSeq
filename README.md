@@ -5,10 +5,13 @@
 &nbsp; [![NuGet package](https://img.shields.io/nuget/dt/FluentSeq?logo=NuGet)](https://www.nuget.org/packages/FluentSeq)  
 
 
+FluentSeq is the successor of [IegTools.Sequencer](https://github.com/egreiner/IegTools.Sequencer).
+
+
 FluentSeq provides a fluent interface for creating easy-to-read sequences, 
 eliminating the need for lengthy if-else statements.  
 The library is written in C# 13 and multi-targets
-- .NET 6.0 - .NET 9.0
+- .NET 8.0 - .NET 10.0
 - .NET Standard 2.0/2.1  
 
 The library allows you to configure:  
@@ -18,9 +21,7 @@ The library allows you to configure:
 - Actions that can be executed on State-Entry, State-Exit or WhileInState    
 - Validate a sequence on build to avoid misconfigurations (missing states, triggers, etc.)  
 
-The Test coverage for .NET 6.0 - 9.0 is greater than 95%  
-
-FluentSeq is the successor of [IegTools.Sequencer](https://github.com/egreiner/IegTools.Sequencer).  
+The Test coverage for .NET 8.0 - 10.0 is greater than 95%  
 
 
 # Table of Contents
