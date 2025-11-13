@@ -22,6 +22,7 @@ public sealed class OffTimerConfigureExampleTests
         }).Builder();
 
 
+    // TODO those tests are flaky, split them up
     [Theory]
     [InlineData(true, 9, 0, TimerState.Off, TimerState.On)]
     [InlineData(true, 9, 0, TimerState.Pending, TimerState.On)]

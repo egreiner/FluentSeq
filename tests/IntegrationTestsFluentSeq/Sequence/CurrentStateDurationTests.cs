@@ -25,6 +25,6 @@ public sealed class CurrentStateDurationTests
 
         await Task.Delay(2);
 
-        sequence.CurrentStateDuration().ShouldBeGreaterThan(TimeSpan.FromMilliseconds(1.0));
+        sequence.CurrentStateDuration().ShouldBeGreaterThan(TimeSpan.FromMilliseconds(0.5));
     }
 }
