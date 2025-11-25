@@ -1,0 +1,14 @@
+<Solution>
+  <Folder Name="/dotCover/">
+    <File Path="tests/dotCoverFilters.xml" />
+  </Folder>
+  <Folder Name="/GitHubActions/">
+    <File Path=".github/workflows/create-nuget-package.yml" />
+    <File Path=".github/workflows/run-tests.yml" />
+    <File Path=".github/workflows/run_tests_for_windows.yml.disabled" />
+  </Folder>
+  <Project Path="src/FluentSeq/FluentSeq.csproj" />
+  <Project Path="tests/IntegrationTestsFluentSeq/IntegrationTestsFluentSeq.csproj" />
+  <Project Path="tests/LearningTests/LearningTests.csproj" />
+  <Project Path="tests/UnitTestsFluentSeq/UnitTestsFluentSeq.csproj" />
+</Solution>
