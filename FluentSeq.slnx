@@ -9,6 +9,5 @@
   </Folder>
   <Project Path="src/FluentSeq/FluentSeq.csproj" />
   <Project Path="tests/IntegrationTestsFluentSeq/IntegrationTestsFluentSeq.csproj" />
-  <Project Path="tests/LearningTests/LearningTests.csproj" />
   <Project Path="tests/UnitTestsFluentSeq/UnitTestsFluentSeq.csproj" />
 </Solution>
