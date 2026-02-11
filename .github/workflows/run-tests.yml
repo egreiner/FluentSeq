@@ -4,24 +4,12 @@ on: [workflow_dispatch, push]
 
 jobs:
   build:
-
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        dotnet-version: [ '8.0.x', '9.0.x', '10.0.x' ]
-        os: [ ubuntu-latest ]
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v4
 
-      # Das SDK aus der Matrix aktiv setzen
-      - name: Setup active .NET SDK ${{ matrix.dotnet-version }}
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: ${{ matrix.dotnet-version }}
-
-      # Alle SDKs installieren, damit Multi-Targeting (net6/7/8) funktioniert
-      - name: Setup additional SDKs for multi-targeting
+      - name: Setup .NET SDKs for multi-targeting
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: |
@@ -29,21 +17,11 @@ jobs:
             9.0.x
             10.0.x
 
-      - name: Cache NuGet packages
-        # caching doesn't make any sense here, there are too few packages, it takes longer with caching
-        if: false
-        uses: actions/cache@v3
-        with:
-          path: ~/.nuget/packages
-          key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj') }}
-          restore-keys: |
-            ${{ runner.os }}-nuget-
-            
       - name: Install dependencies
         run: dotnet restore
 
       - name: Build project
-        run: dotnet build --configuration Release --no-restore  /p:TreatWarningsAsErrors=false
+        run: dotnet build --configuration Release --no-restore /p:TreatWarningsAsErrors=false
 
       - name: Static Code Analysis
         run: dotnet tool install --global dotnet-analyzer && dotnet-analyzer analyze src
