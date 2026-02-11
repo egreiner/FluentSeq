@@ -21,7 +21,7 @@ The library allows you to configure:
 - Actions that can be executed on State-Entry, State-Exit or WhileInState    
 - Validate a sequence on build to avoid misconfigurations (missing states, triggers, etc.)  
 
-The Test coverage for .NET 8.0 - 10.0 is greater than 95%  
+The Test coverage for .NET 8.0, .NET 9.0 and .NET 10.0 is greater than 95%  
 
 
 # Table of Contents

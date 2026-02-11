@@ -50,4 +50,4 @@ jobs:
         if: false # temporarily disable this step, there is more to be done here that this will work
   
       - name: Test project
-        run: dotnet test --no-restore --verbosity normal 
+        run: dotnet test --configuration Release --no-build --verbosity normal 
