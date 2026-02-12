@@ -1,7 +1,10 @@
-﻿# if you leave TDD for a while, take care of the following
+﻿# migrate from xUnit v2 to v3
+
+
+# if you leave TDD for a while, take care of the following
 
 ## Focus on CodeCoverage
-do TestFirst or TestImmediatelyAfter or as last ressort TestAfter
+do TestFirst or TestImmediatelyAfter or as the last resort TestAfter
 Ensure that TestAfter will not become TestNever!
 
 
