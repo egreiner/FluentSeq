@@ -14,23 +14,12 @@ env:
 jobs:
   build:
 
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        dotnet-version: [ '8.0.x', '9.0.x', '10.0.x' ]
-        os: [ubuntu-latest]
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v4
-      
-      # Das SDK aus der Matrix aktiv setzen
-      - name: Setup active .NET SDK ${{ matrix.dotnet-version }}
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: ${{ matrix.dotnet-version }}
 
-      # Alle SDKs installieren, damit Multi-Targeting (net6/7/8/9) funktioniert
-      - name: Setup additional SDKs for multi-targeting
+      - name: Setup .NET SDKs for multi-targeting
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: |
@@ -40,12 +29,18 @@ jobs:
 
       - name: Install dependencies
         run: dotnet restore
-      
+
       - name: Build project
         run: dotnet build --configuration Release --no-restore /p:TreatWarningsAsErrors=false
 
+      - name: Static Code Analysis
+        run: dotnet tool install --global dotnet-analyzer && dotnet-analyzer analyze src
+        if: false # temporarily disable this step, there is more to be done here that this will work
+
       - name: Test project
-        run: dotnet test --no-restore --verbosity normal
+        run: dotnet test --configuration Release --no-build --verbosity normal
+      
+      
       
       - name: Get Version
         uses: bbonkr/get-version-action@v1.0.4

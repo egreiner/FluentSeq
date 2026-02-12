@@ -14,12 +14,12 @@
 
         <PackageId>FluentSeq</PackageId>
         <Title>FluentSeq</Title>
-        <Version>2.0.0</Version>
-        <PackageReleaseNotes>add .NET 10.0 LTS support</PackageReleaseNotes>
+        <Version>2.1.0</Version>
+        <PackageReleaseNotes>migrate from xUnit v2.9.x to v3.2.x</PackageReleaseNotes>
 
         <Company>ieg Systems</Company>
         <Authors>Ing. Ernst Greiner</Authors>
-        <Copyright>(c) 2025 ieg Systems - Ing. Ernst Greiner</Copyright>
+        <Copyright>(c) 2026 ieg Systems - Ing. Ernst Greiner</Copyright>
 
         <Description>
             FluentSeq provides a fluent interface for creating easy-to-read sequences, eliminating the need for lengthy if-else statements.  
@@ -40,7 +40,7 @@
 
     <ItemGroup>
       <PackageReference Include="IegTools.Extensions" Version="0.2.0" />
-      <PackageReference Include="JetBrains.Annotations" Version="2025.2.2" />
+      <PackageReference Include="JetBrains.Annotations" Version="2025.2.4" />
     </ItemGroup>
 
     <PropertyGroup>
@@ -53,7 +53,7 @@
     </ItemGroup>
     
     <ItemGroup Condition="'$(LatestFrameworks)' != '' And $(LatestFrameworks.Contains('$(TargetFramework)'))">
-        <PackageReference Include="FluentValidation" Version="12.0.0" />
+        <PackageReference Include="FluentValidation" Version="12.1.1" />
     </ItemGroup>
     
     <ItemGroup>
