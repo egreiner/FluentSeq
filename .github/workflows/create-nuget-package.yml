@@ -17,10 +17,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6.0.2
 
       - name: Setup .NET SDKs for multi-targeting
-        uses: actions/setup-dotnet@v4
+        uses: actions/setup-dotnet@v5.1.0
         with:
           dotnet-version: |
             8.0.x
@@ -43,7 +43,7 @@ jobs:
       
       
       - name: Get Version
-        uses: bbonkr/get-version-action@v1.0.4
+        uses: bbonkr/get-version-action@v1.3.1
         id: get_version
         with:
           project: ${{ env.PROJECT_PATH }}
