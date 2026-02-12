@@ -42,7 +42,7 @@ public sealed class OnTimerCreateExampleTests
 
         _sequence.SetState(currentState);
 
-        await Task.Delay(sleepTimeInMs);
+        await Task.Delay(sleepTimeInMs, TestContext.Current.CancellationToken).ConfigureAwait(true);
         await _sequence.RunAsync();
 
         var actual = _sequence.CurrentState;

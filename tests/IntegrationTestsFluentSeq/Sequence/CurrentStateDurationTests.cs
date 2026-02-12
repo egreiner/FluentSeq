@@ -23,7 +23,7 @@ public sealed class CurrentStateDurationTests
 
         sequence.SetState(startState);
 
-        await Task.Delay(2);
+        await Task.Delay(2, TestContext.Current.CancellationToken).ConfigureAwait(true);
 
         sequence.CurrentStateDuration().ShouldBeGreaterThan(TimeSpan.FromMilliseconds(0.5));
     }

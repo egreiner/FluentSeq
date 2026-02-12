@@ -58,7 +58,7 @@ public sealed class TriggeredByWhenInStateTests
 
         sequence.SetState(state.Initialized);
 
-        await Task.Delay(delayInMs);
+        await Task.Delay(delayInMs, TestContext.Current.CancellationToken).ConfigureAwait(true);
         await sequence.RunAsync();
 
         sequence.CurrentState.ShouldBe(expectedState);

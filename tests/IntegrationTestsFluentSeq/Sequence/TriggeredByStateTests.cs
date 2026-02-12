@@ -22,7 +22,7 @@ public sealed class TriggeredByStateTests
 
         sequence.SetState(startState);
 
-        await Task.Delay(1);
+        await Task.Delay(1, TestContext.Current.CancellationToken).ConfigureAwait(true);
 
         await sequence.RunAsync();
         sequence.CurrentState.ShouldBe(expectedState);
