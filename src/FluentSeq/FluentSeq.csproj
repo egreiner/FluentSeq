@@ -15,7 +15,7 @@
         <PackageId>FluentSeq</PackageId>
         <Title>FluentSeq</Title>
         <Version>2.1.0</Version>
-        <PackageReleaseNotes>migrate from xUnit v2.9.x to v3.2.x</PackageReleaseNotes>
+        <PackageReleaseNotes>Migrate from xUnit v2.9.x to v3.2.x</PackageReleaseNotes>
 
         <Company>ieg Systems</Company>
         <Authors>Ing. Ernst Greiner</Authors>

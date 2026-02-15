@@ -11,17 +11,20 @@ FluentSeq is the successor of [IegTools.Sequencer](https://github.com/egreiner/I
 FluentSeq provides a fluent interface for creating easy-to-read sequences, 
 eliminating the need for lengthy if-else statements.  
 The library is written in C# 13 and multi-targets
-- .NET 8.0 - .NET 10.0
-- .NET Standard 2.0/2.1  
+- .NET Standard 2.0
+- .NET Standard 2.1
+- .NET 8.0
+- .NET 9.0
+- .NET 10.0
 
 The library allows you to configure:  
 
 - Sequences with States  
 - different kinds of State-Triggers  
-- Actions that can be executed on State-Entry, State-Exit or WhileInState    
+- Actions that can be executed on State-Entry, State-Exit, or WhileInState    
 - Validate a sequence on build to avoid misconfigurations (missing states, triggers, etc.)  
 
-The Test coverage for .NET 8.0, .NET 9.0 and .NET 10.0 is greater than 95%  
+The Test coverage for .NET 8.0, .NET 9.0, and .NET 10.0 is greater than 95%  
 
 
 # Table of Contents
@@ -42,7 +45,7 @@ The library is available as a [NuGet package](https://www.nuget.org/packages/Flu
 
 
 # Usage
-## Configure, build and run a sequence  
+## Configure, build, and run a sequence  
 ### Create a sequence in a compact style  
 
 A simple example configuration and usage for an OnTimer-sequence as xUnit-Test:  
@@ -179,7 +182,7 @@ For more examples -> IntegrationTestsFluentSeq/Examples
 ### States
 
 States can be defined as strings, enums, int, objects, and so on.  
-Internally they will be stored as type SeqState.
+Internally, they will be stored as type SeqState.
 
 
 ``` C#
