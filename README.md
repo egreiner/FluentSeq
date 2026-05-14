@@ -4,8 +4,9 @@
 &nbsp; [![NuGet package](https://img.shields.io/nuget/v/FluentSeq.svg?logo=NuGet)](https://www.nuget.org/packages/FluentSeq)
 &nbsp; [![NuGet package](https://img.shields.io/nuget/dt/FluentSeq?logo=NuGet)](https://www.nuget.org/packages/FluentSeq)  
 
+IegTools.FluentSequencer aka FluentSeq is the successor of [IegTools.Sequencer](https://github.com/egreiner/IegTools.Sequencer).
 
-FluentSeq is the successor of [IegTools.Sequencer](https://github.com/egreiner/IegTools.Sequencer).
+The NuGet package has been renamed to IegTools.FluentSequencer, internally everything stays the same.
 
 
 FluentSeq provides a fluent interface for creating easy-to-read sequences, 

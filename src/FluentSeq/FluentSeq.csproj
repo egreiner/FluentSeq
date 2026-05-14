@@ -12,10 +12,10 @@
         <UserSecretsId>940bf605-ef83-43f5-9f75-715291de7535</UserSecretsId>
         <GenerateDocumentationFile>True</GenerateDocumentationFile>
 
-        <PackageId>FluentSeq</PackageId>
-        <Title>FluentSeq</Title>
-        <Version>2.1.0</Version>
-        <PackageReleaseNotes>Migrate from xUnit v2.9.x to v3.2.x</PackageReleaseNotes>
+        <PackageId>IegTools.FluentSequencer</PackageId>
+        <Title>IegTools.FluentSequencer</Title>
+        <Version>2.1.1</Version>
+        <PackageReleaseNotes>Rename NuGet package from FluentSeq to IegTools.FluentSequencer</PackageReleaseNotes>
 
         <Company>ieg Systems</Company>
         <Authors>Ing. Ernst Greiner</Authors>
@@ -23,15 +23,14 @@
 
         <Description>
             FluentSeq provides a fluent interface for creating easy-to-read sequences, eliminating the need for lengthy if-else statements.  
-            Successor of IegTools.Sequencer  
-            - new architecture, state-based instead of transaction-based  
+            Successor of IegTools.Sequencer, now with a new architecture based on states instead of transactions.
         </Description>
 
         <PackageTags>sequence, sequencer, state-machine, state-engine, finite-state-machine, fsm, finite-state-automation, fsa</PackageTags>
 
-        <RepositoryUrl>https://github.com/egreiner/FluentSeq</RepositoryUrl>
-        <PackageProjectUrl>https://github.com/egreiner/FluentSeq</PackageProjectUrl>
-        <PackageReadme>https://github.com/egreiner/FluentSeq/blob/main/README.md</PackageReadme>
+        <RepositoryUrl>https://codeberg.org/egreiner/FluentSeq</RepositoryUrl>
+        <PackageProjectUrl>https://codeberg.org/egreiner/FluentSeq</PackageProjectUrl>
+        <PackageReadme>https://codeberg.org/egreiner/FluentSeq#readme</PackageReadme>
         <PackageReadmeFile>docs\README.md</PackageReadmeFile>
         <PackageLicenseFile>docs\LICENSE.txt</PackageLicenseFile>
         <PackageIcon>docs\icon2.png</PackageIcon>
